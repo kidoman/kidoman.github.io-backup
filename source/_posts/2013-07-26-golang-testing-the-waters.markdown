@@ -7,7 +7,7 @@ category: engineering
 tags: go golang talk
 ---
 
-![Gopher](http://1-ps.googleusercontent.com/x/s.golang-org.appspot.com/golang.org/doc/gopher/xfrontpage.png.pagespeed.ic._-JkwHsaKq.webp)
+![Gopher](//1-ps.googleusercontent.com/x/s.golang-org.appspot.com/golang.org/doc/gopher/xfrontpage.png.pagespeed.ic._-JkwHsaKq.webp)
 
 [Go](http://golang.org/) has caught my fancy. There, I said it.
 
