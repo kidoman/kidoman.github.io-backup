@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Go + Hadoop!"
+date: 2013-09-29 14:37
+comments: true
+category: engineering
+tags: go golang hadoop hortonworks
+---
+
+This is very interesting development indeed: http://hortonworks.com/blog/go-hadoop-err-hadoop-and-go/ :)

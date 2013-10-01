@@ -1,0 +1,18 @@
+---
+layout: post
+title: "Welcome..."
+date: 2013-05-01 02:27
+comments: true
+category: life
+tags: life welcome
+---
+
+{% img /images/i-am-looking-at-you.jpeg I see dead people %}
+
+This blog has been a long time coming. I don't remember correctly (and am too lazy to look it up) but I think I purchased this domain more than 5 years ago! But its up now. And that's all she said...
+
+Did planet Earth need another blog? tl;dr: NO
+
+But I thought I could add some spice to your boring lives by penning down my thoughts which move at speed of light between biking, coding, entrepreneurship and biking agin.
+
+So sit back, relax and enjoy the show!

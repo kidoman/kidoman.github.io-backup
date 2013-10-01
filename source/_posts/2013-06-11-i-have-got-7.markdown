@@ -1,0 +1,18 @@
+---
+layout: post
+title: "I have got 7!"
+date: 2013-06-11 07:06
+comments: true
+category: life
+tags:
+  - apple
+  - ios 7
+---
+
+{% img center /images/got-ios7.png iOS 7 %}
+
+Just updated both my devices (well technically Neeru's and mine) and couldn't be happier.
+
+Will post a detailed analysis in some time...
+
+PS: What you see on the screen is iOS 7 doing opportunistic updates for all my apps! Hurray...
