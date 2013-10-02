@@ -2,7 +2,6 @@
 layout: post
 title: "Go vs C++: Business Card Raytracer"
 date: 2013-09-29 14:38
-published: false
 comments: true
 category: programming
 tags:
@@ -16,18 +15,32 @@ tags:
   - raytracing
 ---
 
-{% img /images/42.png A Raytraced Image %}
+{% img /images/42.png A ray traced Image %}
 
 Few days ago, I chanced upon [this blog post](http://fabiensanglard.net/rayTracing_back_of_business_card/index.php) on [Hacker News](https://news.ycombinator.com/news).
 
-I loved the breakdown which the author had provided, and frankly speaking, since the subject was about Raytracing, it didn't take much time for me to get fully engrossed in it. I mean, a [complete ray tracer](https://gist.github.com/kid0m4n/6708750), succint enough to fit at the back of the business card, measuring up to a grand total of 1337 bytes... what's not to like?
+I loved the breakdown provided by the author, and frankly speaking, since the subject was about ray tracing, it didn't take much for me to get fully engrossed in it. I mean, a [ray tracer](https://gist.github.com/kid0m4n/6708750), succint enough to fit at the back of the business card, measuring up to a grand total of 1337 bytes... yummmmmmmmmmmy!
 
-Like any programmer worth his salt, I immediately decided to port this brilliant piece of art to my favorite programming language, Go. Did I hear you ask "Why Go?"
+**Long story short: ** After optimizations, the Go ray tracer was **8.4 %** faster than a functionally equivalent C++ version when rendering a 4.2 megapixel image on a single core. Once multi-core enabled, the performance gap widened to **76.2 %** on a 8 core machine. Not only was it really simple to utilize all the cores in Go, it was easy to immediately feel productive in the language due to its simple and thoughtful design. "[Less is indeed more !](http://commandcenter.blogspot.in/2012/06/less-is-exponentially-more.html)"
+
+Ray tracing?
+---
+
+{% img /images/ray-tracing.png Ray Tracing %}
+
+[Ray tracing](http://en.wikipedia.org/wiki/Ray_tracing_(graphics) is a technique for generating an image by tracing the path of light through pixels in an image plane and simulating the effects of its encounters with virtual objects. Since it is computationally intensive and you figure out the final color of each pixel on its own, without caring about neighbouring pixels, the algorithm is inherently parallelizable; atleast in its current form.
+
+Although a poor fit for rendering realtime graphics (read games and simulations where speed is critical) without expensive hardware, it sees a lot of usage in the film and television where the image can be rendered slowly ahead of time.
+
+Fire your engines
+---
+
+Like any programmer worth his salt, I immediately decided to port this brilliant piece of art to a programming language I am trying to internalize, Go. Did I hear you ask "Why [Go](http://golang.org/) ?"
 
 * Go is poised to be fast, system level programming language
 * Performance is one of the key factors
 * Scaling to multiple cores is supposed to be a breeze
-* Just more opportunity to write more Go code (I am learning the language after all)
+* Its supposedly easy to leverage all the features provided by the Go language and runtime and write "correct" and "idiomatic" programs
 
 So a couple of hours later, I got the [first version](https://github.com/kid0m4n/gorays/blob/0e2c2c467221d6e5ee27fcf95f8a9412c6a8b21d/main.go) up and running. I modified both the C++ and the Go versions slightly to generate the same [exact image](http://i.imgur.com/yFicPrE.png) (512 x 512) so that it was as close a comparision as possible (no disrespect to prodigal aek.)
 
@@ -176,21 +189,21 @@ I also did some additional testing on a dedicated machine powered by Ubuntu 13.0
 Conclusion
 ---
 
-Without further adieu:
-
 * This much improvement would not have been possible without support from the Go community. You guys rock!
 * Asking a genuine constructive question on golang-nuts has always gotten people a +ve response. Even if it is a "Sorry, it would be a difficult to do this in Go right now"
 * Go is maturing quickly. Every new version brings in new backward compatible performance; just recompile your code and voila!
 * It was a breeze to do the various optimizations suggested by the community, and it is very possible that some of these optimizations would not be required in the near future (like say with a language build in exponentiation)
-* The succinctness and simplicity of the resultant Go code is a big BIG win!
 * We are comparing C++ to a language which not only has garbage collection built into the statically compiled binary, it also has the ability to handle multiple cores / synchrony baked right into the language
 * I am looking forward to redoing these tests with an optimized C++ version (single-core, multi-core) if someone is willing to contribute those changes
 
-Links:
+**The succinctness and simplicity of the resultant Go code is a big BIG win! Because it is so easy to grasp all of the Go language, you are able to channelize your thought process to actually solving the problem at hand. At a much faster pace. And the best part is: more often than not, the first solution which you will code up in Go will probably be the correct solution (or very close to it.) This would definitely not have been possible if the language was any less thoughtfully designed**
+
+Links
+---
 
 * Golang-nuts discussion thread: [link](https://groups.google.com/forum/#!topic/golang-nuts/mxYzHQSV3rw)
 * gorays Github repo: [link](https://github.com/kid0m4n/gorays)
 * C++ version gist: [link](https://gist.github.com/kid0m4n/6680629)
 * Various parallel options tried: [link](https://github.com/kid0m4n/gorays/commits/parallel)
 
-That's all folks. Thanks for reading. If you have any comments, feel free to leave them here on the blog or you can always email me at karanm@thoughtworks.com / kidoman@gmail.com. Ciao!
+That's all folks. Thanks for reading. If you have any comments, feel free to leave them here on the blog or you can always email me at karanm@thoughtworks.com / kidoman@gmail.com. Also reachable at [@kid0m4n](https://twitter.com/kid0m4n) on Twitter Ciao!
