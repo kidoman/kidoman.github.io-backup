@@ -19,7 +19,9 @@ tags:
 {% img /images/42.png A ray traced Image %}<br />
 (the above graphical image is produced by a __ray tracing**__ program)
 
-**Long story short: ** After optimizations, the Go ray tracer was **8.4 %** faster than a functionally equivalent C++ version when rendering a **4.2 MegaPixel** image using a single thread. With multi-threading enabled, the performance gap widened to **76.2 %** on a 8 Core machine. Not only was it really simple to utilize the complete CPU in Go, it was easy to immediately feel productive in the language due to its simple and thoughtful design. "[Less is indeed more !](http://commandcenter.blogspot.in/2012/06/less-is-exponentially-more.html)"
+**Long story short: ** After optimizations, the Go ray tracer was **8.4 %** faster than a functionally equivalent C++ (but _unoptimized*_) version when rendering a **4.2 MegaPixel** image using a single thread. With multi-threading enabled, the performance gap widened to **76.2 %** on a 8 Core machine. Not only was it really simple to utilize the complete CPU in Go, it was easy to immediately feel productive in the language due to its simple and thoughtful design. "[Less is indeed more !](http://commandcenter.blogspot.in/2012/06/less-is-exponentially-more.html)"
+
+__*Update: __ I have posted a [follow up article](/programming/go-getter-part-2.html) with the benchmarks rerun using a optimized C++ solution
 
 Ray tracing? **
 ---
