@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Go Getter"
-subtitle: "Performance comparison to C++ in business card ray tracer"
+subtitle: "Performance comparison to C++ business card ray tracer"
 date: 2013-10-02 12:06
 comments: true
 category: programming
