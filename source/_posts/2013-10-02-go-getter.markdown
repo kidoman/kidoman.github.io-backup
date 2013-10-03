@@ -213,3 +213,5 @@ Links
 * Various parallel options tried: [link](https://github.com/kid0m4n/gorays/commits/parallel)
 
 That's all folks. Thanks for reading. If you have any comments, feel free to leave them here on the blog or you can always email me at karanm@thoughtworks.com / kidoman@gmail.com. Also reachable at [@kid0m4n](https://twitter.com/kid0m4n) on Twitter Ciao!
+
+[Reddit discussion thread](http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/)

@@ -46,3 +46,5 @@ Road Ahead
 I hope to takes these numbers to the Go community and try and close the gap as much as possible. Go suffers from relatively slower performance because it tries to be as safe as possible when used in a concurrent scenario (for example, the default "global rand" is synchronized and good to access from multiple goroutines.) That is something I would definitely desire when doing real world coding. There is definitely scope for improvement, but considering everything else (GC, compilation speed, goroutines, channels, etc.) that Go brings to the table, I guess it will always be a game of balance.
 
 As usual, reachable at kidoman@gmail.com / karanm@thoughtworks.com / [@kid0m4n](https://twitter.com/kid0m4n)
+
+[Reddit discussion thread](http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/)
