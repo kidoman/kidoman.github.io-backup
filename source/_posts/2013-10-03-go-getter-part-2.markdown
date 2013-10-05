@@ -32,7 +32,7 @@ It was never meant to mislead people into believing that Go was faster than a fu
 Full Steam Ahead
 ---
 
-I spent the last couple of hours applying the optimizations learnt from the Go story to the C++ version: [diff of the optimizations](https://github.com/kid0m4n/gorays/compare/bbb8395aa999883a595267fd0230087b1ddf646c...940c91f601ef840e6d75ddf272ab6cd3eb8d5531)
+I spent the last couple of hours applying the optimizations learnt from the Go story to the C++ version: [diff of the optimizations](https://github.com/kid0m4n/rays/compare/bbb8395aa999883a595267fd0230087b1ddf646c...940c91f601ef840e6d75ddf272ab6cd3eb8d5531)
 
 Needless to say, the C++ performance is **exciting** again. Mind you, although I tried using OpenMP to bring in some multi-threaded love, it didn't work out so well. So I will truly have to leave that upto more capable hands.
 

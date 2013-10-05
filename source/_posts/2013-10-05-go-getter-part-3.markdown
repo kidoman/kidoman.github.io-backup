@@ -93,7 +93,7 @@ Computing the bounce vector
    return
  }
 ```
-(link to [diff](https://github.com/kid0m4n/gorays/commit/efa1672ad5c8fa41550a611217ec3fe239cfd3c6))
+(link to [diff](https://github.com/kid0m4n/rays/commit/efa1672ad5c8fa41550a611217ec3fe239cfd3c6))
 
 This shaved off a further **4 %** from the execution time. The reason: instead of doing a expensive **Normalize()** (line 5) call inside a loop, why not pull it out and do it only if 'st' == 'hit'
 

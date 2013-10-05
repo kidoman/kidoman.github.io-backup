@@ -50,7 +50,7 @@ Like any programmer worth his salt, I immediately decided to port this brilliant
 * Scaling to multiple cores is supposed to be a breeze
 * Its supposedly easy to leverage all the features provided by the Go language and runtime and write "correct" and "idiomatic" programs
 
-So a couple of hours later, I got the [first version](https://github.com/kid0m4n/gorays/blob/0e2c2c467221d6e5ee27fcf95f8a9412c6a8b21d/main.go) up and running. I modified both the C++ and the Go versions slightly to generate the same [exact image](http://i.imgur.com/yFicPrE.png) (512 x 512) so that it was as close a comparision as possible (no disrespect to prodigal aek.)
+So a couple of hours later, I got the [first version](https://github.com/kid0m4n/rays/blob/0e2c2c467221d6e5ee27fcf95f8a9412c6a8b21d/main.go) up and running. I modified both the C++ and the Go versions slightly to generate the same [exact image](http://i.imgur.com/yFicPrE.png) (512 x 512) so that it was as close a comparision as possible (no disrespect to prodigal aek.)
 
 This is how the numbers stacked up:
 
@@ -65,9 +65,9 @@ Links
 ---
 
 * Golang-nuts discussion thread: [link](https://groups.google.com/forum/#!topic/golang-nuts/mxYzHQSV3rw)
-* gorays Github repo: [link](https://github.com/kid0m4n/gorays)
+* gorays Github repo: [link](https://github.com/kid0m4n/rays)
 * C++ version gist: [link](https://gist.github.com/kid0m4n/6680629)
-* Various parallel options tried: [link](https://github.com/kid0m4n/gorays/commits/parallel)
+* Various parallel options tried: [link](https://github.com/kid0m4n/rays/commits/parallel)
 
 Aside
 ---
@@ -98,7 +98,7 @@ In this particular case, it was a 11.2 % win. With zero changes to code. Hurray!
 Global to Local Rand
 ---
 
-Change# 2 ([commit](https://github.com/kid0m4n/gorays/commit/5f16e4131faf9f712e716b04038523bd57bbca9b))<br/>
+Change# 2 ([commit](https://github.com/kid0m4n/rays/commit/5f16e4131faf9f712e716b04038523bd57bbca9b))<br/>
 Before: 25.644 s<br/>
 After: 23.816 s<br/>
 Change: **7.13 %**<br/>
@@ -110,31 +110,31 @@ Needless to say, using a local rand (i.e. calling rand.New(...) and using the re
 Buffer to Win
 ---
 
-Change# 3 & 4 ([commit 1](https://github.com/kid0m4n/gorays/commit/e9c418ec3a77d014ced05bcbd52f38aa3ef7c2af) and [commit 2](https://github.com/kid0m4n/gorays/commit/1d09eac86697d7f50cdf5866fd9a6988f4cf6e84))<br/>
+Change# 3 & 4 ([commit 1](https://github.com/kid0m4n/rays/commit/e9c418ec3a77d014ced05bcbd52f38aa3ef7c2af) and [commit 2](https://github.com/kid0m4n/rays/commit/1d09eac86697d7f50cdf5866fd9a6988f4cf6e84))<br/>
 Before: 23.816 s<br/>
 After: 22.818 s<br/>
 Change: **4.23 %**<br/>
 
 This was a two parter (as are all good movies.) The first part involved not writing to [os.Stdout](http://golang.org/pkg/os/#pkg-variables) inside the inner loop of the ray tracer. I guess writing to os.Stdout is not bad in general, but placing it inside a super tight inner loop (which essentially iterates through every pixel of the rendered image) is a big __NO-NO__! Getting rid of that was easy. Just use a bytes.Buffer (hat tip to [Robert Melton](https://groups.google.com/d/msg/golang-nuts/mxYzHQSV3rw/kJkpTdN7uP0J).)
 
-The real win was avoiding the [allocation of a byte slice](https://github.com/kid0m4n/gorays/blob/e9c418ec3a77d014ced05bcbd52f38aa3ef7c2af/main.go#L73) inside the inner loop. Its common knowledge in the Go world: lesser the garbage you create, the more performant your application becomes. By avoiding the allocation of the byte slice per pixel (thanks [Nigel Tao](https://groups.google.com/d/msg/golang-nuts/mxYzHQSV3rw/3Z0vi5pilF8J)), we optimized things further and brough the overall execution time down to 22.818 s (2x compared to the C++ version.) Not too shabby.
+The real win was avoiding the [allocation of a byte slice](https://github.com/kid0m4n/rays/blob/e9c418ec3a77d014ced05bcbd52f38aa3ef7c2af/main.go#L73) inside the inner loop. Its common knowledge in the Go world: lesser the garbage you create, the more performant your application becomes. By avoiding the allocation of the byte slice per pixel (thanks [Nigel Tao](https://groups.google.com/d/msg/golang-nuts/mxYzHQSV3rw/3Z0vi5pilF8J)), we optimized things further and brough the overall execution time down to 22.818 s (2x compared to the C++ version.) Not too shabby.
 
 Engage Warp Engines
 ---
 
-Change# 5 ([commit](https://github.com/kid0m4n/gorays/commit/249f229ba8c769c38d7dc018acfdf29cc86d6e43))<br/>
+Change# 5 ([commit](https://github.com/kid0m4n/rays/commit/249f229ba8c769c38d7dc018acfdf29cc86d6e43))<br/>
 Before: 22.818 s<br/>
 After: 12.747 s<br/>
 Change: **44.14 %**<br/>
 
-I did myself a solid by looking closely at the [tracer()](https://github.com/kid0m4n/gorays/blob/249f229ba8c769c38d7dc018acfdf29cc86d6e43/main.go#L149) function. It was being called a gazillion times and required some much needed love. Instead of looping through all possible "potential" spheres every time **tracer** was called, why not precompute the various possible sphere locations (information which is readily available) and avoid the [double loop](https://github.com/kid0m4n/gorays/blob/1d09eac86697d7f50cdf5866fd9a6988f4cf6e84/main.go#L142) in the first place?
+I did myself a solid by looking closely at the [tracer()](https://github.com/kid0m4n/rays/blob/249f229ba8c769c38d7dc018acfdf29cc86d6e43/main.go#L149) function. It was being called a gazillion times and required some much needed love. Instead of looping through all possible "potential" spheres every time **tracer** was called, why not precompute the various possible sphere locations (information which is readily available) and avoid the [double loop](https://github.com/kid0m4n/rays/blob/1d09eac86697d7f50cdf5866fd9a6988f4cf6e84/main.go#L142) in the first place?
 
 This minor optimization saw the most massive jump thus far. A 44.14 % boost. And now, we were just 0.944 s shy of the C++ program's raw speed. Was this a apples-to-apples comparison anymore? Well no, but it was never meant to be. Attempt was to use the best of what **Go** has to offer to extract maximum performance. And we were barrelling down that road.
 
 Scotty, is that all you got?
 ---
 
-Change# 6 ([commit](https://github.com/kid0m4n/gorays/commit/9066519c24a092b7f672b71327f5c825f84a77a4))<br/>
+Change# 6 ([commit](https://github.com/kid0m4n/rays/commit/9066519c24a092b7f672b71327f5c825f84a77a4))<br/>
 Before: 12.747 s<br/>
 After: 12.644 s<br/>
 Change: **0.81 %**<br/>
@@ -144,7 +144,7 @@ This is a significant change (thanks to the suggestion from [kortschak](https://
 Warp Speed Ahead
 ---
 
-Change# 7 & 8 ([commit1](https://github.com/kid0m4n/gorays/commit/7420ef3f94be2dd0d1887d98cdbec67a14a07f9f) and [commit2](https://github.com/kid0m4n/gorays/commit/ddfe825f0902877c02467a4f65f46c4044bc7939))<br/>
+Change# 7 & 8 ([commit1](https://github.com/kid0m4n/rays/commit/7420ef3f94be2dd0d1887d98cdbec67a14a07f9f) and [commit2](https://github.com/kid0m4n/rays/commit/ddfe825f0902877c02467a4f65f46c4044bc7939))<br/>
 Before: 12.644 s<br/>
 After: 2.947 s<br/>
 Change: **76.69 %**<br/>
@@ -153,7 +153,7 @@ Concurrency ([not parallelism](http://blog.golang.org/concurrency-is-not-paralle
 
 However, ray tracing (at least in its currently coded form) is inherently a parallel problem. So how did Go fair? Very well, thanks for asking.
 
-I tried a [couple](https://github.com/kid0m4n/gorays/commit/8df629c60998400c0bdfdb549552005eff36816c) [of](https://github.com/kid0m4n/gorays/commit/ab0dd18274694e68aa9205fd1a1855230749d725) [approaches](https://github.com/kid0m4n/gorays/commit/45567013de4c58f484d72d40179a179c578268ba) and this one worked the best. One reason why I could try all these approaches so quickly is because of how easy it was to express my intent in Go. And that is an understatement.
+I tried a [couple](https://github.com/kid0m4n/rays/commit/8df629c60998400c0bdfdb549552005eff36816c) [of](https://github.com/kid0m4n/rays/commit/ab0dd18274694e68aa9205fd1a1855230749d725) [approaches](https://github.com/kid0m4n/rays/commit/45567013de4c58f484d72d40179a179c578268ba) and this one worked the best. One reason why I could try all these approaches so quickly is because of how easy it was to express my intent in Go. And that is an understatement.
 
 Final approach used: Fire up N* goroutines and have them on standby; with each one capable of rendering a full row of the image. Then queue up all the rows that need rendering in a channel which feeds into all the available goroutines. There is no starvation as each goroutine has work available the moment it gets done with its current row. Awesome right? No locks, conditional variables or callbacks!
 
@@ -162,7 +162,7 @@ Final approach used: Fire up N* goroutines and have them on standby; with each o
 Smart Pow
 ---
 
-Change# 9, 10 & 11 ([commit1](https://github.com/kid0m4n/gorays/commit/527e08317c9307316e2a7a8e9379cf40778eeaa1), [commit2](https://github.com/kid0m4n/gorays/commit/6bc7a2c4c635c269d364fddd68fa999877a0c98c) and [commit3](https://github.com/kid0m4n/gorays/commit/86329c598d79e3d366ce83bba3fc80a6e8a69edd))<br/>
+Change# 9, 10 & 11 ([commit1](https://github.com/kid0m4n/rays/commit/527e08317c9307316e2a7a8e9379cf40778eeaa1), [commit2](https://github.com/kid0m4n/rays/commit/6bc7a2c4c635c269d364fddd68fa999877a0c98c) and [commit3](https://github.com/kid0m4n/rays/commit/86329c598d79e3d366ce83bba3fc80a6e8a69edd))<br/>
 Before: 2.947 s<br/>
 After: 2.593 s<br/>
 Change: **12.01 %**<br/>
@@ -210,9 +210,9 @@ Links
 ---
 
 * Golang-nuts discussion thread: [link](https://groups.google.com/forum/#!topic/golang-nuts/mxYzHQSV3rw)
-* gorays Github repo: [link](https://github.com/kid0m4n/gorays)
+* gorays Github repo: [link](https://github.com/kid0m4n/rays)
 * C++ version gist: [link](https://gist.github.com/kid0m4n/6680629)
-* Various parallel options tried: [link](https://github.com/kid0m4n/gorays/commits/parallel)
+* Various parallel options tried: [link](https://github.com/kid0m4n/rays/commits/parallel)
 
 That's all folks. Thanks for reading. If you have any comments, feel free to leave them here on the blog or you can always email me at karanm@thoughtworks.com / kidoman@gmail.com. Also reachable at [@kid0m4n](https://twitter.com/kid0m4n) on Twitter Ciao!
 
