@@ -19,7 +19,7 @@ tags:
 Apples? Oranges?
 ---
 
-This is a follow up article to the initial [Go Getter](/programming/go-getter.html) article which focused purely on optimizing the Go solution. The comparision was not apples-to-apples (and still isn't; as we are talking about two very different platforms here) and was never meant to be. Instead it was focused on:
+This is a follow up article to the initial [Go Getter](https://kidoman.com/programming/go-getter.html) article which focused purely on optimizing the Go solution. The comparision was not apples-to-apples (and still isn't; as we are talking about two very different platforms here) and was never meant to be. Instead it was focused on:
 
 * Learn idiomatic Go
 * Document optimizations which help make the Go solution faster

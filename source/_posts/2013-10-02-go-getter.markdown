@@ -23,6 +23,8 @@ tags:
 
 __*Update: __ I have posted a [follow up article](/programming/go-getter-part-2.html) with the benchmarks rerun using a optimized C++ solution
 
+__*Update 2: __ I have posted a [second follow up article](/programming/go-getter-part-3.html) with the benchmarks rerun with a multi-threaded optimized C++ version
+
 Ray tracing? **
 ---
 
@@ -77,7 +79,7 @@ My first step was to collate all the information I had about my problem statemen
 The amount of constructive advice I got in the first couple of hours was amazing. Let me summarize some of the biggest performance leaps for you:
 
 {% img /images/go-improvements.png 'Graph of Go performance improvements' 'Go Go Go' %}<br />
-(raw data available [here](/images/go-raw-data.png))
+(raw data available [here](/images/go-raw-data.png), also C++ solution was kept constant while optimizing the Go version)
 
 Move to go1.2rc1
 ---
