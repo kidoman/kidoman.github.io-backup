@@ -98,7 +98,7 @@ In this particular case, it was a 11.2 % win. With zero changes to code. Hurray!
 Global to Local Rand
 ---
 
-Change# 2 ([commit](https://github.com/kid0m4n/rays/commit/5f16e4131faf9f712e716b04038523bd57bbca9b))<br/>
+Change# 2 ([commit 2](https://github.com/kid0m4n/rays/commit/5f16e4131faf9f712e716b04038523bd57bbca9b))<br/>
 Before: 25.644 s<br/>
 After: 23.816 s<br/>
 Change: **7.13 %**<br/>
@@ -110,7 +110,7 @@ Needless to say, using a local rand (i.e. calling rand.New(...) and using the re
 Buffer to Win
 ---
 
-Change# 3 & 4 ([commit 1](https://github.com/kid0m4n/rays/commit/e9c418ec3a77d014ced05bcbd52f38aa3ef7c2af) and [commit 2](https://github.com/kid0m4n/rays/commit/1d09eac86697d7f50cdf5866fd9a6988f4cf6e84))<br/>
+Change# 3 & 4 ([commit 3](https://github.com/kid0m4n/rays/commit/e9c418ec3a77d014ced05bcbd52f38aa3ef7c2af) and [commit 4](https://github.com/kid0m4n/rays/commit/1d09eac86697d7f50cdf5866fd9a6988f4cf6e84))<br/>
 Before: 23.816 s<br/>
 After: 22.818 s<br/>
 Change: **4.23 %**<br/>
@@ -122,7 +122,7 @@ The real win was avoiding the [allocation of a byte slice](https://github.com/ki
 Engage Warp Engines
 ---
 
-Change# 5 ([commit](https://github.com/kid0m4n/rays/commit/249f229ba8c769c38d7dc018acfdf29cc86d6e43))<br/>
+Change# 5 ([commit 5](https://github.com/kid0m4n/rays/commit/249f229ba8c769c38d7dc018acfdf29cc86d6e43))<br/>
 Before: 22.818 s<br/>
 After: 12.747 s<br/>
 Change: **44.14 %**<br/>
@@ -134,7 +134,7 @@ This minor optimization saw the most massive jump thus far. A 44.14 % boost. And
 Scotty, is that all you got?
 ---
 
-Change# 6 ([commit](https://github.com/kid0m4n/rays/commit/9066519c24a092b7f672b71327f5c825f84a77a4))<br/>
+Change# 6 ([commit 6](https://github.com/kid0m4n/rays/commit/9066519c24a092b7f672b71327f5c825f84a77a4))<br/>
 Before: 12.747 s<br/>
 After: 12.644 s<br/>
 Change: **0.81 %**<br/>
@@ -144,7 +144,7 @@ This is a significant change (thanks to the suggestion from [kortschak](https://
 Warp Speed Ahead
 ---
 
-Change# 7 & 8 ([commit1](https://github.com/kid0m4n/rays/commit/7420ef3f94be2dd0d1887d98cdbec67a14a07f9f) and [commit2](https://github.com/kid0m4n/rays/commit/ddfe825f0902877c02467a4f65f46c4044bc7939))<br/>
+Change# 7 & 8 ([commit 7](https://github.com/kid0m4n/rays/commit/7420ef3f94be2dd0d1887d98cdbec67a14a07f9f) and [commit 8](https://github.com/kid0m4n/rays/commit/ddfe825f0902877c02467a4f65f46c4044bc7939))<br/>
 Before: 12.644 s<br/>
 After: 2.947 s<br/>
 Change: **76.69 %**<br/>
@@ -162,7 +162,7 @@ Final approach used: Fire up N* goroutines and have them on standby; with each o
 Smart Pow
 ---
 
-Change# 9, 10 & 11 ([commit1](https://github.com/kid0m4n/rays/commit/527e08317c9307316e2a7a8e9379cf40778eeaa1), [commit2](https://github.com/kid0m4n/rays/commit/6bc7a2c4c635c269d364fddd68fa999877a0c98c) and [commit3](https://github.com/kid0m4n/rays/commit/86329c598d79e3d366ce83bba3fc80a6e8a69edd))<br/>
+Change# 9, 10 & 11 ([commit 9](https://github.com/kid0m4n/rays/commit/527e08317c9307316e2a7a8e9379cf40778eeaa1), [commit 10](https://github.com/kid0m4n/rays/commit/6bc7a2c4c635c269d364fddd68fa999877a0c98c) and [commit 11](https://github.com/kid0m4n/rays/commit/86329c598d79e3d366ce83bba3fc80a6e8a69edd))<br/>
 Before: 2.947 s<br/>
 After: 2.593 s<br/>
 Change: **12.01 %**<br/>
