@@ -16,6 +16,8 @@ tags:
   - raytracing
 ---
 
+__*Update: __ I have now posted a [second follow up article](/programming/go-getter-part-3.html) with the benchmarks rerun with a multi-threaded optimized C++ version
+
 Apples? Oranges?
 ---
 
