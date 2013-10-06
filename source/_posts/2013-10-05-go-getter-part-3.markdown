@@ -153,7 +153,7 @@ Alright, alright, give me the results
 
 *All of the above benchmarks were run on a Hetzner dedicated server machine with a i7 2600 + 16 GB RAM*
 
-C++ is not more than twice as fast than an equivalent Go program at this stage. If you look at the previous 2048 x 2048 test results, you will see how far ahead the C++ results have come:
+At this stage, C++ is now more than twice as fast as an equivalent Go program. If you look at the previous 2048 x 2048 test results, you will see how far ahead the C++ results have come:
 
 {% img center /images/go-vs-cpp-after-both-optimized.png %}
 
