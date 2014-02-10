@@ -19,9 +19,9 @@ tags:
 Hurray multi-threading
 ---
 
-This is the second follow up article to the slightly polarizing [original](/programming/go-getter.html) which had solely focused on extracting the max performance out of Go. The C++ community has really stepped up the game now. A few extreme pull requests (thanks [t-mat](https://github.com/kid0m4n/rays/pull/2) and [m42a](https://github.com/kid0m4n/rays/pull/4)) later the C++ version is essentially running on steroids. I thought it was a good time to rerun the benchmarks and see how things fared.
+This is the second follow up article to the slightly polarizing [original](/programming/go-getter.html) which had solely focused on extracting the max performance out of Go. The C++ community has really stepped up the game now. A few extreme pull requests (thanks [t-mat](https://github.com/kidoman/rays/pull/2) and [m42a](https://github.com/kidoman/rays/pull/4)) later the C++ version is essentially running on steroids. I thought it was a good time to rerun the benchmarks and see how things fared.
 
-Plug: The original project ([https://github.com/kid0m4n/rays](https://github.com/kid0m4n/rays)) is now restructured so that we can add in new language implementations and see how they fair in this micro-benchmark.
+Plug: The original project ([https://github.com/kidoman/rays](https://github.com/kidoman/rays)) is now restructured so that we can add in new language implementations and see how they fair in this micro-benchmark.
 
 Go Land
 ---
@@ -93,7 +93,7 @@ Computing the bounce vector
    return
  }
 ```
-(link to [diff](https://github.com/kid0m4n/rays/commit/efa1672ad5c8fa41550a611217ec3fe239cfd3c6))
+(link to [diff](https://github.com/kidoman/rays/commit/efa1672ad5c8fa41550a611217ec3fe239cfd3c6))
 
 This shaved off a further **4 %** from the execution time. The reason: instead of doing a expensive **Normalize()** (line 5) call inside a loop, why not pull it out and do it only if 'st' == 'hit'
 
@@ -169,7 +169,7 @@ Also, it will be worthwhile to test how gccgo performs with the same code.
 Road Ahead
 ---
 
-I have restuctured the github project ([https://github.com/kid0m4n/rays](https://github.com/kid0m4n/rays)) so that it is easy to add other language implementations to it. A Java, Clojure, Rust, Python, etc. version would definitely make things interesting and spice things up a bit. If you are interested in picking up a cause, please go right ahead... all pull requests are welcome.
+I have restuctured the github project ([https://github.com/kidoman/rays](https://github.com/kidoman/rays)) so that it is easy to add other language implementations to it. A Java, Clojure, Rust, Python, etc. version would definitely make things interesting and spice things up a bit. If you are interested in picking up a cause, please go right ahead... all pull requests are welcome.
 
 As usual, reachable at kidoman@gmail.com / karanm@thoughtworks.com / [@kid0m4n](https://twitter.com/kid0m4n)
 

@@ -64,7 +64,7 @@ default_asides: [custom/asides/about.html, custom/asides/tags.html, asides/recen
 # ----------------------- #
 
 # Github repositories
-github_user: kid0m4n
+github_user: kidoman
 github_repo_count: 3
 github_show_profile_link: true
 github_skip_forks: true
