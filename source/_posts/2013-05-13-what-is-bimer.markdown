@@ -8,7 +8,7 @@ category: life
 
 {% img center /images/team-bimering.jpg %}
 
-So [yesterday](http://kidoman.com/life/2013/05/sitting-at-work/), I posted about how I am going to be trying a new thing at work. Instead of hampering my cognitive ability by trying to stand and work, I wanted to do some simple core exercises every hour to keep the [BMR](http://en.wikipedia.org/wiki/Basal_metabolic_rate) up. With [Venki](http://www.linkedin.com/in/venkateshponniah)'s help, this has actually evolved to something we have now called BIMER.
+So [yesterday](/life/2013/05/sitting-at-work/), I posted about how I am going to be trying a new thing at work. Instead of hampering my cognitive ability by trying to stand and work, I wanted to do some simple core exercises every hour to keep the [BMR](http://en.wikipedia.org/wiki/Basal_metabolic_rate) up. With [Venki](http://www.linkedin.com/in/venkateshponniah)'s help, this has actually evolved to something we have now called BIMER.
 
 The idea is simple:
 

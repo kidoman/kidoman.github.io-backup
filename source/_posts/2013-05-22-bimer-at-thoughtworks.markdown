@@ -6,7 +6,7 @@ comments: true
 category: life
 ---
 
-It's been almost a week since we started [BIMER](http://kidoman.com/life/2013/05/what-is-bimer/) at ThoughtWorks.
+It's been almost a week since we started [BIMER](/life/2013/05/what-is-bimer/) at ThoughtWorks.
 
 As expected, BIMER has evolved... we no longer just do one exercise. So far we have done:
 

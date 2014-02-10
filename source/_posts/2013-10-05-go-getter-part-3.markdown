@@ -19,7 +19,7 @@ tags:
 Hurray multi-threading
 ---
 
-This is the second follow up article to the slightly polarizing [original](https://kidoman.com/programming/go-getter.html) which had solely focused on extracting the max performance out of Go. The C++ community has really stepped up the game now. A few extreme pull requests (thanks [t-mat](https://github.com/kid0m4n/rays/pull/2) and [m42a](https://github.com/kid0m4n/rays/pull/4)) later the C++ version is essentially running on steroids. I thought it was a good time to rerun the benchmarks and see how things fared.
+This is the second follow up article to the slightly polarizing [original](/programming/go-getter.html) which had solely focused on extracting the max performance out of Go. The C++ community has really stepped up the game now. A few extreme pull requests (thanks [t-mat](https://github.com/kid0m4n/rays/pull/2) and [m42a](https://github.com/kid0m4n/rays/pull/4)) later the C++ version is essentially running on steroids. I thought it was a good time to rerun the benchmarks and see how things fared.
 
 Plug: The original project ([https://github.com/kid0m4n/rays](https://github.com/kid0m4n/rays)) is now restructured so that we can add in new language implementations and see how they fair in this micro-benchmark.
 
