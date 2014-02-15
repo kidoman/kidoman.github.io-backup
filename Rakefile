@@ -9,7 +9,8 @@ ssh_port       = "22"
 document_root  = "~/website.com/"
 rsync_delete   = true
 rsync_args     = ""  # Any extra arguments to pass to rsync
-deploy_default = "rsync"
+deploy_default = "s3"
+s3_bucket = "kidoman.io"
 
 # This will be configured for you when you run config_deploy
 deploy_branch  = "gh-pages"
@@ -249,11 +250,17 @@ task :rsync do
   ok_failed system("rsync -avze 'ssh -p #{ssh_port}' #{exclude} #{rsync_args} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{ssh_user}:#{document_root}")
 end
 
+desc "Deploy website via s3cmd with CloudFront cache invalidation"
+task :s3 do
+  puts "## Deploying website via s3cmd"
+  ok_failed system("s3cmd sync --acl-public --reduced-redundancy --cf-invalidate public/* s3://#{s3_bucket}/")
+end
+
 desc "deploy public directory to github pages"
 multitask :push do
   puts "## Deploying branch to Github Pages "
   puts "## Pulling any updates from Github Pages "
-  cd "#{deploy_dir}" do 
+  cd "#{deploy_dir}" do
     system "git pull"
   end
   (Dir["#{deploy_dir}/*"]).each { |f| rm_rf(f) }
