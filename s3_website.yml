@@ -1,0 +1,19 @@
+s3_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
+s3_secret: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
+s3_bucket: kidoman.io
+
+gzip: true
+gzip_zopfli: true
+
+max_age:
+  "*": 300
+
+exclude_from_upload:
+  - .DS_Store
+
+s3_reduced_redundancy: true
+
+cloudfront_distribution_id: E39IKFE3EASDB9
+cloudfront_invalidate_root: true
+
+concurrency_level: 5

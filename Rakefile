@@ -9,7 +9,7 @@ ssh_port       = "22"
 document_root  = "~/website.com/"
 rsync_delete   = true
 rsync_args     = ""  # Any extra arguments to pass to rsync
-deploy_default = "s3"
+deploy_default = "s3_website"
 s3_bucket = "kidoman.io"
 
 # This will be configured for you when you run config_deploy
@@ -254,6 +254,12 @@ desc "Deploy website via s3cmd with CloudFront cache invalidation"
 task :s3 do
   puts "## Deploying website via s3cmd"
   ok_failed system("s3cmd sync --acl-public --reduced-redundancy --cf-invalidate public/* s3://#{s3_bucket}/")
+end
+
+desc "Deploy website via s3_website"
+task :s3_website do
+  puts "## Deploying website via s3_website"
+  ok_failed system("s3_website push --site public")
 end
 
 desc "deploy public directory to github pages"
