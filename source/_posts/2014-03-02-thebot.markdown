@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "TheBot - Adventures in Hardware"
-subtitle: "A crowd controlled smartphone controlled robotic car"
+subtitle: "A crowd controlled robotic car"
 date: 2014-03-02 08:00
 comments: true
 category: engineering
