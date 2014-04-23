@@ -5,7 +5,6 @@ subtitle: "A <strong>superheroic</strong> embedded programming framework"
 date: 2014-04-24 06:00
 comments: true
 category: framework
-published: false
 tags:
   - golang
   - embedded
