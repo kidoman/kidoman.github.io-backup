@@ -1,6 +1,6 @@
 s3_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
 s3_secret: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
-s3_bucket: kidoman.io
+s3_bucket: <%= if ENV["PROD"] then "kidoman.io" else "preview.kidoman.io" end %>
 
 gzip: true
 gzip_zopfli: true
@@ -13,7 +13,7 @@ exclude_from_upload:
 
 s3_reduced_redundancy: true
 
-cloudfront_distribution_id: E39IKFE3EASDB9
+cloudfront_distribution_id: <%= if ENV["PROD"] then "E39IKFE3EASDB9" else "E2BAL3GQ6XHDYU" end %>
 cloudfront_invalidate_root: true
 
 concurrency_level: 5
