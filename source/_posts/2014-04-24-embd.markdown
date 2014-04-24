@@ -62,7 +62,7 @@ Since the library initially only supported the Raspberry Pi, calling it **go-rpi
 
 > Necessity is the mother of invention. 
 
-We spent a bunch of time fine tuning the "feel" of the API. We aimed to find the perfect balance between **real world usability** (we did not want a toy feel to the API) and its ability to be be used for quick/rapid hardware prototyping (its **"Arduinoness"** as we prefer to call it.)
+We spent a bunch of time fine tuning the "feel" of the API. We have aimed to provide both **real world usability** (we did not want a toy feel to the API) and the ability to be be used for quick/rapid hardware prototyping.
 
 For example, it leans towards rapid prototyping when needed:
 
