@@ -65,15 +65,6 @@ We spent a bunch of time fine tuning the "feel" of the API. We aimed to find the
 For example, it leans towards rapid prototyping when needed:
 
 ```go
-package main
-
-import (
-	"time"
-
-	"github.com/kidoman/embd"
-	_ "github.com/kidoman/embd/host/rpi" // This loads the RPi driver
-)
-
 func main() {
 	for {
 		embd.LEDToggle("LED0")
@@ -85,25 +76,6 @@ func main() {
 Or, gives you the control as necessary:
 
 ```go
-package main
-
-import (
-	"fmt"
-	"os"
-	"os/signal"
-	"time"
-
-	"github.com/kidoman/embd"
-
-	_ "github.com/kidoman/embd/host/rpi"
-)
-
-func panicIf(err error) {
-	if err != nil {
-		panic(err)
-	}
-}
-
 func main() {
 	panicIf(embd.InitLED())
 	defer embd.CloseLED()
