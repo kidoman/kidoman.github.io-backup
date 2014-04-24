@@ -96,6 +96,7 @@ disqus_show_comment_count: false
 
 # Google Analytics
 google_analytics_tracking_id: UA-44459958-1
+google_analytics_tracking_domain: kidoman.io
 
 # Facebook Like
 facebook_like: true
