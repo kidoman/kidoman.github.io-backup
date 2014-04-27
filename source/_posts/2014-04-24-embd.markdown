@@ -115,3 +115,5 @@ It currently has good support for the Raspberry Pi and the BeagleBone Black, wit
 
 Homepage: https://embd.kidoman.io/<br/>
 Github: https://github.com/kidoman/embd
+
+PS: [Jeremy Saenz](https://github.com/codegangsta) is my hero!
