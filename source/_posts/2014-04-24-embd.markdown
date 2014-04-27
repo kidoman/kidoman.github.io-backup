@@ -58,6 +58,8 @@ Golang is a statically typed, garbage collected and compiled programming languag
 
 EMBD started its life as **[go-rpi](https://github.com/kidoman/embd/tree/go-rpi)** a Golang library which allowed us to do **GPIO** (General Purpose I/O), talk the **I²C** protocol (a 2-wire protocol used for communication between the microcontroller and a lot of popular sensors in the market) and provide the drivers necessary to understand the data coming from the hardware  devices (eg. gyroscope, magnetometer aka compass.)
 
+{% vimeo 92990437 %}
+
 Since the library initially only supported the Raspberry Pi, calling it **go-rpi** made sense. But we soon realized the potential of making it even more useful that it already was. All the driver code we had written to talk to a [plethora of sensors](https://github.com/kidoman/embd#sensors-supported) were not really dependent on the Raspberry Pi. They expected a I²C bus and not much else. So we immediately started thinking of ways in which we could allow people to leverage all that code in other platforms which Golang ran on (which turned out to be [quite a few](https://github.com/kidoman/embd#platforms-supported).)
 
 > Necessity is the mother of invention. 
