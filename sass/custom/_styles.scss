@@ -1,14 +1,18 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+@import "footnote";
 
 article {
-  header {
-    h2 {
-      font-size: 117% !important;
-      color: #868686;
-      background: transparent;
-      padding: 4px 0 0 0;
-      margin: 0;
-    }
-  }
+	.entry-content {
+		figure table, blockquote p {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.archives {
+	margin-left: 30px;
+	article {
+		margin-left: 150px;
+	}
 }

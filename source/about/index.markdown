@@ -7,6 +7,12 @@ sharing: true
 footer: false
 ---
 
-My name is **Karan Misra**. I am working as a **[developer](https://github.com/kidoman)** in [ThoughtWorks](http://www.thoughtworks.com/), India. My various interests include overclocking, biking, programming, etc.
+<img src="/images/karan-misra.png" style="float: right; margin: 0 0 10px 20px" />
 
-I can be reached at kidoman@gmail.com / karan@erodov.com / karanm@thoughtworks.com / [@kid0m4n](https://twitter.com/kid0m4n)
+My name is **Karan Misra**. I am working as a senior developer at [ThoughtWorks](http://www.thoughtworks.com/), India. My various interests include overclocking, biking, programming, etc.
+
+My open source contributions can be found [here](https://github.com/kidoman). And I sometimes [tweet](https://twitter.com/kid0m4n) as well.
+
+I can be reached at kidoman@gmail.com
+
+<div class="clearfix" />
