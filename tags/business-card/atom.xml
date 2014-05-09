@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: business card | Karan Misra]]></title>
+  <link href="https://kidoman.io/tags/business-card/atom.xml" rel="self"/>
+  <link href="https://kidoman.io/"/>
+  <updated>2014-05-10T04:28:59+05:30</updated>
+  <id>https://kidoman.io/</id>
+  <author>
+    <name><![CDATA[Karan Misra]]></name>
+    <email><![CDATA[karan.misra@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Go Getter Part 3]]></title>
+    <link href="https://kidoman.io/programming/go-getter-part-3.html"/>
+    <updated>2013-10-05T08:00:00+05:30</updated>
+    <id>https://kidoman.io/programming/go-getter-part-3</id>
+    <content type="html"><![CDATA[<h2>Hurray multi-threading</h2>
+
+<p>This is the second follow up article to the slightly polarizing <a href="/programming/go-getter.html">original</a> which had solely focused on extracting the max performance out of Go. The C++ community has really stepped up the game now. A few extreme pull requests (thanks <a href="https://github.com/kidoman/rays/pull/2">t-mat</a> and <a href="https://github.com/kidoman/rays/pull/4">m42a</a>) later the C++ version is essentially running on steroids. I thought it was a good time to rerun the benchmarks and see how things fared.</p>
+
+<p>Plug: The original project (<a href="https://github.com/kidoman/rays">https://github.com/kidoman/rays</a>) is now restructured so that we can add in new language implementations and see how they fair in this micro-benchmark.</p>
+
+<h2>Go Land</h2>
+
+<p>Things were not quite in the Go land. I looked at the awesome optimizations contributed by <a href="https://github.com/m42a">m42a</a> and ported a few things over to Go (+ a little spice of my own.) A quick run down:</p>
+
+<h2>Inlining Rand</h2>
+
+<p>The origin rand function, although elegant, was not getting inlined by the Go compiler. I would always suggest building performance sensitive parts of your application with the &lsquo;-m&rsquo; flag, like so:</p>
+
+<p><code>
+go build -gcflags -m
+</code></p>
+
+<p>When I ran this on the projects main.go, it was immediately apparent that the anon-func inside makeRand() was not getting inlined as it was dependent on the &lsquo;seed&rsquo; variable:</p>
+
+<p>``` go
+type randFn func() float64</p>
+
+<p>func makeRand(seed uint32) randFn {</p>
+
+<pre><code>return func() float64 {
+    seed += seed
+    seed ^= 1
+    if int32(seed) &lt; 0 {
+      seed ^= 0x88888eef
+    }
+    return float64(seed%95) / float64(95)
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p>The solution was to simplify this and get it to inline:</p>
+
+<p>``` go
+func rnd(s *uint32) float64 {</p>
+
+<pre><code>ss := *s
+ss += ss
+ss ^= 1
+if int32(ss) &lt; 0 {
+    ss ^= 0x88888eef
+}
+*s = ss
+return float64(*s%95) / float64(95)
+</code></pre>
+
+<p>}
+```</p>
+
+<p>The callers pass in the seed and life is good again. This simple change netted a <strong>4.3 %</strong> improvement. Not too shabby.</p>
+
+<h2>Computing the bounce vector</h2>
+
+<p>``` diff
+@@ -223,11 +223,15 @@ func tracer(orig, dir vector.Vector) (st status, dist float64, bounce vector.Vec</p>
+
+<pre><code>   if s &lt; dist &amp;&amp; s &gt; 0.01 {
+     dist = s
+</code></pre>
+
+<ul>
+<li><pre><code> bounce = p.Add(dir.Scale(dist)).Normalize()
+</code></pre></li>
+<li><pre><code> bounce = p // We can lazy compute bounce based on value of p
+ st = hit
+</code></pre>
+
+<p>   }
+ }
+}</p></li>
+<li><p>if st == hit {</p></li>
+<li> bounce = bounce.Add(dir.Scale(dist)).Normalize()</li>
+<li>}
++
+return
+}
+```
+(link to <a href="https://github.com/kidoman/rays/commit/efa1672ad5c8fa41550a611217ec3fe239cfd3c6">diff</a>)</li>
+</ul>
+
+
+<p>This shaved off a further <strong>4 %</strong> from the execution time. The reason: instead of doing a expensive <strong>Normalize()</strong> (line 5) call inside a loop, why not pull it out and do it only if &lsquo;st&rsquo; == &lsquo;hit&rsquo;</p>
+
+<h2>Objects</h2>
+
+<p>``` diff
+@@ -27,18 +27,14 @@ var art = []string{</p>
+
+<p> var objects = makeObjects()</p>
+
+<p>-type object struct {
+&ndash;  k, j int</p>
+
+<h2>&ndash;}</h2>
+
+<p>-func makeObjects() []object {
++func makeObjects() []vector.Vector {
+   nr := len(art)
+   nc := len(art[0])
+&ndash;  objects := make([]object, 0, nr<em>nc)
++  objects := make([]vector.Vector, 0, nr</em>nc)
+   for k := nc &ndash; 1; k >= 0; k&mdash; {</p>
+
+<pre><code> for j := nr - 1; j &gt;= 0; j-- {
+   if art[j][nc-1-k] != ' ' {
+</code></pre>
+
+<ul>
+<li><pre><code> objects = append(objects, object{k: -k, j: -(nr - 1 - j)})
+</code></pre></li>
+<li><pre><code> objects = append(objects, vector.Vector{X: -float64(k), Y: 3, Z: -float64(nr-1-j) - 4})
+</code></pre>
+
+<p>   }
+ }
+}
+@@ -215,10 +211,8 @@ func tracer(orig, dir vector.Vector) (st status, dist float64, bounce vector.Vec
+ st = missDownward
+}</p></li>
+<li><p>for _, object := range objects {</p>
+
+<h2>&ndash;    k, j := object.k, object.j</h2></li>
+<li> p := orig.Add(vector.Vector{X: float64(k), Y: 3, Z: float64(j &ndash; 4)})</li>
+<li>for i, _ := range objects {</li>
+<li> p := orig.Add(objects[i])
+ b := p.DotProduct(dir)
+ c := p.DotProduct(p) &ndash; 1
+ q := b*b &ndash; c
+```</li>
+</ul>
+
+
+<p>Got rid of the separate <strong>object</strong> struct and leveraged the <strong>Vector</strong> struct to get rid of some repeatitive operations inside the loop.</p>
+
+<p>Some of theses changes need to be ported back to C++ (not that it needs them); but I haven&rsquo;t had time yet.</p>
+
+<h2>Alright, alright, give me the results</h2>
+
+<p><img class="center" src="/images/512x512-3.png"></p>
+
+<p><img class="center" src="/images/2048x2048-3.png"></p>
+
+<p><img class="center" src="/images/4096x4096-3.png"></p>
+
+<p><em>All of the above benchmarks were run on a Hetzner dedicated server machine with a i7 2600 + 16 GB RAM</em></p>
+
+<p>At this stage, C++ is now more than twice as fast as an equivalent Go program. If you look at the previous 2048 x 2048 test results, you will see how far ahead the C++ results have come:</p>
+
+<p><img class="center" src="/images/go-vs-cpp-after-both-optimized.png"></p>
+
+<p>From taking 58.15 seconds (single threaded), it has now dropped to a extremely impressive 36.36 seconds (again single threaded), making it almost twice as fast as the optimized Go version.</p>
+
+<h2>Conclusion</h2>
+
+<p>I am pretty sure the Go version will get closer and closer as the compiler gets more mature. Its just a matter of time. Infact, a few common compiler optimization misses are causing it to not extract as much performance as it potentially could. But thats the subject of a different blog post (this one is already getting too long.)</p>
+
+<p>Also, it will be worthwhile to test how gccgo performs with the same code.</p>
+
+<h2>Road Ahead</h2>
+
+<p>I have restuctured the github project (<a href="https://github.com/kidoman/rays">https://github.com/kidoman/rays</a>) so that it is easy to add other language implementations to it. A Java, Clojure, Rust, Python, etc. version would definitely make things interesting and spice things up a bit. If you are interested in picking up a cause, please go right ahead&hellip; all pull requests are welcome.</p>
+
+<p>As usual, reachable at <a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#107;&#x69;&#x64;&#111;&#x6d;&#97;&#x6e;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;">&#107;&#105;&#x64;&#x6f;&#x6d;&#x61;&#110;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;</a> / <a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#107;&#97;&#114;&#97;&#x6e;&#x6d;&#64;&#x74;&#x68;&#x6f;&#117;&#103;&#104;&#116;&#x77;&#x6f;&#114;&#107;&#x73;&#46;&#99;&#111;&#x6d;">&#107;&#97;&#x72;&#x61;&#110;&#x6d;&#64;&#x74;&#x68;&#111;&#117;&#103;&#x68;&#x74;&#119;&#x6f;&#114;&#x6b;&#x73;&#x2e;&#x63;&#111;&#109;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
+
+<p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Go Getter Part 2]]></title>
+    <link href="https://kidoman.io/programming/go-getter-part-2.html"/>
+    <updated>2013-10-03T04:30:00+05:30</updated>
+    <id>https://kidoman.io/programming/go-getter-part-2</id>
+    <content type="html"><![CDATA[<p><strong>*Update: </strong> I have now posted a <a href="/programming/go-getter-part-3.html">second follow up article</a> with the benchmarks rerun with a multi-threaded optimized C++ version</p>
+
+<h2>Apples? Oranges?</h2>
+
+<p>This is a follow up article to the initial <a href="/programming/go-getter.html">Go Getter</a> article which focused purely on optimizing the Go solution. The comparision was not apples-to-apples (and still isn&rsquo;t; as we are talking about two very different platforms here) and was never meant to be. Instead it was focused on:</p>
+
+<ul>
+<li>Learn idiomatic Go</li>
+<li>Document optimizations which help make the Go solution faster</li>
+<li>Fire up all cylinders (erm cores) and see how the performance scales</li>
+<li>Discover any avenues of optimizing Go further (after all, we are just at version 1.2rc1)</li>
+<li>Fun?</li>
+</ul>
+
+
+<p>It was never meant to mislead people into believing that Go was faster than a fully optimized C++ solution, or to deceive people into adopting Go as a result. Since its been a while (7 years) I went knee deep into C++, I had left it upto more experienced hands to properly optimize the C++ version. Evidently, it was wishful thinking.</p>
+
+<h2>Full Steam Ahead</h2>
+
+<p>I spent the last couple of hours applying the optimizations learnt from the Go story to the C++ version: <a href="https://github.com/kidoman/rays/compare/bbb8395aa999883a595267fd0230087b1ddf646c...940c91f601ef840e6d75ddf272ab6cd3eb8d5531">diff of the optimizations</a></p>
+
+<p>Needless to say, the C++ performance is <strong>exciting</strong> again. Mind you, although I tried using OpenMP to bring in some multi-threaded love, it didn&rsquo;t work out so well. So I will truly have to leave that upto more capable hands.</p>
+
+<p><img src="/images/go-vs-cpp-after-both-optimized.png" title="&ldquo;Go vs C++ after both are optimized&rdquo;" ></p>
+
+<p><em>It was compiled by &ldquo;c++ -O3&rdquo; using G++ 4.7.3 and benchmarked on a Core i7 2600 16 GB dedicated Hetzner server running an updated Ubuntu 13.04 installation</em></p>
+
+<h2>Road Ahead</h2>
+
+<p>I hope to takes these numbers to the Go community and try and close the gap as much as possible. Go suffers from relatively slower performance because it tries to be as safe as possible when used in a concurrent scenario (for example, the default &ldquo;global rand&rdquo; is synchronized and good to access from multiple goroutines.) That is something I would definitely desire when doing real world coding. There is definitely scope for improvement, but considering everything else (GC, compilation speed, goroutines, channels, etc.) that Go brings to the table, I guess it will always be a game of balance.</p>
+
+<p>As usual, reachable at <a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#x6b;&#x69;&#100;&#x6f;&#109;&#97;&#110;&#64;&#103;&#109;&#x61;&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#x6b;&#x69;&#x64;&#111;&#109;&#x61;&#x6e;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;</a> / <a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#107;&#97;&#x72;&#97;&#x6e;&#x6d;&#64;&#116;&#104;&#x6f;&#x75;&#103;&#104;&#116;&#119;&#x6f;&#x72;&#x6b;&#x73;&#46;&#x63;&#x6f;&#109;">&#107;&#x61;&#114;&#97;&#110;&#x6d;&#64;&#x74;&#x68;&#111;&#117;&#103;&#x68;&#x74;&#119;&#111;&#x72;&#x6b;&#x73;&#x2e;&#x63;&#x6f;&#x6d;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
+
+<p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Go Getter]]></title>
+    <link href="https://kidoman.io/programming/go-getter.html"/>
+    <updated>2013-10-02T12:06:00+05:30</updated>
+    <id>https://kidoman.io/programming/go-getter</id>
+    <content type="html"><![CDATA[<p><img src="/images/42.png" title="A ray traced Image" ><br />
+(the above graphical image is produced by a <strong>ray tracing**</strong> program)</p>
+
+<p><strong>Long story short: </strong> After optimizations, the Go ray tracer was <strong>8.4 %</strong> faster than a functionally equivalent C++ (but <em>unoptimized*</em>) version when rendering a <strong>4.2 MegaPixel</strong> image using a single thread. With multi-threading enabled, the performance gap widened to <strong>76.2 %</strong> on a 8 Core machine. Not only was it really simple to utilize the complete CPU in Go, it was easy to immediately feel productive in the language due to its simple and thoughtful design. &ldquo;<a href="http://commandcenter.blogspot.in/2012/06/less-is-exponentially-more.html">Less is indeed more !</a>&rdquo;</p>
+
+<p><strong>*Update: </strong> I have posted a <a href="/programming/go-getter-part-2.html">follow up article</a> with the benchmarks rerun using a optimized C++ solution</p>
+
+<p><strong>*Update 2: </strong> I have posted a <a href="/programming/go-getter-part-3.html">second follow up article</a> with the benchmarks rerun with a multi-threaded optimized C++ version</p>
+
+<h2>Ray tracing? **</h2>
+
+<p><img src="/images/ray-tracing.png" title="Ray Tracing" ></p>
+
+<p><a href="http://en.wikipedia.org/wiki/Ray_tracing_(graphics">Ray tracing</a> is a technique for generating an image by tracing the path of light through pixels in an image and simulating the effects of its encounters with virtual objects.</p>
+
+<p>Since it is computationally intensive and you figure out the final color of each pixel on its own, without caring about neighbouring pixels, the algorithm is inherently parallelizable; atleast in its current form.</p>
+
+<p>Although a poor fit for rendering realtime graphics (read games and simulations where speed is critical) without expensive hardware, it sees a lot of usage in the film and television where the image can be rendered slowly ahead of time.</p>
+
+<h2>Fire your engines</h2>
+
+<p>Few days ago, I chanced upon <a href="http://fabiensanglard.net/rayTracing_back_of_business_card/index.php">this blog post</a> on <a href="https://news.ycombinator.com/news">Hacker News</a>.</p>
+
+<p>I loved the breakdown provided by the author, and frankly speaking, since the subject was about ray tracing, it didn&rsquo;t take much for me to get fully engrossed in it. I mean, a <a href="https://gist.github.com/kidoman/6708750">ray tracer</a>, concise enough to fit at the back of the business card, measuring up to a grand total of 1337 bytes&hellip; yummmmmmmmmmmy!</p>
+
+<p>Like any programmer worth his salt, I immediately decided to port this brilliant piece of art to a programming language I am trying to internalize, Go. Did I hear you ask &ldquo;Why <a href="http://golang.org/">Go</a> ?&rdquo;</p>
+
+<ul>
+<li>Go is poised to be fast, system level programming language</li>
+<li>Performance is one of the key factors</li>
+<li>Scaling to multiple cores is supposed to be a breeze</li>
+<li>Its supposedly easy to leverage all the features provided by the Go language and runtime and write &ldquo;correct&rdquo; and &ldquo;idiomatic&rdquo; programs</li>
+</ul>
+
+
+<p>So a couple of hours later, I got the <a href="https://github.com/kidoman/rays/blob/0e2c2c467221d6e5ee27fcf95f8a9412c6a8b21d/main.go">first version</a> up and running. I modified both the C++ and the Go versions slightly to generate the same <a href="http://i.imgur.com/yFicPrE.png">exact image</a> (512 x 512) so that it was as close a comparision as possible (no disrespect to prodigal aek.)</p>
+
+<p>This is how the numbers stacked up:</p>
+
+<ul>
+<li>C++ version: 11.803 s</li>
+<li>Go version: 28.883 s</li>
+</ul>
+
+
+<p>Not too shabby for a few hours of coding, but obviously I was not going to let it rest there. I decided to seek help from the community.</p>
+
+<p>Note: All initial testing was done on a Late-2011 MacBook Pro 15 with a Intel i7 2675QM processor, equipped with 16GB of RAM, running Mac OS X 10.9</p>
+
+<h2>Links</h2>
+
+<ul>
+<li>Golang-nuts discussion thread: <a href="https://groups.google.com/forum/#!topic/golang-nuts/mxYzHQSV3rw">link</a></li>
+<li>gorays Github repo: <a href="https://github.com/kidoman/rays">link</a></li>
+<li>C++ version gist: <a href="https://gist.github.com/kidoman/6680629">link</a></li>
+<li>Various parallel options tried: <a href="https://github.com/kidoman/rays/commits/parallel">link</a></li>
+</ul>
+
+
+<h2>Aside</h2>
+
+<p>There seems to be a misconception (by and large) that there is a lack of community support around Go. But it could not be far from the truth. 2013 has been the best year for Go as far as I can tell. The <a href="http://www.gophercon.com/">first &ldquo;big&rdquo; conference</a> around Go has been announced + the energy around Go in the <a href="https://groups.google.com/forum/#!forum/golang-nuts">community</a> is at a new high. The amount of code being written in Go is also on a rise. Just have a look at the <a href="https://github.com/trending?l=go">language stats page</a> in Github to get a brief overview.</p>
+
+<p>My first step was to collate all the information I had about my problem statement into a post at <a href="https://groups.google.com/forum/#!forum/golang-nuts">golang-nuts</a>: <a href="https://groups.google.com/d/msg/golang-nuts/mxYzHQSV3rw/dOA78aeVLgEJ">the post</a></p>
+
+<p>The amount of constructive advice I got in the first couple of hours was amazing. Let me summarize some of the biggest performance leaps for you:</p>
+
+<p><img src="/images/go-improvements.png" title="&lsquo;Graph of Go performance improvements&rsquo; &lsquo;Go Go Go&rsquo;" ><br />
+(raw data available <a href="/images/go-raw-data.png">here</a>, also C++ solution was kept constant while optimizing the Go version)</p>
+
+<h2>Move to go1.2rc1</h2>
+
+<p>Change# 1<br/>
+Before: 28.883 s<br/>
+After: 25.644 s<br/>
+Change: <strong>11.2 %</strong><br/></p>
+
+<p>The initial benchmark run was on go1.1.2. But it didn&rsquo;t make sense to continue benchmarking on this old/stable release as the <strong>1.2</strong> release is just around the corner and <strong>1.2rc1</strong> is already available; with performance improvements in tow.</p>
+
+<p>This is one awesome property of Go. Every new release, we are magically given a new leash on life in form of additional performance <em>without having to make a single line of change</em>. And since we are guaranteed that a well formed Go1 code will continue to work and compile with all Go1.x releases, this is &ldquo;sone pe suhaga&rdquo; (for my English speaking brethren: icing on the cake.) For example, the Go1.1 release saw as much as a 30% boost in performance for a lot of Go programs over Go1.0.</p>
+
+<p>In this particular case, it was a 11.2 % win. With zero changes to code. Hurray!</p>
+
+<h2>Global to Local Rand</h2>
+
+<p>Change# 2 (<a href="https://github.com/kidoman/rays/commit/5f16e4131faf9f712e716b04038523bd57bbca9b">commit 2</a>)<br/>
+Before: 25.644 s<br/>
+After: 23.816 s<br/>
+Change: <strong>7.13 %</strong><br/></p>
+
+<p>This one was a doozy. I will mark this up to my inexperience with Go in general and lack of sleep in particular. The convenience of the in built <a href="http://golang.org/pkg/math/rand/">math/rand</a> package&rsquo;s rand.Float64() caught me of guard. What <a href="https://groups.google.com/d/msg/golang-nuts/mxYzHQSV3rw/lRxaH8z2IfoJ">Sebastien Binet</a> rightly pointed out, and what is amply clear from the documentation, is that rand.Float64() is thread safe and is overkill in single threaded/goroutined/gophered scenario. It uses locks internally to ensure that multiple goroutines (parallel to threads in other dimensions) can access it without mucking up (in general.)</p>
+
+<p>Needless to say, using a local rand (i.e. calling rand.New(&hellip;) and using the returned instance everywhere) netted me a cool 7.13 % boost.</p>
+
+<h2>Buffer to Win</h2>
+
+<p>Change# 3 &amp; 4 (<a href="https://github.com/kidoman/rays/commit/e9c418ec3a77d014ced05bcbd52f38aa3ef7c2af">commit 3</a> and <a href="https://github.com/kidoman/rays/commit/1d09eac86697d7f50cdf5866fd9a6988f4cf6e84">commit 4</a>)<br/>
+Before: 23.816 s<br/>
+After: 22.818 s<br/>
+Change: <strong>4.23 %</strong><br/></p>
+
+<p>This was a two parter (as are all good movies.) The first part involved not writing to <a href="http://golang.org/pkg/os/#pkg-variables">os.Stdout</a> inside the inner loop of the ray tracer. I guess writing to os.Stdout is not bad in general, but placing it inside a super tight inner loop (which essentially iterates through every pixel of the rendered image) is a big <strong>NO-NO</strong>! Getting rid of that was easy. Just use a bytes.Buffer (hat tip to <a href="https://groups.google.com/d/msg/golang-nuts/mxYzHQSV3rw/kJkpTdN7uP0J">Robert Melton</a>.)</p>
+
+<p>The real win was avoiding the <a href="https://github.com/kidoman/rays/blob/e9c418ec3a77d014ced05bcbd52f38aa3ef7c2af/main.go#L73">allocation of a byte slice</a> inside the inner loop. Its common knowledge in the Go world: lesser the garbage you create, the more performant your application becomes. By avoiding the allocation of the byte slice per pixel (thanks <a href="https://groups.google.com/d/msg/golang-nuts/mxYzHQSV3rw/3Z0vi5pilF8J">Nigel Tao</a>), we optimized things further and brough the overall execution time down to 22.818 s (2x compared to the C++ version.) Not too shabby.</p>
+
+<h2>Engage Warp Engines</h2>
+
+<p>Change# 5 (<a href="https://github.com/kidoman/rays/commit/249f229ba8c769c38d7dc018acfdf29cc86d6e43">commit 5</a>)<br/>
+Before: 22.818 s<br/>
+After: 12.747 s<br/>
+Change: <strong>44.14 %</strong><br/></p>
+
+<p>I did myself a solid by looking closely at the <a href="https://github.com/kidoman/rays/blob/249f229ba8c769c38d7dc018acfdf29cc86d6e43/main.go#L149">tracer()</a> function. It was being called a gazillion times and required some much needed love. Instead of looping through all possible &ldquo;potential&rdquo; spheres every time <strong>tracer</strong> was called, why not precompute the various possible sphere locations (information which is readily available) and avoid the <a href="https://github.com/kidoman/rays/blob/1d09eac86697d7f50cdf5866fd9a6988f4cf6e84/main.go#L142">double loop</a> in the first place?</p>
+
+<p>This minor optimization saw the most massive jump thus far. A 44.14 % boost. And now, we were just 0.944 s shy of the C++ program&rsquo;s raw speed. Was this a apples-to-apples comparison anymore? Well no, but it was never meant to be. Attempt was to use the best of what <strong>Go</strong> has to offer to extract maximum performance. And we were barrelling down that road.</p>
+
+<h2>Scotty, is that all you got?</h2>
+
+<p>Change# 6 (<a href="https://github.com/kidoman/rays/commit/9066519c24a092b7f672b71327f5c825f84a77a4">commit 6</a>)<br/>
+Before: 12.747 s<br/>
+After: 12.644 s<br/>
+Change: <strong>0.81 %</strong><br/></p>
+
+<p>This is a significant change (thanks to the suggestion from <a href="https://groups.google.com/d/msg/golang-nuts/mxYzHQSV3rw/zMvk18jvbyYJ">kortschak</a>) but probably subdued as it came late in the game. Yep, thats right, its the damn rand function again. Apparently, it&rsquo;s okay to <strong>NOT</strong> use a random generator when generating a raytraced image. The already well oiled engine quickened a little further to 12.644 s (an improvement of 0.81 %)</p>
+
+<h2>Warp Speed Ahead</h2>
+
+<p>Change# 7 &amp; 8 (<a href="https://github.com/kidoman/rays/commit/7420ef3f94be2dd0d1887d98cdbec67a14a07f9f">commit 7</a> and <a href="https://github.com/kidoman/rays/commit/ddfe825f0902877c02467a4f65f46c4044bc7939">commit 8</a>)<br/>
+Before: 12.644 s<br/>
+After: 2.947 s<br/>
+Change: <strong>76.69 %</strong><br/></p>
+
+<p>Concurrency (<a href="http://blog.golang.org/concurrency-is-not-parallelism">not parallelism</a>) is the forte of Go. It makes it easy to think in concurrent terms. In fact, you can end up coding a <a href="http://talks.golang.org/2012/concurrency.slide#50">replicated search client</a> which reduces tail latency without having to use a lock, conditional variable or callback.</p>
+
+<p>However, ray tracing (at least in its currently coded form) is inherently a parallel problem. So how did Go fair? Very well, thanks for asking.</p>
+
+<p>I tried a <a href="https://github.com/kidoman/rays/commit/8df629c60998400c0bdfdb549552005eff36816c">couple</a> <a href="https://github.com/kidoman/rays/commit/ab0dd18274694e68aa9205fd1a1855230749d725">of</a> <a href="https://github.com/kidoman/rays/commit/45567013de4c58f484d72d40179a179c578268ba">approaches</a> and this one worked the best. One reason why I could try all these approaches so quickly is because of how easy it was to express my intent in Go. And that is an understatement.</p>
+
+<p>Final approach used: Fire up N* goroutines and have them on standby; with each one capable of rendering a full row of the image. Then queue up all the rows that need rendering in a channel which feeds into all the available goroutines. There is no starvation as each goroutine has work available the moment it gets done with its current row. Awesome right? No locks, conditional variables or callbacks!</p>
+
+<p>*N = runtime.NumCPU()</p>
+
+<h2>Smart Pow</h2>
+
+<p>Change# 9, 10 &amp; 11 (<a href="https://github.com/kidoman/rays/commit/527e08317c9307316e2a7a8e9379cf40778eeaa1">commit 9</a>, <a href="https://github.com/kidoman/rays/commit/6bc7a2c4c635c269d364fddd68fa999877a0c98c">commit 10</a> and <a href="https://github.com/kidoman/rays/commit/86329c598d79e3d366ce83bba3fc80a6e8a69edd">commit 11</a>)<br/>
+Before: 2.947 s<br/>
+After: 2.593 s<br/>
+Change: <strong>12.01 %</strong><br/></p>
+
+<p>Michael Jones rightly <a href="https://groups.google.com/d/msg/golang-nuts/mxYzHQSV3rw/sGxylrYx638J">pointed</a> (<a href="https://groups.google.com/d/msg/golang-nuts/mxYzHQSV3rw/blcuZtZSiAEJ">twice</a>) that multiplications are way better that <a href="http://golang.org/pkg/math/#Pow">math.Pow</a> when the exponents are known and optimization friendly (like 4 and 99.) Having exponentiation in the language itself would definitely help as the compiler would be able to do a good job of optimizing the multiply chains.</p>
+
+<p>Commit 11 also optimized things further by skipping computing <strong>r</strong> if not required (because of a potential early return.)</p>
+
+<h2>Base Test: Revisited</h2>
+
+<p>Remember this:</p>
+
+<ul>
+<li>C++ version: 11.803 s</li>
+<li>Go version: 28.883 s (single core)</li>
+</ul>
+
+
+<p>Now that we have done ALL these optimizations, how do these numbers change:</p>
+
+<ul>
+<li>C++ version: 11.803 s</li>
+<li>Go version: 10.349 s (single core)</li>
+<li>Go version: 2.593 s (multi core)</li>
+</ul>
+
+
+<p>We started the journey being 144.7 % slower than an equivalent C++ version to being 12.32 % faster, in single threaded mode. With multiple cores enabled, we ended up being <strong>78.03 %</strong> faster than a functionally equivalent C++ version.</p>
+
+<p>I also did some additional testing on a dedicated machine powered by Ubuntu 13.04 (kernel 3.8.0.26) i7 2600 with 16 GB RAM. The results were very heartwarming to say the least:</p>
+
+<p><img src="/images/go-vs-cpp-after-optimizations.png" title="Go vs C++ after optimizations" ></p>
+
+<ul>
+<li>1C = 1 Core</li>
+<li>8C = 8 Core</li>
+</ul>
+
+
+<h2>Conclusion</h2>
+
+<ul>
+<li>This much improvement would not have been possible without support from the Go community. You guys rock!</li>
+<li>Asking a genuine constructive question on golang-nuts has always gotten people a +ve response. Even if it is a &ldquo;Sorry, it would be a difficult to do this in Go right now&rdquo;</li>
+<li>Go is maturing quickly. Every new version brings in new backward compatible performance; just recompile your code and voila!</li>
+<li>It was a breeze to do the various optimizations suggested by the community, and it is very possible that some of these optimizations would not be required in the near future (like say with a language build in exponentiation)</li>
+<li>We are comparing C++ to a language which not only has garbage collection built into the statically compiled binary, it also has the ability to handle multiple cores / synchrony baked right into the language</li>
+<li>I am looking forward to redoing these tests with an optimized C++ version (single-core, multi-core) if someone is willing to contribute those changes</li>
+</ul>
+
+
+<p><strong>The succinctness and simplicity of the resultant Go code is a big BIG win! Because it is so easy to grasp all of the Go language, you are able to channelize your thought process to actually solving the problem at hand. At a much faster pace. And the best part is: more often than not, the first solution which you will code up in Go will probably be the correct solution (or very close to it.) This would definitely not have been possible if the language was any less thoughtfully designed</strong></p>
+
+<h2>Links</h2>
+
+<ul>
+<li>Golang-nuts discussion thread: <a href="https://groups.google.com/forum/#!topic/golang-nuts/mxYzHQSV3rw">link</a></li>
+<li>gorays Github repo: <a href="https://github.com/kidoman/rays">link</a></li>
+<li>C++ version gist: <a href="https://gist.github.com/kidoman/6680629">link</a></li>
+<li>Various parallel options tried: <a href="https://github.com/kidoman/rays/commits/parallel">link</a></li>
+</ul>
+
+
+<p>That&rsquo;s all folks. Thanks for reading. If you have any comments, feel free to leave them here on the blog or you can always email me at <a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#107;&#97;&#114;&#x61;&#x6e;&#x6d;&#64;&#x74;&#104;&#111;&#117;&#x67;&#104;&#x74;&#119;&#111;&#x72;&#107;&#x73;&#46;&#x63;&#111;&#x6d;">&#x6b;&#97;&#114;&#97;&#110;&#109;&#64;&#x74;&#x68;&#111;&#117;&#103;&#x68;&#x74;&#119;&#x6f;&#x72;&#107;&#x73;&#46;&#99;&#111;&#x6d;</a> / <a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#107;&#x69;&#100;&#111;&#x6d;&#97;&#110;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;&#46;">&#107;&#x69;&#x64;&#x6f;&#109;&#97;&#x6e;&#64;&#x67;&#x6d;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;&#46;</a> Also reachable at <a href="https://twitter.com/kid0m4n">@kid0m4n</a> on Twitter Ciao!</p>
+
+<p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
+]]></content>
+  </entry>
+  
+</feed>

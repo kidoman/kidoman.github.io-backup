@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: hadoop | Karan Misra]]></title>
+  <link href="https://kidoman.io/tags/hadoop/atom.xml" rel="self"/>
+  <link href="https://kidoman.io/"/>
+  <updated>2014-05-10T04:28:59+05:30</updated>
+  <id>https://kidoman.io/</id>
+  <author>
+    <name><![CDATA[Karan Misra]]></name>
+    <email><![CDATA[karan.misra@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Go + Hadoop!]]></title>
+    <link href="https://kidoman.io/engineering/go-hadoop.html"/>
+    <updated>2013-09-29T14:37:00+05:30</updated>
+    <id>https://kidoman.io/engineering/go-hadoop</id>
+    <content type="html"><![CDATA[<p>This is very interesting development indeed: <a href="http://hortonworks.com/blog/go-hadoop-err-hadoop-and-go/">http://hortonworks.com/blog/go-hadoop-err-hadoop-and-go/</a> :)</p>
+]]></content>
+  </entry>
+  
+</feed>

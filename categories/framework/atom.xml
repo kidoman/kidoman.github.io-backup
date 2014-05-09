@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: framework | Karan Misra]]></title>
+  <link href="https://kidoman.io/categories/framework/atom.xml" rel="self"/>
+  <link href="https://kidoman.io/"/>
+  <updated>2014-05-10T04:28:59+05:30</updated>
+  <id>https://kidoman.io/</id>
+  <author>
+    <name><![CDATA[Karan Misra]]></name>
+    <email><![CDATA[karan.misra@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Introducing EMBD]]></title>
+    <link href="https://kidoman.io/framework/embd.html"/>
+    <updated>2014-04-24T06:00:00+05:30</updated>
+    <id>https://kidoman.io/framework/embd</id>
+    <content type="html"><![CDATA[<p><strong><a href="https://github.com/kidoman/embd">EMBD</a></strong> is a framework for <strong>Go</strong> which does <strong>GPIO</strong> (General Purpose I/O), talks the <strong>I²C</strong> protocol (+ many more) and provides the drivers necessary to interact with <strong>many hardware sensors</strong> (eg. gyroscope, magnetometer, barometer, etc.) It&rsquo;s non-intrusive API allows you to quickly prototype solutions (see below for example) without sacrifising production-worthiness. And the best part? The code will run on a multitude of supported hosts (like the Raspberry Pi, and the BeagleBone Black) without change!</p>
+
+<p><a href="https://embd.kidoman.io">https://embd.kidoman.io</a><br>
+<a href="https://github.com/kidoman/embd">https://github.com/kidoman/embd</a></p>
+
+<p><div class="embed-video-container"><iframe src="//player.vimeo.com/video/92990437 "></iframe></div></p>
+
+<p>Although the framework started its life as <strong>go-rpi</strong>, we soon realized the potential of making it even more useful. The driver code we had written to talk to a <a href="https://github.com/kidoman/embd#sensors-supported">plethora of sensors</a> were not really dependent on the Raspberry Pi. They expected a I²C bus and not much else. So we immediately started thinking of ways in which we could allow people to leverage all that code in other platforms which Golang ran on (which turned out to be <a href="https://github.com/kidoman/embd#platforms-supported">quite a few</a>.)</p>
+
+<h2>API Design</h2>
+
+<p>We spent a bunch of time fine tuning the &ldquo;feel&rdquo; of the API. We have aimed to provide both <strong>real world usability</strong> (we did not want a toy feel to the API) and the ability to be be used for quick/rapid hardware prototyping.</p>
+
+<p>For example, it leans towards rapid prototyping when needed:</p>
+
+<p>```go
+func main() {
+  for {</p>
+
+<pre><code>embd.LEDToggle("LED0")
+time.Sleep(250 * time.Millisecond)
+</code></pre>
+
+<p>  }
+}
+```</p>
+
+<p>Or, gives you the control when necessary:</p>
+
+<p>```go
+func main() {
+  panicIf(embd.InitLED())
+  defer embd.CloseLED()</p>
+
+<p>  led, err := embd.NewLED(&ldquo;LED0&rdquo;)
+  if err != nil {</p>
+
+<pre><code>panic(err)
+</code></pre>
+
+<p>  }
+  defer led.Off()</p>
+
+<p>  // Cleanly exit if someone hits Ctrl-C
+  quit := make(chan os.Signal, 1)
+  signal.Notify(quit, os.Interrupt, os.Kill)</p>
+
+<p>  for {</p>
+
+<pre><code>select {
+case &lt;-time.After(250 * time.Millisecond):
+  panicIf(led.Toggle())
+  fmt.Println("Toggled")
+case &lt;-quit:
+  return
+}
+</code></pre>
+
+<p>  }
+}</p>
+
+<p>```</p>
+
+<p>It currently has good support for the Raspberry Pi and the BeagleBone Black, with support for other platforms coming in the near future. This should almost guarentee that the particular combination of prototyping board, sensors, etc. would most probably work OOTB with EMBD.</p>
+
+<h2>Summary</h2>
+
+<p><strong>EMBD</strong> is a bold attempt at creating a cross platform embedded programming library. A lot of work is needed to flesh out the sensor library and to bring in support for new hosts. The <a href="https://github.com/kidoman/embd/blob/master/ROADMAP.md">ROADMAP</a> lists some of the short/long terms goals we have ahead of us, but we won&rsquo;t get too far down that list without the support of the community. So looking forward to those <a href="https://github.com/kidoman/embd/pulls">pull requests</a>! Also, while we have done our best, if you do come across a bug, please <a href="https://github.com/kidoman/embd/issues">let us know</a> so that we can tackle it in the best way possible. And if you need any help, we will be hanging around <a href="https://groups.google.com/forum/#!forum/go-embd">here</a>.</p>
+
+<p>To read the backstory, read <a href="/life/embd-behind-scenes.html">this</a> article as well.</p>
+
+<h2>Links</h2>
+
+<p>Homepage: <a href="https://embd.kidoman.io/">https://embd.kidoman.io/</a><br/>
+Github: <a href="https://github.com/kidoman/embd">https://github.com/kidoman/embd</a></p>
+]]></content>
+  </entry>
+  
+</feed>

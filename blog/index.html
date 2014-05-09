@@ -1,0 +1,625 @@
+
+<!DOCTYPE HTML>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<title>Coder, Biker, Hacker  | Karan Misra</title>
+
+	<meta name="author" content="Karan Misra">
+
+<meta name="description" content="Golang has has this feature right from the start. Very innocuously named gofmt this tool (distributed as part of the Go compiler toolchain) ensures &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Karan Misra" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Karan Misra</a></h1>
+<span class="tagline">Coder, Biker, Hacker</span>
+<nav id="main-nav"><ul>
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">Subscribe</a></li>
+  <li><a href="mailto:kidoman@gmail.com">Contact</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">Subscribe</a></li>
+  <li><a href="mailto:kidoman@gmail.com">Contact</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner">
+
+
+    <article class="post">
+	<header>
+		<h2 class="title">
+			
+			<a href="/programming/god-save-the-js.html">
+			
+				God Save the JS</a>
+		</h2>
+		<div class="meta date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-10T03:15:15+05:30" pubdate data-updated="true">May 10<span>th</span>, 2014</time></div>
+	</header>
+	<div class="entry-content">
+		<p>Golang has has this feature right from the start. Very innocuously named <code>gofmt</code> this tool (distributed as part of the Go compiler toolchain) ensures that all Go code have a common look and feel to it. It does that by enforcing a few things:</p>
+
+<ul>
+<li>Ensure that the imports are all sorted alphabetically</li>
+<li>Removes all unneeded semicolon from the code</li>
+<li>Aligns <code>const</code>, <code>var</code> and <code>struct</code> constructs so that the variable names all line up nicely</li>
+</ul>
+
+
+<p>Since <code>gofmt</code> is integrated into most text editors used to work on Golang, using the tool becomes ubiquitous. Essentially, it can take Go code which looks like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kn">package</span> <span class="nx">main</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="s">&quot;github.com/go-martini/martini&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="s">&quot;log&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">m</span> <span class="o">:=</span> <span class="nx">martini</span><span class="p">.</span><span class="nx">Classic</span><span class="p">()</span>
+</span><span class='line'>  <span class="nx">log</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="s">&quot;Starting...&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">m</span><span class="p">.</span><span class="nx">Run</span><span class="p">()</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and make it this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kn">package</span> <span class="nx">main</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="p">(</span>
+</span><span class='line'>    <span class="s">&quot;log&quot;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="s">&quot;github.com/go-martini/martini&quot;</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">m</span> <span class="o">:=</span> <span class="nx">martini</span><span class="p">.</span><span class="nx">Classic</span><span class="p">()</span>
+</span><span class='line'>    <span class="nx">log</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="s">&quot;Starting...&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">m</span><span class="p">.</span><span class="nx">Run</span><span class="p">()</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Unless otherwise instructed, it also does all indentation using real tabs. Before you turn away in disgust, let me tell you this. Its actually quite amazing how TABS, when done right, can actually be a benefit. Since all Go code gets run through <code>gofmt</code> anyways, all Go code end up using real TABs. And that allows for people to have their own indentation widths without effecting the actual sourde code. Want more spacing, sure go ahead and ask your favorite editor to represent the TAB as 8 spaces, DONE! Coming from Ruby land, 2 spaces for a TAB it is then. Might sound too good to be true, but it just works.</p>
+
+<h2>Enter JavaScript</h2>
+
+<p>This Github repo showed up in HackerNews front page today.</p>
+
+<p><a href="https://github.com/rdio/jsfmt">https://github.com/rdio/jsfmt</a></p>
+
+<p>Looks like an attempt to bring the same <code>gofmt</code> magic over to the JavaScript land. And I am excited about the sanity that will ensue if this becomes popular among JavaScript programmers. One true/universal way for all JavaScript code formatting. Having suffered <code>IntelliJ</code>&rsquo;s shoddy JavaScript default formatting enough, this feels like the light at the end of a tunnel.</p>
+
+<p>So <code>go spreadTheWord()</code></p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<header>
+		<h2 class="title">
+			
+			<a href="/life/embd-behind-scenes.html">
+			
+				EMBD: Behind the Scenes</a>
+		</h2>
+		<div class="meta date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-06T06:55:00+05:30" pubdate data-updated="true">May 6<span>th</span>, 2014</time></div>
+	</header>
+	<div class="entry-content">
+		<p>For the impatient, TheBot was an experiment to kickstart a hardware engineering culture at <strong>ThoughtWorks</strong>. We choose the Raspberry Pi (RPi) as the prototyping platform and Golang as the language in which to create the firmware. We felt the need for a solid hardware abstraction layer (HAL) which would allow us to not only target the RPi, but soon expand to other platforms as well. We also wanted to make it dead easy to talk to a variety of sensors. Since there were no such existing frameworks for <a href="http://golang.org/">Golang</a>, we ended up writing our own, and we called it <a href="https://embd.kidoman.io/">EMBD</a> (<a href="https://github.com/kidoman/embd">Github</a>).</p>
+
+<blockquote><p><strong>EMBD</strong> enables you to get started on your project quickly by providing build in support for the various <a href="https://github.com/kidoman/embd#platforms-supported">platforms</a>, <a href="https://github.com/kidoman/embd#protocols-supported">protocols</a>, <a href="https://github.com/kidoman/embd#sensors-supported">sensors</a>, <a href="https://github.com/kidoman/embd#controllers">controllers</a>. It also allows your prototyping code to survive through to production because of the built in hardware abstraction layer and Golang&rsquo;s <a href="https://github.com/kidoman/embd/wiki/Why-Go">versatility</a>. Thus significantly shortening the <strong>time to market</strong>.</p></blockquote>
+
+<h2>A little history</h2>
+
+<p>A 20 year old company, ThoughtWorks has been primarily into software. We have made our mark in the ability to create high quality custom enterprise grade software over the years. Data analytics is a key focus areas, but there are others with deeper pockets already investing. Mobile development is also a conquered field. So when our chairman, <a href="http://en.wikipedia.org/wiki/Neville_Roy_Singham">Roy</a>, asked ThoughtWorkers to preempt the next big thing, we naturally started looking at the Internet of Things (<strong>IoT</strong>) as one of the avenues for innovation. Approaching it from a purely hardware perspective would have meant a lot of playing catch up, as we would need to seed a lot of talent in spaces before we could catch up:</p>
+
+<ul>
+<li>material science</li>
+<li>industrial design</li>
+<li>manufacturing, etc.</li>
+</ul>
+
+
+<p>We wanted to get started quickly, leveraging on abilities we have honed over the last two decades. And one of the low hanging fruits to explore was the software side of internet connected devices, firmware for the rovers and quadcopters, the user experiences of these <a href="https://nest.com/thermostat/life-with-nest-thermostat/">new contraptions</a>.</p>
+
+<h2>Enter, TheBot</h2>
+
+<p>We deliberately choose to build something simple &ndash; to push the odds in our favor. However, the simplicity proved to be a boon as it allowed us a lot of scope for innovation in the software side of things. We also wanted to take this opportunity to study. To glean experiences from. From many angles, this is just scratching the surface of what is to come, but you have got to start somewhere. Think of it as bulb # 1.</p>
+
+<div class="embed-video-container"><iframe src="//www.youtube.com/embed/iMXjkZ4B3EM "></iframe></div>
+
+
+<p>(We first showcased this to public on Jan 10, 2014 and dedicated the effort to Aaron, a good soul and a ThoughtWorker, who passed away on Jan 11, 2013.)</p>
+
+<p><img class="center" src="/images/thebot-small.jpg" title="TheBot" ></p>
+
+<p>It was a lot of work. A lot of things you took for granted suddenly needed to be taken care of in code and in hardware. The fact that the code now had to actually &ldquo;run&rdquo; on the hardware brought in additional challenges as well. Concurrency is the name of the game. Most of the events which you needed to handle and react to (ex: a obstacle suddenly apprearing infront of the car, while the car is turning on its own) would come concurrently, in no particular guarenteed order. The firmware had to be both efficient and easy to reason about.</p>
+
+<h2>Golang to the rescue</h2>
+
+<blockquote><p>Created by a team at Google in 2007, Golang aimed at making software development pleasurable again. Software that built quickly, ran well on multi-core hardware in networked environments.</p></blockquote>
+
+<p>(see the official <a href="http://golang.org/doc/faq#What_is_the_purpose_of_the_project">FAQs</a> for a more complete picture)</p>
+
+<p>Golang has excellent support for concurrency in the core language. The RaspberryPi is single threaded and we needed the car to handle multiple real world interactions at the same time. Using threads would have forced us to use mutexes, etc, for synchronization. The ‘goroutines+channels’ architecture in Golang helped us focus on the “actual” interactions. (Goroutines are light weight threads which are executed via the Go runtime on real threads via a M:N mapping. Channels are a typed mechanism for passing messages between goroutines). The resulting code is much easier to read, reason with and understand.</p>
+
+<blockquote><p>“Simply running the binary was always enough. This helped tremendously in shortening our development/build/deploy cycles and made the process even more gratifying.”</p></blockquote>
+
+<p>Golang is a statically typed, garbage collected and compiled programming language. However, in use, it feels like a FAST (slightly) verbose scripting language which has support for systems programming and duck typing. Since the cross compiled binary was entirely self contained, no runtime was needed. Simply running the binary was enough, which helped tremendously in shortening our development, build and deploy cycles and made the process even more gratifying.</p>
+
+<p>(a recent article by <a href="https://www.spacemonkey.com/blog/posts/go-space-monkey">SpaceMonkey</a> details their story of switching from Python to Golang for the firmward of their embedded storage device. Its a must read to get a better idea of what Golang has to offer in this space.)</p>
+
+<h2>Summary</h2>
+
+<p>These and various other reasons led us to create <a href="https://embd.kidoman.io/">EMBD</a> and release it to the world.</p>
+
+<p><strong>PS:</strong> Earlier, this article was part of the <a href="/framework/embd.html">Introducing EMBD</a> piece. However, based on feedback, I decided to split them so that they the original article focused solely on the new framework and did not pull focus to other tertiary things.</p>
+
+<h2>Links</h2>
+
+<p>Homepage: <a href="https://embd.kidoman.io/">https://embd.kidoman.io/</a><br/>
+Github: <a href="https://github.com/kidoman/embd">https://github.com/kidoman/embd</a></p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<header>
+		<h2 class="title">
+			
+			<a href="/framework/embd.html">
+			
+				Introducing EMBD</a>
+		</h2>
+		<div class="meta date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-24T06:00:00+05:30" pubdate data-updated="true">Apr 24<span>th</span>, 2014</time></div>
+	</header>
+	<div class="entry-content">
+		<p><strong><a href="https://github.com/kidoman/embd">EMBD</a></strong> is a framework for <strong>Go</strong> which does <strong>GPIO</strong> (General Purpose I/O), talks the <strong>I²C</strong> protocol (+ many more) and provides the drivers necessary to interact with <strong>many hardware sensors</strong> (eg. gyroscope, magnetometer, barometer, etc.) It&rsquo;s non-intrusive API allows you to quickly prototype solutions (see below for example) without sacrifising production-worthiness. And the best part? The code will run on a multitude of supported hosts (like the Raspberry Pi, and the BeagleBone Black) without change!</p>
+
+<p><a href="https://embd.kidoman.io">https://embd.kidoman.io</a><br>
+<a href="https://github.com/kidoman/embd">https://github.com/kidoman/embd</a></p>
+
+<div class="embed-video-container"><iframe src="//player.vimeo.com/video/92990437 "></iframe></div>
+
+
+<p>Although the framework started its life as <strong>go-rpi</strong>, we soon realized the potential of making it even more useful. The driver code we had written to talk to a <a href="https://github.com/kidoman/embd#sensors-supported">plethora of sensors</a> were not really dependent on the Raspberry Pi. They expected a I²C bus and not much else. So we immediately started thinking of ways in which we could allow people to leverage all that code in other platforms which Golang ran on (which turned out to be <a href="https://github.com/kidoman/embd#platforms-supported">quite a few</a>.)</p>
+
+<h2>API Design</h2>
+
+<p>We spent a bunch of time fine tuning the &ldquo;feel&rdquo; of the API. We have aimed to provide both <strong>real world usability</strong> (we did not want a toy feel to the API) and the ability to be be used for quick/rapid hardware prototyping.</p>
+
+<p>For example, it leans towards rapid prototyping when needed:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">for</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">embd</span><span class="p">.</span><span class="nx">LEDToggle</span><span class="p">(</span><span class="s">&quot;LED0&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">250</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Or, gives you the control when necessary:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">panicIf</span><span class="p">(</span><span class="nx">embd</span><span class="p">.</span><span class="nx">InitLED</span><span class="p">())</span>
+</span><span class='line'>  <span class="k">defer</span> <span class="nx">embd</span><span class="p">.</span><span class="nx">CloseLED</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">led</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">embd</span><span class="p">.</span><span class="nx">NewLED</span><span class="p">(</span><span class="s">&quot;LED0&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">defer</span> <span class="nx">led</span><span class="p">.</span><span class="nx">Off</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// Cleanly exit if someone hits Ctrl-C</span>
+</span><span class='line'>  <span class="nx">quit</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>  <span class="nx">signal</span><span class="p">.</span><span class="nx">Notify</span><span class="p">(</span><span class="nx">quit</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Interrupt</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Kill</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">for</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">select</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="mi">250</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">):</span>
+</span><span class='line'>      <span class="nx">panicIf</span><span class="p">(</span><span class="nx">led</span><span class="p">.</span><span class="nx">Toggle</span><span class="p">())</span>
+</span><span class='line'>      <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Toggled&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">quit</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">return</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It currently has good support for the Raspberry Pi and the BeagleBone Black, with support for other platforms coming in the near future. This should almost guarentee that the particular combination of prototyping board, sensors, etc. would most probably work OOTB with EMBD.</p>
+
+<h2>Summary</h2>
+
+<p><strong>EMBD</strong> is a bold attempt at creating a cross platform embedded programming library. A lot of work is needed to flesh out the sensor library and to bring in support for new hosts. The <a href="https://github.com/kidoman/embd/blob/master/ROADMAP.md">ROADMAP</a> lists some of the short/long terms goals we have ahead of us, but we won&rsquo;t get too far down that list without the support of the community. So looking forward to those <a href="https://github.com/kidoman/embd/pulls">pull requests</a>! Also, while we have done our best, if you do come across a bug, please <a href="https://github.com/kidoman/embd/issues">let us know</a> so that we can tackle it in the best way possible. And if you need any help, we will be hanging around <a href="https://groups.google.com/forum/#!forum/go-embd">here</a>.</p>
+
+<p>To read the backstory, read <a href="/life/embd-behind-scenes.html">this</a> article as well.</p>
+
+<h2>Links</h2>
+
+<p>Homepage: <a href="https://embd.kidoman.io/">https://embd.kidoman.io/</a><br/>
+Github: <a href="https://github.com/kidoman/embd">https://github.com/kidoman/embd</a></p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<header>
+		<h2 class="title">
+			
+			<a href="/software/serve.html">
+			
+				Introducing Serve</a>
+		</h2>
+		<div class="meta date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-10T06:00:00+05:30" pubdate data-updated="true">Apr 10<span>th</span>, 2014</time></div>
+	</header>
+	<div class="entry-content">
+		<p>Sometimes, it takes a great deal of effort to create something simple.</p>
+
+<ul>
+<li>What is the smallest feature set you can support and still be useful?</li>
+<li>How elegant should the implementation be?</li>
+</ul>
+
+
+<p>These are the typical questions which would come to your mind when aiming for simplicity.</p>
+
+<p>Well, here is my dedication to the shrine of <a href="http://www.infoq.com/presentations/Simple-Made-Easy">simplicity</a>.</p>
+
+<h2>What is this?</h2>
+
+<p><strong>Serve</strong> makes serving static content out of directories <strong>simple</strong>.</p>
+
+<p>Why would you want to do this?</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>python -m SimpleHTTPServer 8080</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When you can just do this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>serve .</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Serve</strong> is a single binary. Easy installed via <a href="http://brew.sh/">Homebrew</a> with a single command:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew install kidoman/tools/serve</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(there are a few other ways of installing Serve, including but not limited to precompiled binaries. But they are much better documented at the <a href="https://github.com/kidoman/serve">Github repo</a>)</p>
+
+<h2>How to use</h2>
+
+<p>Provided you have <code>serve</code> under your $PATH somewhere:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>serve .</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will serve the current directory at <code>http://localhost:5000/</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>serve -p 9999 ~/my-awesome-blog</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Will serve the contents of the folder <code>~/my-awesome-blog</code> at <code>http://localhost:9999/</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>serve -x /my ~/precious</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You guessed it, <code>http://localhost:5000/my</code> is now wired up to <code>~/precious</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>serve -o ~/sesame</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Wires up <code>http://localhost:5000</code> to <code>~/sesame</code> and opens the URL in your favorite browser while it is at it.</p>
+
+<h2>Next Steps</h2>
+
+<p>The next logical thing would be to allow the <code>serve</code> functionality to be used by simply importing the package. But it totally depends on the simplicity of the change! Happy serving.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<header>
+		<h2 class="title">
+			
+			<a href="/engineering/thebot.html">
+			
+				TheBot - Adventures in Hardware</a>
+		</h2>
+		<div class="meta date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-02T08:00:00+05:30" pubdate data-updated="true">Mar 2<span>nd</span>, 2014</time></div>
+	</header>
+	<div class="entry-content">
+		<p>(cross posted from the <a href="http://thoughtworks.github.io/p2/issue09/thebot">P2 Magazine</a>)</p>
+
+<p>“Robots that are controlled by node.js.” The idea imprinted on me immediately.</p>
+
+<p>“A crowd controlled robotic car!&#8221;</p>
+
+<p><img class="center" src="/images/thebot-1.png" title="TheBot Mascot" ></p>
+
+<p>A fun product with a tonne of learning potential. However, doing a &ldquo;follow the blog posts/tutorials&rdquo; stitch and patch job recommended on the NodeBots site did not excite me one bit. Sure, we’d done it in two days, but what would we have learned in the process?</p>
+
+<p>Despite having worked extensively on node.js, the language did not interest me much &ndash; ambiguous syntax, callbacks, promises, etc. I had been looking for an opportunity do something real in Golang, and building a concurrent open source firmware for TheBot was just the ticket.</p>
+
+<p><img class="center" src="/images/thebot-2.jpg" title="TheBot" ></p>
+
+<p>TheBot is first and foremost an experiment. An experiment aimed at research and learning. An experiment to kickstart a hardware engineering culture in ThoughtWorks. Birthed as a crowd controlled robotic car that transmits video feed back to the controller; the vision has transformed many times during the development. Can it be the ultimate open source sensing/proximity prototyping platform? Could we extract a product out of this?</p>
+
+<blockquote><p>“TheBot’s value is the immense learning and research potential.”</p></blockquote>
+
+<p>On first appearance, TheBot looks like the result of odd inter-breeding between a remote-controlled car and the contents of your local Radio Shack. TheBot itself though, is not really just a car, it is actually a fully-fledged Golang based framework for working with hardware sensors and motor control. In it’s current incarnation, the RaspberryPi-based robot allows you to control it remotely using any device capable of running a modern browser. The on-board smarts do things like use rangefinders to implement collision avoidance, and you can even send it logo-ish commands like ‘turn 90 degrees right’.</p>
+
+<p>Right now, we are laying down the rails for what is to come next. The modules are already taking shape and we are using our learnings from TheBot to drive the development of the framework(s) and the underlying hardware abstraction layer.</p>
+
+<p>Unique Selling Proposal: TheBot’s value is the immense learning and research potential in its current form. The fact that it looks like a car and has 4 wheels is just a bonus.</p>
+
+<h3>The Guts</h3>
+
+<p>We plan on doing a proper video walk through of the hardware soon, but until then:</p>
+
+<p><img class="center" src="/images/thebot-3.png" title="Block Diagram" ></p>
+
+<h3>Why Golang?</h3>
+
+<p>Golang has excellent and remarkable support for concurrency in the core language. The RaspberryPi is single threaded and we needed the car to handle multiple real world interactions at the same time. Using threads would have forced us to use mutexes, etc, for synchronization. The ‘goroutines+channels&#8217; architecture in Golang helped us focus on the &ldquo;actual&rdquo; interactions. (Goroutines are light weight threads which are executed via the Go runtime on real threads via a M:N mapping. Channels are a typed mechanism for passing messages between goroutines). The resulting code is much easier to read, reason with and understand.</p>
+
+<blockquote><p>“Simply running the binary was always enough. This helped tremendously in shortening our development/build/deploy cycles and made the process even more gratifying.”</p></blockquote>
+
+<p>Golang is a statically typed, garbage collected and compiled programming language. However, in use, it feels like a FAST (slightly) verbose scripting language which has support for systems programming  and duck typing. Since the cross compiled binary was entirely self contained, no runtime was needed. Simply running the binary was enough, which helped tremendously in shortening our development, build and deploy cycles and made the process even more gratifying.</p>
+
+<h3>Why RaspberryPi?</h3>
+
+<p>The RaspberryPi represents the most available lowest common denominator; an ARM chip running Linux. Besides marrying well with cross compiled Golang, it also doesn’t skimp in the I/O department. It supports I2C, GPIO, and PWM. The forgiving nature of the hardware, integrated HDMI/Ethernet/USB go a long way in making it a good first choice.</p>
+
+<p>That being said, we could deploy the firmware, in its current form, on any Linux based platform that has the ability to talk GPIO/I2C, including:
+BeagleBone Black
+PandaBoard, etc.</p>
+
+<p>Our long term goal is to be able to target raw microcontrollers.</p>
+
+<h3>What does it do ?</h3>
+
+<div class="embed-video-container"><iframe src="//www.youtube.com/embed/iMXjkZ4B3EM "></iframe></div>
+
+
+<h3>What next?</h3>
+
+<p>The current form factor was an evolutionary step; a convenience which allowed us to get started quickly.</p>
+
+<p>We definitely want to cater to the hobbyist / education space &ndash; possibly in the form of a stripped down, dressed up Super 8 sensor kit, to help people get started quickly &ndash; as it has the potential for maximum impact at the grassroots level. At the same time, we want to balance things out by looking at solidly marketable areas like B2B logistics / delivery &ndash; which could apply to the rural health care space &ndash; and home automation. The home automation space is particularly exciting as the potential for integration between smart software and hardware innovation is really high &ndash; aptly demonstrated by the NEST devices.</p>
+
+<p>To make the above happen, we will need to stretch TheBot’s legs and expand its capabilities. We are in the process of extracting a hardware abstraction framework (EMBD) which will allow us to target a variety of hosts &ndash; RPi, BBB, etc. &ndash; from a single code base. This is particularly helpful because it will allow us to quickly prototype solutions using readily available hobby boards, while still retaining the ability to target the final hardware. Besides that, we are also interested in route mapping and visualization, as capability in this area will open many more opportunities.</p>
+
+<p style="text-align:center;"> ⁂</p>
+
+<p>The development process was nothing short of enthralling. We did not have well established libraries to lean back on. We went into this &ldquo;batteries not included.&rdquo; The decisions were deliberate; to use Golang and not pre-existing libraries because the potential for learning would have been limited. We optimized for maximized learning. And boy did it pay off. Not only did we end up writing our very own Golang libraries for interfacing with all these sensors, we also had the opportunity to try and model the interactions of software with the real world. Imagine for one second how many different ways there are to make the car turn right. Things we take for granted in software can open a can of worms when the &ldquo;real world&rdquo; gets involved!</p>
+
+<p>The technical attractiveness of such an undertaking is obvious, but there is more to it. I believe that a lot of good can be done for the &ldquo;voiceless&rdquo; by getting cheap commodity devices into their hands. A simple 2G connected solar powered open hardware device could allow a village like Panchayat, India, to bypass all the middle men and leverage social networking to report grievances to their congress representative. This could bring about a revolution. What minister worth his salt would want to look bad on Facebook? Our hope is that the resulting learnings and framework created from TheBot effort can and will make this possible.</p>
+
+<p>The possibilities are truly endless.</p>
+
+<h3>Links to Watch</h3>
+
+<p><a href="https://github.com/kidoman/embd" target="_blank">github.com/kidoman/embd</a></p>
+
+<h3>Credits</h3>
+
+<p>Contributors in no particular order: Sapto, Rohit, Kunal, Nikesh, Shantanu, Hanu, Gagan, Shaunak, Kashyap, Mukund, Akhil, Vishwas, Mallik, Deepthi, Shaun, Nag, Bala &amp; Sam Newman</p>
+
+<p><img class="center" src="/images/thebot-4.jpg" title="The Team" ></p>
+
+		
+		
+	</div>
+
+</article>
+
+<nav id="pagenavi">
+    
+    
+        <a href="/blog/page/2/" class="next">Next</a>
+    
+</nav>
+</div>
+	<footer id="footer" class="inner">&copy; 2014
+
+    Karan Misra
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/hyphenator.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'kidoman';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-44459958-1', 'kidoman.io');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+  </script>
+
+
+
+
+</body>
+</html>

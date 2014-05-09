@@ -1,0 +1,224 @@
+
+<!DOCTYPE HTML>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<title>God save the JS  | Karan Misra</title>
+
+	<meta name="author" content="Karan Misra">
+
+<meta name="description" content="Golang has has this feature right from the start. Very innocuously named gofmt this tool (distributed as part of the Go compiler toolchain) ensures &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Karan Misra" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Karan Misra</a></h1>
+<span class="tagline">Coder, Biker, Hacker</span>
+<nav id="main-nav"><ul>
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">Subscribe</a></li>
+  <li><a href="mailto:kidoman@gmail.com">Contact</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">Subscribe</a></li>
+  <li><a href="mailto:kidoman@gmail.com">Contact</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<header>
+		<h2 class="title">God Save the JS</h2>
+		<div class="meta date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-10T03:15:15+05:30" pubdate data-updated="true">May 10<span>th</span>, 2014</time></div>
+	</header>
+	<div class="entry-content"><p>Golang has has this feature right from the start. Very innocuously named <code>gofmt</code> this tool (distributed as part of the Go compiler toolchain) ensures that all Go code have a common look and feel to it. It does that by enforcing a few things:</p>
+
+<ul>
+<li>Ensure that the imports are all sorted alphabetically</li>
+<li>Removes all unneeded semicolon from the code</li>
+<li>Aligns <code>const</code>, <code>var</code> and <code>struct</code> constructs so that the variable names all line up nicely</li>
+</ul>
+
+
+<p>Since <code>gofmt</code> is integrated into most text editors used to work on Golang, using the tool becomes ubiquitous. Essentially, it can take Go code which looks like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kn">package</span> <span class="nx">main</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="s">&quot;github.com/go-martini/martini&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="s">&quot;log&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">m</span> <span class="o">:=</span> <span class="nx">martini</span><span class="p">.</span><span class="nx">Classic</span><span class="p">()</span>
+</span><span class='line'>  <span class="nx">log</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="s">&quot;Starting...&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">m</span><span class="p">.</span><span class="nx">Run</span><span class="p">()</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and make it this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kn">package</span> <span class="nx">main</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="p">(</span>
+</span><span class='line'>    <span class="s">&quot;log&quot;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="s">&quot;github.com/go-martini/martini&quot;</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">m</span> <span class="o">:=</span> <span class="nx">martini</span><span class="p">.</span><span class="nx">Classic</span><span class="p">()</span>
+</span><span class='line'>    <span class="nx">log</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="s">&quot;Starting...&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">m</span><span class="p">.</span><span class="nx">Run</span><span class="p">()</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Unless otherwise instructed, it also does all indentation using real tabs. Before you turn away in disgust, let me tell you this. Its actually quite amazing how TABS, when done right, can actually be a benefit. Since all Go code gets run through <code>gofmt</code> anyways, all Go code end up using real TABs. And that allows for people to have their own indentation widths without effecting the actual sourde code. Want more spacing, sure go ahead and ask your favorite editor to represent the TAB as 8 spaces, DONE! Coming from Ruby land, 2 spaces for a TAB it is then. Might sound too good to be true, but it just works.</p>
+
+<h2>Enter JavaScript</h2>
+
+<p>This Github repo showed up in HackerNews front page today.</p>
+
+<p><a href="https://github.com/rdio/jsfmt">https://github.com/rdio/jsfmt</a></p>
+
+<p>Looks like an attempt to bring the same <code>gofmt</code> magic over to the JavaScript land. And I am excited about the sanity that will ensue if this becomes popular among JavaScript programmers. One true/universal way for all JavaScript code formatting. Having suffered <code>IntelliJ</code>&rsquo;s shoddy JavaScript default formatting enough, this feels like the light at the end of a tunnel.</p>
+
+<p>So <code>go spreadTheWord()</code></p>
+</div>
+	
+
+</article>
+
+	
+	<div class="share">
+		<ul>
+			<li>
+  <a href="https://twitter.com/intent/tweet?text=God save the JS by @kid0m4n&url=https://kidoman.io/programming/god-save-the-js.html" title="Share God save the JS on Twitter">
+    <img src="/images/social/twitter.png" />
+  </a>
+</li>
+
+			<li>
+  <a href="https://www.facebook.com/sharer.php?u=https://kidoman.io/programming/god-save-the-js.html" title="Share God save the JS on Facebook">
+    <img src="/images/social/facebook.png" />
+  </a>
+</li>
+
+			<li>
+  <a href="https://plus.google.com/share?url=https://kidoman.io/programming/god-save-the-js.html" title="Share God save the JS on Google Plus">
+    <img src="/images/social/google.png" />
+  </a>
+</li>
+
+		</ul>
+	</div>
+
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">&copy; 2014
+
+    Karan Misra
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/hyphenator.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'kidoman';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'https://kidoman.io/programming/god-save-the-js.html';
+        var disqus_url = 'https://kidoman.io/programming/god-save-the-js.html';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-44459958-1', 'kidoman.io');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+  </script>
+
+
+
+
+</body>
+</html>

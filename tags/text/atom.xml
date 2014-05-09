@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: text | Karan Misra]]></title>
+  <link href="https://kidoman.io/tags/text/atom.xml" rel="self"/>
+  <link href="https://kidoman.io/"/>
+  <updated>2014-05-10T04:28:59+05:30</updated>
+  <id>https://kidoman.io/</id>
+  <author>
+    <name><![CDATA[Karan Misra]]></name>
+    <email><![CDATA[karan.misra@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Why Sublime Text?]]></title>
+    <link href="https://kidoman.io/programming/why-sublime-text.html"/>
+    <updated>2013-05-23T02:17:00+05:30</updated>
+    <id>https://kidoman.io/programming/why-sublime-text</id>
+    <content type="html"><![CDATA[<p><img class="center" src="/images/sublime.png"></p>
+
+<p>I wanted to pen down the results of my 5 month long &ldquo;select the best text editor available&rdquo; thought experiment. So here we go&hellip;</p>
+
+<h2>tl;dr</h2>
+
+<p>Although <strong>vim</strong> gets the best text editor award, I choose to continue using Sublime Text <strong>3</strong> for all my development needs. Read on to find out why&hellip;</p>
+
+<h2>The Experiment</h2>
+
+<p>This journey started with me being infatuated with the <a href="http://railscasts.com/about">RailsCasts</a> theme which Ryan Bates made famous via his <a href="http://railscasts.com/">podcasts</a>. Coming from a data warehousing / .NET background, this felt surreal.</p>
+
+<p>As a budding Rubyist, I fell in love with <a href="http://macromates.com/">TextMate</a>. It was fast and elegant. The fact that the grubby little fingers of my .NET-abled friends could not get at it made it more wonderful. It provided just enough control&hellip; the balance produced elegant harmony.</p>
+
+<p>So naturally, when I had to code Ruby for a Windows infrastructure automation project (based on <a href="http://www.opscode.com/chef/">Chef</a>) we were doing for our client, I pounced at Sublime Text. It brought in the elegance of TextMate and acted as a necessary survival tool in a Microsoft dev environment. The awesome snippet system eliminated any need I <strong>possibly</strong> could have felt for an IDE (RubyMine, I am looking at you.) And need I mention the beautiful Cmd + P fuzzy file lookup implementation (Ctrl + P for the devs who call Seattle their home.)</p>
+
+<p>Its now been a few months since I have had to boot up Windows for <em>work</em>. Now that I had used Sublime Text for a good few months, I wanted to evaluate the other options available with Mac OS X and adopt the <em>ultimate</em> nirvana&hellip;</p>
+
+<p>A quick research showed me the following available tunnels:</p>
+
+<ul>
+<li>vim (Inspired from <a href="http://blog.extracheese.org/">Gary Bernhardt</a>, of <a href="https://www.destroyallsoftware.com/">DAS</a> fame)</li>
+<li>emacs (Inspired from <a href="http://onestepback.org/">Jim Weirich</a>, of Rake fame)</li>
+<li>MacVim (Inspired from the ever loveable <a href="http://tenderlovemaking.com/">tenderlove</a>, a Ruby and Rails core committer)</li>
+<li>Sublime Text (Based on my own experience)</li>
+<li>TextMate 1 / 2 (Inspired from watching Ryan Bates work his magic in the screen casts)</li>
+</ul>
+
+
+<p>I am not going to elaborate too much about these choices but just provide an abstract about some of them to help you find the light.</p>
+
+<h2>(Mac)vim &amp; emacs</h2>
+
+<p>vim felt like <strong>God&rsquo;s Own Editor</strong>. Seeing Gary fly through the code was a revelation. In his own words (paraphrasing), &ldquo;I don&rsquo;t want to show you my key strokes (in the recorded podcasts, contrary to how Ryan does it in his) because they will fly by so fast that you won&rsquo;t have time to see them.&rdquo;</p>
+
+<p>This reveals a lot about the core vim. A fully done up vim instance (perhaps decorated with <a href="https://github.com/carlhuda/janus">Janus</a>) is so &ldquo;busy&rdquo;, that there is hardly any time for you to be motionless. You are doing something all the time&hellip; As you learn more of the legendary editor, you manage short cuts and macros which would make Chuck Norris turn in his bed. Hell, after a while, you ever start using the wonderful vim script <a href="https://github.com/tpope/vim-fugitive">Fugitive</a> to make tender love to Git! All from within your text editor&hellip; what could be better than that?</p>
+
+<p>The same can also be said for emacs too (some people even use emacs as their shell / OS replacement!)</p>
+
+<h2>One man&rsquo;s meat is another man&rsquo;s poison</h2>
+
+<p>And I am not saying this in the passing. After using vim/MacVim for a good 3+ months (I had picked up decent speed with the editor and figured out a bunch of essential plugins which helped me almost avoid having to step out to <a href="http://www.iterm2.com/">iTerm</a>) I realized that it had not made me any faster at programming. Sure, I could &ldquo;edit&rdquo; a document at the speed of light, <a href="https://github.com/Lokaltog/vim-easymotion">motion</a> around effortlessly&hellip; but when it came to solving a real hard business problem, I found myself retracting my hands from the keyboard&hellip; a <strong>setTimeout(.., 0)</strong> of sorts!</p>
+
+<p>Although a lot of people claim that they can multitask super efficiently, scientific studies have proven that it is human to have your work deteriorate when multi-tasking. It was hard to organize my thoughts with the constant rattle of keyboard which vim encourages.</p>
+
+<p>For me, the realisation dawned one lazy afternoon when trying to trace down a memory leak problem as I witnessed myself involuntarily quit vim and open up the same project directory in Sublime Text.</p>
+
+<p><strong>The think time that was afforded to my brain when using a less efficient editor was missing when using a ninja text editor like vim. vim kept the brain so busy because of its efficiency and throughput (keys pressed per second) that the left lobe hardly got any time to go <a href="http://lwn.net/Articles/549580/">tickless</a> and actually focus on the problem at hand.</strong></p>
+
+<p>The same happened when I had to use the mouse to shift through files as well&hellip; the time slices were larger because of the easy nature of navigation in a simple text editor which hardly took any thinking. So the brain could subconsciously continue working on the problem at hand instead of trying to figure out the best possible way to do the required action in vim.</p>
+
+<h2>Summary</h2>
+
+<p>Sublime Text / TextMate are hardly the best editors out there. But, when it comes to actually letting you focus on the job at hand (remember, our forte is smart programming, not smart editing of source files); they <strong>SHINE</strong>.</p>
+
+<p>This is why I shifted back to Sublime Text (now in its <strong>3rd</strong> incarnation) after my 5 month <strong>thought</strong> experiment and I couldn&rsquo;t be happier.</p>
+
+<p>Give it a honest shot (just like you had to for your full featured IDE or vim/emacs) and you will understand how short and rewarding the learning curve is. The sweet sensation you will feel at the tip of your tongue after your first multi line edit is totally worth it! Trust me.</p>
+
+<p><strong>PS</strong>: For folks stuck in Java / .NET, I feel for you!</p>
+]]></content>
+  </entry>
+  
+</feed>

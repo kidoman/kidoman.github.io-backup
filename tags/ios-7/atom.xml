@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: ios 7 | Karan Misra]]></title>
+  <link href="https://kidoman.io/tags/ios-7/atom.xml" rel="self"/>
+  <link href="https://kidoman.io/"/>
+  <updated>2014-05-10T04:28:59+05:30</updated>
+  <id>https://kidoman.io/</id>
+  <author>
+    <name><![CDATA[Karan Misra]]></name>
+    <email><![CDATA[karan.misra@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[I have got 7!]]></title>
+    <link href="https://kidoman.io/life/i-have-got-7.html"/>
+    <updated>2013-06-11T07:06:00+05:30</updated>
+    <id>https://kidoman.io/life/i-have-got-7</id>
+    <content type="html"><![CDATA[<p><img class="center" src="/images/got-ios7.png" title="iOS 7" ></p>
+
+<p>Just updated both my devices (well technically Neeru&rsquo;s and mine) and couldn&rsquo;t be happier.</p>
+
+<p>Will post a detailed analysis in some time&hellip;</p>
+
+<p>PS: What you see on the screen is iOS 7 doing opportunistic updates for all my apps! Hurray&hellip;</p>
+]]></content>
+  </entry>
+  
+</feed>

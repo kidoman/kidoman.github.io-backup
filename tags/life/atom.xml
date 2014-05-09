@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: life | Karan Misra]]></title>
+  <link href="https://kidoman.io/tags/life/atom.xml" rel="self"/>
+  <link href="https://kidoman.io/"/>
+  <updated>2014-05-10T04:28:59+05:30</updated>
+  <id>https://kidoman.io/</id>
+  <author>
+    <name><![CDATA[Karan Misra]]></name>
+    <email><![CDATA[karan.misra@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Welcome...]]></title>
+    <link href="https://kidoman.io/life/welcome.html"/>
+    <updated>2013-05-01T02:27:00+05:30</updated>
+    <id>https://kidoman.io/life/welcome</id>
+    <content type="html"><![CDATA[<p><img src="/images/i-am-looking-at-you.jpeg" title="I see dead people" ></p>
+
+<p>This blog has been a long time coming. I don&rsquo;t remember correctly (and am too lazy to look it up) but I think I purchased this domain more than 5 years ago! But its up now. And that&rsquo;s all she said&hellip;</p>
+
+<p>Did planet Earth need another blog? tl;dr: NO</p>
+
+<p>But I thought I could add some spice to your boring lives by penning down my thoughts which move at speed of light between biking, coding, entrepreneurship and biking agin.</p>
+
+<p>So sit back, relax and enjoy the show!</p>
+]]></content>
+  </entry>
+  
+</feed>

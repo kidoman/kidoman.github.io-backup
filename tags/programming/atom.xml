@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: programming | Karan Misra]]></title>
+  <link href="https://kidoman.io/tags/programming/atom.xml" rel="self"/>
+  <link href="https://kidoman.io/"/>
+  <updated>2014-05-10T04:28:59+05:30</updated>
+  <id>https://kidoman.io/</id>
+  <author>
+    <name><![CDATA[Karan Misra]]></name>
+    <email><![CDATA[karan.misra@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Joy of Programming]]></title>
+    <link href="https://kidoman.io/life/joy-of-programming.html"/>
+    <updated>2013-09-18T17:54:00+05:30</updated>
+    <id>https://kidoman.io/life/joy-of-programming</id>
+    <content type="html"><![CDATA[<p>Unicorns. and Rainbows. Besides being <a href="http://rubygems.org/gems/unicorn">Ruby</a> <a href="http://rubygems.org/gems/rainbows">gems</a>, they also happen to exactly articulate the feeling I have in my head the moment I start thinking about programming.</p>
+
+<p>Ever since I first opened up &ldquo;Doom.exe&rdquo; in notepad and stared at disbelief at the gibberish machine code, something has always driven me to figure out the the underlying DNA of every piece of software I have chanced upon. Obviously as the years have gone by, the amount of software out there has increased a trillion fold, but every now and then, I still chance upon a masterpiece which immediately attracts a &ldquo;holy cow!&rdquo; from me. It happens less often now-a-days but <a href="http://www.cs.utah.edu/~aek/code/card.cpp">still</a>&hellip;</p>
+
+<p>Doom caught my fancy as it was the first FPS I ever played (it was way back in 1994.) After poring through the machine code and trying to make sense of it, I started down my first programming project. Making my own game. The rough tasklist:</p>
+
+<ul>
+<li>Think of a game idea</li>
+<li>???</li>
+<li>$$$</li>
+</ul>
+
+
+<p>The figuring out the ??? has definitely been the executive summary of my life story. And I guess that is something I share with every programmer out there. Sometimes, I <del datetime="2013-09-24T03:10:03+00:00">don&rsquo;t even care</del> pretend to care about the idea (step #1) and the business model around it (step #3). If the challenge is strong enough and calls to me, that&rsquo;s good enough. The years have made me shift priorities of course, but figuring out the unknown still has a weird hold on me. It calls to me in a very animalistic fashion; and hopefully will for years to come&hellip; It helps drown out the bureaucracy of the work place and get into the zone; a zone that I fondly call &ldquo;Joy of Programming&rdquo;</p>
+]]></content>
+  </entry>
+  
+</feed>

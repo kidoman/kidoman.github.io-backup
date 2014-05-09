@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: webserver | Karan Misra]]></title>
+  <link href="https://kidoman.io/tags/webserver/atom.xml" rel="self"/>
+  <link href="https://kidoman.io/"/>
+  <updated>2014-05-10T04:28:59+05:30</updated>
+  <id>https://kidoman.io/</id>
+  <author>
+    <name><![CDATA[Karan Misra]]></name>
+    <email><![CDATA[karan.misra@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Introducing Serve]]></title>
+    <link href="https://kidoman.io/software/serve.html"/>
+    <updated>2014-04-10T06:00:00+05:30</updated>
+    <id>https://kidoman.io/software/serve</id>
+    <content type="html"><![CDATA[<p>Sometimes, it takes a great deal of effort to create something simple.</p>
+
+<ul>
+<li>What is the smallest feature set you can support and still be useful?</li>
+<li>How elegant should the implementation be?</li>
+</ul>
+
+
+<p>These are the typical questions which would come to your mind when aiming for simplicity.</p>
+
+<p>Well, here is my dedication to the shrine of <a href="http://www.infoq.com/presentations/Simple-Made-Easy">simplicity</a>.</p>
+
+<h2>What is this?</h2>
+
+<p><strong>Serve</strong> makes serving static content out of directories <strong>simple</strong>.</p>
+
+<p>Why would you want to do this?</p>
+
+<p><code>
+python -m SimpleHTTPServer 8080
+</code></p>
+
+<p>When you can just do this:</p>
+
+<p><code>
+serve .
+</code></p>
+
+<p><strong>Serve</strong> is a single binary. Easy installed via <a href="http://brew.sh/">Homebrew</a> with a single command:</p>
+
+<p><code>
+brew install kidoman/tools/serve
+</code></p>
+
+<p>(there are a few other ways of installing Serve, including but not limited to precompiled binaries. But they are much better documented at the <a href="https://github.com/kidoman/serve">Github repo</a>)</p>
+
+<h2>How to use</h2>
+
+<p>Provided you have <code>serve</code> under your $PATH somewhere:</p>
+
+<p><code>
+serve .
+</code></p>
+
+<p>This will serve the current directory at <code>http://localhost:5000/</code></p>
+
+<p><code>
+serve -p 9999 ~/my-awesome-blog
+</code></p>
+
+<p>Will serve the contents of the folder <code>~/my-awesome-blog</code> at <code>http://localhost:9999/</code></p>
+
+<p><code>
+serve -x /my ~/precious
+</code></p>
+
+<p>You guessed it, <code>http://localhost:5000/my</code> is now wired up to <code>~/precious</code></p>
+
+<p><code>
+serve -o ~/sesame
+</code></p>
+
+<p>Wires up <code>http://localhost:5000</code> to <code>~/sesame</code> and opens the URL in your favorite browser while it is at it.</p>
+
+<h2>Next Steps</h2>
+
+<p>The next logical thing would be to allow the <code>serve</code> functionality to be used by simply importing the package. But it totally depends on the simplicity of the change! Happy serving.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,180 @@
+
+<!DOCTYPE HTML>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<title>Go Getter Part 2  | Karan Misra</title>
+
+	<meta name="author" content="Karan Misra">
+
+<meta name="description" content="*Update: I have now posted a second follow up article with the benchmarks rerun with a multi-threaded optimized C++ version Apples? Oranges? This is &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Karan Misra" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Karan Misra</a></h1>
+<span class="tagline">Coder, Biker, Hacker</span>
+<nav id="main-nav"><ul>
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">Subscribe</a></li>
+  <li><a href="mailto:kidoman@gmail.com">Contact</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">Subscribe</a></li>
+  <li><a href="mailto:kidoman@gmail.com">Contact</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<header>
+		<h2 class="title">Go Getter Part 2</h2>
+		<div class="meta date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-03T04:30:00+05:30" pubdate data-updated="true">Oct 3<span>rd</span>, 2013</time></div>
+	</header>
+	<div class="entry-content"><p><strong>*Update: </strong> I have now posted a <a href="/programming/go-getter-part-3.html">second follow up article</a> with the benchmarks rerun with a multi-threaded optimized C++ version</p>
+
+<h2>Apples? Oranges?</h2>
+
+<p>This is a follow up article to the initial <a href="/programming/go-getter.html">Go Getter</a> article which focused purely on optimizing the Go solution. The comparision was not apples-to-apples (and still isn&rsquo;t; as we are talking about two very different platforms here) and was never meant to be. Instead it was focused on:</p>
+
+<ul>
+<li>Learn idiomatic Go</li>
+<li>Document optimizations which help make the Go solution faster</li>
+<li>Fire up all cylinders (erm cores) and see how the performance scales</li>
+<li>Discover any avenues of optimizing Go further (after all, we are just at version 1.2rc1)</li>
+<li>Fun?</li>
+</ul>
+
+
+<p>It was never meant to mislead people into believing that Go was faster than a fully optimized C++ solution, or to deceive people into adopting Go as a result. Since its been a while (7 years) I went knee deep into C++, I had left it upto more experienced hands to properly optimize the C++ version. Evidently, it was wishful thinking.</p>
+
+<h2>Full Steam Ahead</h2>
+
+<p>I spent the last couple of hours applying the optimizations learnt from the Go story to the C++ version: <a href="https://github.com/kidoman/rays/compare/bbb8395aa999883a595267fd0230087b1ddf646c...940c91f601ef840e6d75ddf272ab6cd3eb8d5531">diff of the optimizations</a></p>
+
+<p>Needless to say, the C++ performance is <strong>exciting</strong> again. Mind you, although I tried using OpenMP to bring in some multi-threaded love, it didn&rsquo;t work out so well. So I will truly have to leave that upto more capable hands.</p>
+
+<p><img src="/images/go-vs-cpp-after-both-optimized.png" title="&#34;Go vs C++ after both are optimized&#34;" alt="&#34;Go vs C++ after both are optimized&#34;"></p>
+
+<p><em>It was compiled by &ldquo;c++ -O3&rdquo; using G++ 4.7.3 and benchmarked on a Core i7 2600 16 GB dedicated Hetzner server running an updated Ubuntu 13.04 installation</em></p>
+
+<h2>Road Ahead</h2>
+
+<p>I hope to takes these numbers to the Go community and try and close the gap as much as possible. Go suffers from relatively slower performance because it tries to be as safe as possible when used in a concurrent scenario (for example, the default &ldquo;global rand&rdquo; is synchronized and good to access from multiple goroutines.) That is something I would definitely desire when doing real world coding. There is definitely scope for improvement, but considering everything else (GC, compilation speed, goroutines, channels, etc.) that Go brings to the table, I guess it will always be a game of balance.</p>
+
+<p>As usual, reachable at <a href="&#x6d;&#x61;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6b;&#x69;&#100;&#111;&#109;&#x61;&#110;&#x40;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;">&#x6b;&#105;&#100;&#x6f;&#x6d;&#97;&#x6e;&#64;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#109;</a> / <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x6b;&#97;&#114;&#x61;&#x6e;&#109;&#x40;&#x74;&#104;&#111;&#117;&#x67;&#104;&#116;&#x77;&#x6f;&#114;&#107;&#115;&#x2e;&#99;&#x6f;&#109;">&#107;&#x61;&#114;&#97;&#110;&#109;&#64;&#116;&#x68;&#x6f;&#117;&#103;&#104;&#116;&#119;&#x6f;&#x72;&#107;&#115;&#46;&#99;&#111;&#109;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
+
+<p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
+</div>
+	
+
+</article>
+
+	
+	<div class="share">
+		<ul>
+			<li>
+  <a href="https://twitter.com/intent/tweet?text=Go Getter Part 2 by @kid0m4n&url=https://kidoman.io/programming/go-getter-part-2.html" title="Share Go Getter Part 2 on Twitter">
+    <img src="/images/social/twitter.png" />
+  </a>
+</li>
+
+			<li>
+  <a href="https://www.facebook.com/sharer.php?u=https://kidoman.io/programming/go-getter-part-2.html" title="Share Go Getter Part 2 on Facebook">
+    <img src="/images/social/facebook.png" />
+  </a>
+</li>
+
+			<li>
+  <a href="https://plus.google.com/share?url=https://kidoman.io/programming/go-getter-part-2.html" title="Share Go Getter Part 2 on Google Plus">
+    <img src="/images/social/google.png" />
+  </a>
+</li>
+
+		</ul>
+	</div>
+
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">&copy; 2014
+
+    Karan Misra
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/hyphenator.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'kidoman';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'https://kidoman.io/programming/go-getter-part-2.html';
+        var disqus_url = 'https://kidoman.io/programming/go-getter-part-2.html';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-44459958-1', 'kidoman.io');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+  </script>
+
+
+
+
+</body>
+</html>

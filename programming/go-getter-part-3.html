@@ -1,0 +1,371 @@
+
+<!DOCTYPE HTML>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<title>Go Getter Part 3  | Karan Misra</title>
+
+	<meta name="author" content="Karan Misra">
+
+<meta name="description" content="Hurray multi-threading This is the second follow up article to the slightly polarizing original which had solely focused on extracting the max &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Karan Misra" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Karan Misra</a></h1>
+<span class="tagline">Coder, Biker, Hacker</span>
+<nav id="main-nav"><ul>
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">Subscribe</a></li>
+  <li><a href="mailto:kidoman@gmail.com">Contact</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">Subscribe</a></li>
+  <li><a href="mailto:kidoman@gmail.com">Contact</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<header>
+		<h2 class="title">Go Getter Part 3</h2>
+		<div class="meta date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-05T08:00:00+05:30" pubdate data-updated="true">Oct 5<span>th</span>, 2013</time></div>
+	</header>
+	<div class="entry-content"><h2>Hurray multi-threading</h2>
+
+<p>This is the second follow up article to the slightly polarizing <a href="/programming/go-getter.html">original</a> which had solely focused on extracting the max performance out of Go. The C++ community has really stepped up the game now. A few extreme pull requests (thanks <a href="https://github.com/kidoman/rays/pull/2">t-mat</a> and <a href="https://github.com/kidoman/rays/pull/4">m42a</a>) later the C++ version is essentially running on steroids. I thought it was a good time to rerun the benchmarks and see how things fared.</p>
+
+<p>Plug: The original project (<a href="https://github.com/kidoman/rays">https://github.com/kidoman/rays</a>) is now restructured so that we can add in new language implementations and see how they fair in this micro-benchmark.</p>
+
+<h2>Go Land</h2>
+
+<p>Things were not quite in the Go land. I looked at the awesome optimizations contributed by <a href="https://github.com/m42a">m42a</a> and ported a few things over to Go (+ a little spice of my own.) A quick run down:</p>
+
+<h2>Inlining Rand</h2>
+
+<p>The origin rand function, although elegant, was not getting inlined by the Go compiler. I would always suggest building performance sensitive parts of your application with the &lsquo;-m&rsquo; flag, like so:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>go build -gcflags -m</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When I ran this on the projects main.go, it was immediately apparent that the anon-func inside makeRand() was not getting inlined as it was dependent on the &lsquo;seed&rsquo; variable:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">type</span> <span class="nx">randFn</span> <span class="kd">func</span><span class="p">()</span> <span class="kt">float64</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">makeRand</span><span class="p">(</span><span class="nx">seed</span> <span class="kt">uint32</span><span class="p">)</span> <span class="nx">randFn</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="kd">func</span><span class="p">()</span> <span class="kt">float64</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">seed</span> <span class="o">+=</span> <span class="nx">seed</span>
+</span><span class='line'>        <span class="nx">seed</span> <span class="p">^=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">int32</span><span class="p">(</span><span class="nx">seed</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">0</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">seed</span> <span class="p">^=</span> <span class="mh">0x88888eef</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">seed</span><span class="o">%</span><span class="mi">95</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float64</span><span class="p">(</span><span class="mi">95</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The solution was to simplify this and get it to inline:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">func</span> <span class="nx">rnd</span><span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="kt">uint32</span><span class="p">)</span> <span class="kt">float64</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">ss</span> <span class="o">:=</span> <span class="o">*</span><span class="nx">s</span>
+</span><span class='line'>    <span class="nx">ss</span> <span class="o">+=</span> <span class="nx">ss</span>
+</span><span class='line'>    <span class="nx">ss</span> <span class="p">^=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">if</span> <span class="nb">int32</span><span class="p">(</span><span class="nx">ss</span><span class="p">)</span> <span class="p">&lt;</span> <span class="mi">0</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">ss</span> <span class="p">^=</span> <span class="mh">0x88888eef</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="o">*</span><span class="nx">s</span> <span class="p">=</span> <span class="nx">ss</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nb">float64</span><span class="p">(</span><span class="o">*</span><span class="nx">s</span><span class="o">%</span><span class="mi">95</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float64</span><span class="p">(</span><span class="mi">95</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The callers pass in the seed and life is good again. This simple change netted a <strong>4.3 %</strong> improvement. Not too shabby.</p>
+
+<h2>Computing the bounce vector</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gu">@@ -223,11 +223,15 @@ func tracer(orig, dir vector.Vector) (st status, dist float64, bounce vector.Vec</span>
+</span><span class='line'>
+</span><span class='line'>       if s &lt; dist &amp;&amp; s &gt; 0.01 {
+</span><span class='line'>         dist = s
+</span><span class='line'><span class="gd">-        bounce = p.Add(dir.Scale(dist)).Normalize()</span>
+</span><span class='line'><span class="gi">+        bounce = p // We can lazy compute bounce based on value of p</span>
+</span><span class='line'>         st = hit
+</span><span class='line'>       }
+</span><span class='line'>     }
+</span><span class='line'>   }
+</span><span class='line'>
+</span><span class='line'><span class="gi">+  if st == hit {</span>
+</span><span class='line'><span class="gi">+    bounce = bounce.Add(dir.Scale(dist)).Normalize()</span>
+</span><span class='line'><span class="gi">+  }</span>
+</span><span class='line'><span class="gi">+</span>
+</span><span class='line'>   return
+</span><span class='line'> }
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(link to <a href="https://github.com/kidoman/rays/commit/efa1672ad5c8fa41550a611217ec3fe239cfd3c6">diff</a>)</p>
+
+<p>This shaved off a further <strong>4 %</strong> from the execution time. The reason: instead of doing a expensive <strong>Normalize()</strong> (line 5) call inside a loop, why not pull it out and do it only if &lsquo;st&rsquo; == &lsquo;hit&rsquo;</p>
+
+<h2>Objects</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gu">@@ -27,18 +27,14 @@ var art = []string{</span>
+</span><span class='line'>
+</span><span class='line'> var objects = makeObjects()
+</span><span class='line'>
+</span><span class='line'><span class="gd">-type object struct {</span>
+</span><span class='line'><span class="gd">-  k, j int</span>
+</span><span class='line'><span class="gd">-}</span>
+</span><span class='line'><span class="gd">-</span>
+</span><span class='line'><span class="gd">-func makeObjects() []object {</span>
+</span><span class='line'><span class="gi">+func makeObjects() []vector.Vector {</span>
+</span><span class='line'>   nr := len(art)
+</span><span class='line'>   nc := len(art[0])
+</span><span class='line'><span class="gd">-  objects := make([]object, 0, nr*nc)</span>
+</span><span class='line'><span class="gi">+  objects := make([]vector.Vector, 0, nr*nc)</span>
+</span><span class='line'>   for k := nc - 1; k &gt;= 0; k-- {
+</span><span class='line'>     for j := nr - 1; j &gt;= 0; j-- {
+</span><span class='line'>       if art[j][nc-1-k] != &#39; &#39; {
+</span><span class='line'><span class="gd">-        objects = append(objects, object{k: -k, j: -(nr - 1 - j)})</span>
+</span><span class='line'><span class="gi">+        objects = append(objects, vector.Vector{X: -float64(k), Y: 3, Z: -float64(nr-1-j) - 4})</span>
+</span><span class='line'>       }
+</span><span class='line'>     }
+</span><span class='line'>   }
+</span><span class='line'><span class="gu">@@ -215,10 +211,8 @@ func tracer(orig, dir vector.Vector) (st status, dist float64, bounce vector.Vec</span>
+</span><span class='line'>     st = missDownward
+</span><span class='line'>   }
+</span><span class='line'>
+</span><span class='line'><span class="gd">-  for _, object := range objects {</span>
+</span><span class='line'><span class="gd">-    k, j := object.k, object.j</span>
+</span><span class='line'><span class="gd">-</span>
+</span><span class='line'><span class="gd">-    p := orig.Add(vector.Vector{X: float64(k), Y: 3, Z: float64(j - 4)})</span>
+</span><span class='line'><span class="gi">+  for i, _ := range objects {</span>
+</span><span class='line'><span class="gi">+    p := orig.Add(objects[i])</span>
+</span><span class='line'>     b := p.DotProduct(dir)
+</span><span class='line'>     c := p.DotProduct(p) - 1
+</span><span class='line'>     q := b*b - c
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Got rid of the separate <strong>object</strong> struct and leveraged the <strong>Vector</strong> struct to get rid of some repeatitive operations inside the loop.</p>
+
+<p>Some of theses changes need to be ported back to C++ (not that it needs them); but I haven&rsquo;t had time yet.</p>
+
+<h2>Alright, alright, give me the results</h2>
+
+<p><img class="center" src="/images/512x512-3.png"></p>
+
+<p><img class="center" src="/images/2048x2048-3.png"></p>
+
+<p><img class="center" src="/images/4096x4096-3.png"></p>
+
+<p><em>All of the above benchmarks were run on a Hetzner dedicated server machine with a i7 2600 + 16 GB RAM</em></p>
+
+<p>At this stage, C++ is now more than twice as fast as an equivalent Go program. If you look at the previous 2048 x 2048 test results, you will see how far ahead the C++ results have come:</p>
+
+<p><img class="center" src="/images/go-vs-cpp-after-both-optimized.png"></p>
+
+<p>From taking 58.15 seconds (single threaded), it has now dropped to a extremely impressive 36.36 seconds (again single threaded), making it almost twice as fast as the optimized Go version.</p>
+
+<h2>Conclusion</h2>
+
+<p>I am pretty sure the Go version will get closer and closer as the compiler gets more mature. Its just a matter of time. Infact, a few common compiler optimization misses are causing it to not extract as much performance as it potentially could. But thats the subject of a different blog post (this one is already getting too long.)</p>
+
+<p>Also, it will be worthwhile to test how gccgo performs with the same code.</p>
+
+<h2>Road Ahead</h2>
+
+<p>I have restuctured the github project (<a href="https://github.com/kidoman/rays">https://github.com/kidoman/rays</a>) so that it is easy to add other language implementations to it. A Java, Clojure, Rust, Python, etc. version would definitely make things interesting and spice things up a bit. If you are interested in picking up a cause, please go right ahead&hellip; all pull requests are welcome.</p>
+
+<p>As usual, reachable at <a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#x3a;&#x6b;&#105;&#100;&#111;&#109;&#x61;&#110;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;">&#x6b;&#x69;&#100;&#x6f;&#x6d;&#97;&#x6e;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a> / <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#x6b;&#97;&#x72;&#97;&#110;&#x6d;&#64;&#x74;&#104;&#111;&#117;&#103;&#104;&#116;&#x77;&#111;&#x72;&#107;&#x73;&#x2e;&#99;&#111;&#x6d;">&#107;&#x61;&#x72;&#97;&#110;&#x6d;&#64;&#116;&#104;&#111;&#117;&#103;&#104;&#x74;&#119;&#x6f;&#x72;&#107;&#115;&#x2e;&#99;&#111;&#109;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
+
+<p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
+</div>
+	
+
+</article>
+
+	
+	<div class="share">
+		<ul>
+			<li>
+  <a href="https://twitter.com/intent/tweet?text=Go Getter Part 3 by @kid0m4n&url=https://kidoman.io/programming/go-getter-part-3.html" title="Share Go Getter Part 3 on Twitter">
+    <img src="/images/social/twitter.png" />
+  </a>
+</li>
+
+			<li>
+  <a href="https://www.facebook.com/sharer.php?u=https://kidoman.io/programming/go-getter-part-3.html" title="Share Go Getter Part 3 on Facebook">
+    <img src="/images/social/facebook.png" />
+  </a>
+</li>
+
+			<li>
+  <a href="https://plus.google.com/share?url=https://kidoman.io/programming/go-getter-part-3.html" title="Share Go Getter Part 3 on Google Plus">
+    <img src="/images/social/google.png" />
+  </a>
+</li>
+
+		</ul>
+	</div>
+
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">&copy; 2014
+
+    Karan Misra
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/hyphenator.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'kidoman';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'https://kidoman.io/programming/go-getter-part-3.html';
+        var disqus_url = 'https://kidoman.io/programming/go-getter-part-3.html';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-44459958-1', 'kidoman.io');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+  </script>
+
+
+
+
+</body>
+</html>

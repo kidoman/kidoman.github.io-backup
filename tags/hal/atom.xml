@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: hal | Karan Misra]]></title>
+  <link href="https://kidoman.io/tags/hal/atom.xml" rel="self"/>
+  <link href="https://kidoman.io/"/>
+  <updated>2014-05-10T04:28:59+05:30</updated>
+  <id>https://kidoman.io/</id>
+  <author>
+    <name><![CDATA[Karan Misra]]></name>
+    <email><![CDATA[karan.misra@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[EMBD: Behind the Scenes]]></title>
+    <link href="https://kidoman.io/life/embd-behind-scenes.html"/>
+    <updated>2014-05-06T06:55:00+05:30</updated>
+    <id>https://kidoman.io/life/embd-behind-scenes</id>
+    <content type="html"><![CDATA[<p>For the impatient, TheBot was an experiment to kickstart a hardware engineering culture at <strong>ThoughtWorks</strong>. We choose the Raspberry Pi (RPi) as the prototyping platform and Golang as the language in which to create the firmware. We felt the need for a solid hardware abstraction layer (HAL) which would allow us to not only target the RPi, but soon expand to other platforms as well. We also wanted to make it dead easy to talk to a variety of sensors. Since there were no such existing frameworks for <a href="http://golang.org/">Golang</a>, we ended up writing our own, and we called it <a href="https://embd.kidoman.io/">EMBD</a> (<a href="https://github.com/kidoman/embd">Github</a>).</p>
+
+<blockquote><p><strong>EMBD</strong> enables you to get started on your project quickly by providing build in support for the various <a href="https://github.com/kidoman/embd#platforms-supported">platforms</a>, <a href="https://github.com/kidoman/embd#protocols-supported">protocols</a>, <a href="https://github.com/kidoman/embd#sensors-supported">sensors</a>, <a href="https://github.com/kidoman/embd#controllers">controllers</a>. It also allows your prototyping code to survive through to production because of the built in hardware abstraction layer and Golang&rsquo;s <a href="https://github.com/kidoman/embd/wiki/Why-Go">versatility</a>. Thus significantly shortening the <strong>time to market</strong>.</p></blockquote>
+
+<h2>A little history</h2>
+
+<p>A 20 year old company, ThoughtWorks has been primarily into software. We have made our mark in the ability to create high quality custom enterprise grade software over the years. Data analytics is a key focus areas, but there are others with deeper pockets already investing. Mobile development is also a conquered field. So when our chairman, <a href="http://en.wikipedia.org/wiki/Neville_Roy_Singham">Roy</a>, asked ThoughtWorkers to preempt the next big thing, we naturally started looking at the Internet of Things (<strong>IoT</strong>) as one of the avenues for innovation. Approaching it from a purely hardware perspective would have meant a lot of playing catch up, as we would need to seed a lot of talent in spaces before we could catch up:</p>
+
+<ul>
+<li>material science</li>
+<li>industrial design</li>
+<li>manufacturing, etc.</li>
+</ul>
+
+
+<p>We wanted to get started quickly, leveraging on abilities we have honed over the last two decades. And one of the low hanging fruits to explore was the software side of internet connected devices, firmware for the rovers and quadcopters, the user experiences of these <a href="https://nest.com/thermostat/life-with-nest-thermostat/">new contraptions</a>.</p>
+
+<h2>Enter, TheBot</h2>
+
+<p>We deliberately choose to build something simple &ndash; to push the odds in our favor. However, the simplicity proved to be a boon as it allowed us a lot of scope for innovation in the software side of things. We also wanted to take this opportunity to study. To glean experiences from. From many angles, this is just scratching the surface of what is to come, but you have got to start somewhere. Think of it as bulb # 1.</p>
+
+<p><div class="embed-video-container"><iframe src="//www.youtube.com/embed/iMXjkZ4B3EM "></iframe></div></p>
+
+<p>(We first showcased this to public on Jan 10, 2014 and dedicated the effort to Aaron, a good soul and a ThoughtWorker, who passed away on Jan 11, 2013.)</p>
+
+<p><img class="center" src="/images/thebot-small.jpg" title="TheBot" ></p>
+
+<p>It was a lot of work. A lot of things you took for granted suddenly needed to be taken care of in code and in hardware. The fact that the code now had to actually &ldquo;run&rdquo; on the hardware brought in additional challenges as well. Concurrency is the name of the game. Most of the events which you needed to handle and react to (ex: a obstacle suddenly apprearing infront of the car, while the car is turning on its own) would come concurrently, in no particular guarenteed order. The firmware had to be both efficient and easy to reason about.</p>
+
+<h2>Golang to the rescue</h2>
+
+<blockquote><p>Created by a team at Google in 2007, Golang aimed at making software development pleasurable again. Software that built quickly, ran well on multi-core hardware in networked environments.</p></blockquote>
+
+<p>(see the official <a href="http://golang.org/doc/faq#What_is_the_purpose_of_the_project">FAQs</a> for a more complete picture)</p>
+
+<p>Golang has excellent support for concurrency in the core language. The RaspberryPi is single threaded and we needed the car to handle multiple real world interactions at the same time. Using threads would have forced us to use mutexes, etc, for synchronization. The ‘goroutines+channels’ architecture in Golang helped us focus on the “actual” interactions. (Goroutines are light weight threads which are executed via the Go runtime on real threads via a M:N mapping. Channels are a typed mechanism for passing messages between goroutines). The resulting code is much easier to read, reason with and understand.</p>
+
+<blockquote><p>“Simply running the binary was always enough. This helped tremendously in shortening our development/build/deploy cycles and made the process even more gratifying.”</p></blockquote>
+
+<p>Golang is a statically typed, garbage collected and compiled programming language. However, in use, it feels like a FAST (slightly) verbose scripting language which has support for systems programming and duck typing. Since the cross compiled binary was entirely self contained, no runtime was needed. Simply running the binary was enough, which helped tremendously in shortening our development, build and deploy cycles and made the process even more gratifying.</p>
+
+<p>(a recent article by <a href="https://www.spacemonkey.com/blog/posts/go-space-monkey">SpaceMonkey</a> details their story of switching from Python to Golang for the firmward of their embedded storage device. Its a must read to get a better idea of what Golang has to offer in this space.)</p>
+
+<h2>Summary</h2>
+
+<p>These and various other reasons led us to create <a href="https://embd.kidoman.io/">EMBD</a> and release it to the world.</p>
+
+<p><strong>PS:</strong> Earlier, this article was part of the <a href="/framework/embd.html">Introducing EMBD</a> piece. However, based on feedback, I decided to split them so that they the original article focused solely on the new framework and did not pull focus to other tertiary things.</p>
+
+<h2>Links</h2>
+
+<p>Homepage: <a href="https://embd.kidoman.io/">https://embd.kidoman.io/</a><br/>
+Github: <a href="https://github.com/kidoman/embd">https://github.com/kidoman/embd</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Introducing EMBD]]></title>
+    <link href="https://kidoman.io/framework/embd.html"/>
+    <updated>2014-04-24T06:00:00+05:30</updated>
+    <id>https://kidoman.io/framework/embd</id>
+    <content type="html"><![CDATA[<p><strong><a href="https://github.com/kidoman/embd">EMBD</a></strong> is a framework for <strong>Go</strong> which does <strong>GPIO</strong> (General Purpose I/O), talks the <strong>I²C</strong> protocol (+ many more) and provides the drivers necessary to interact with <strong>many hardware sensors</strong> (eg. gyroscope, magnetometer, barometer, etc.) It&rsquo;s non-intrusive API allows you to quickly prototype solutions (see below for example) without sacrifising production-worthiness. And the best part? The code will run on a multitude of supported hosts (like the Raspberry Pi, and the BeagleBone Black) without change!</p>
+
+<p><a href="https://embd.kidoman.io">https://embd.kidoman.io</a><br>
+<a href="https://github.com/kidoman/embd">https://github.com/kidoman/embd</a></p>
+
+<p><div class="embed-video-container"><iframe src="//player.vimeo.com/video/92990437 "></iframe></div></p>
+
+<p>Although the framework started its life as <strong>go-rpi</strong>, we soon realized the potential of making it even more useful. The driver code we had written to talk to a <a href="https://github.com/kidoman/embd#sensors-supported">plethora of sensors</a> were not really dependent on the Raspberry Pi. They expected a I²C bus and not much else. So we immediately started thinking of ways in which we could allow people to leverage all that code in other platforms which Golang ran on (which turned out to be <a href="https://github.com/kidoman/embd#platforms-supported">quite a few</a>.)</p>
+
+<h2>API Design</h2>
+
+<p>We spent a bunch of time fine tuning the &ldquo;feel&rdquo; of the API. We have aimed to provide both <strong>real world usability</strong> (we did not want a toy feel to the API) and the ability to be be used for quick/rapid hardware prototyping.</p>
+
+<p>For example, it leans towards rapid prototyping when needed:</p>
+
+<p>```go
+func main() {
+  for {</p>
+
+<pre><code>embd.LEDToggle("LED0")
+time.Sleep(250 * time.Millisecond)
+</code></pre>
+
+<p>  }
+}
+```</p>
+
+<p>Or, gives you the control when necessary:</p>
+
+<p>```go
+func main() {
+  panicIf(embd.InitLED())
+  defer embd.CloseLED()</p>
+
+<p>  led, err := embd.NewLED(&ldquo;LED0&rdquo;)
+  if err != nil {</p>
+
+<pre><code>panic(err)
+</code></pre>
+
+<p>  }
+  defer led.Off()</p>
+
+<p>  // Cleanly exit if someone hits Ctrl-C
+  quit := make(chan os.Signal, 1)
+  signal.Notify(quit, os.Interrupt, os.Kill)</p>
+
+<p>  for {</p>
+
+<pre><code>select {
+case &lt;-time.After(250 * time.Millisecond):
+  panicIf(led.Toggle())
+  fmt.Println("Toggled")
+case &lt;-quit:
+  return
+}
+</code></pre>
+
+<p>  }
+}</p>
+
+<p>```</p>
+
+<p>It currently has good support for the Raspberry Pi and the BeagleBone Black, with support for other platforms coming in the near future. This should almost guarentee that the particular combination of prototyping board, sensors, etc. would most probably work OOTB with EMBD.</p>
+
+<h2>Summary</h2>
+
+<p><strong>EMBD</strong> is a bold attempt at creating a cross platform embedded programming library. A lot of work is needed to flesh out the sensor library and to bring in support for new hosts. The <a href="https://github.com/kidoman/embd/blob/master/ROADMAP.md">ROADMAP</a> lists some of the short/long terms goals we have ahead of us, but we won&rsquo;t get too far down that list without the support of the community. So looking forward to those <a href="https://github.com/kidoman/embd/pulls">pull requests</a>! Also, while we have done our best, if you do come across a bug, please <a href="https://github.com/kidoman/embd/issues">let us know</a> so that we can tackle it in the best way possible. And if you need any help, we will be hanging around <a href="https://groups.google.com/forum/#!forum/go-embd">here</a>.</p>
+
+<p>To read the backstory, read <a href="/life/embd-behind-scenes.html">this</a> article as well.</p>
+
+<h2>Links</h2>
+
+<p>Homepage: <a href="https://embd.kidoman.io/">https://embd.kidoman.io/</a><br/>
+Github: <a href="https://github.com/kidoman/embd">https://github.com/kidoman/embd</a></p>
+]]></content>
+  </entry>
+  
+</feed>

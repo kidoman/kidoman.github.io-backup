@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: talk | Karan Misra]]></title>
+  <link href="https://kidoman.io/tags/talk/atom.xml" rel="self"/>
+  <link href="https://kidoman.io/"/>
+  <updated>2014-05-10T04:28:59+05:30</updated>
+  <id>https://kidoman.io/</id>
+  <author>
+    <name><![CDATA[Karan Misra]]></name>
+    <email><![CDATA[karan.misra@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Golang: testing the waters]]></title>
+    <link href="https://kidoman.io/engineering/golang-testing-the-waters.html"/>
+    <updated>2013-07-26T02:44:00+05:30</updated>
+    <id>https://kidoman.io/engineering/golang-testing-the-waters</id>
+    <content type="html"><![CDATA[<p><img src="//1-ps.googleusercontent.com/x/s.golang-org.appspot.com/golang.org/doc/gopher/xfrontpage.png.pagespeed.ic._-JkwHsaKq.webp" alt="Gopher" /></p>
+
+<p><a href="http://golang.org/">Go</a> has caught my fancy. There, I said it.</p>
+
+<p>The Rubyist in me loves the static duck typing. Loves the promise of never having to navigate &lsquo;murdered by design-patterns&rsquo; code (AbstractFactoryFactory anyone?) Loves the near C/C++ speeds (ok, I know Ruby is not the fastest language, but I can always wish, right?) Loves the ability to compile large code bases in seconds. Loves the channels and the freedom they provide in implementing good/crisp CSP.</p>
+
+<p>Sure, there are a few rough edges but nothing sharp enough to stop me from proposing to build the next enterprise application in Go. I mean, if Google betting YouTube and their primary <a href="http://www.oscon.com/oscon2013/public/schedule/detail/28669">download</a> <a href="http://talks.golang.org/2013/oscon-dl.slide#1">service</a> on it isn&rsquo;t precedence enough, I don&rsquo;t know what can be.</p>
+
+<p>I do not want ThoughtWorks to be late to the party (<a href="http://nodejs.org/">again</a>.) The time is ripe; the community is still taking shape and extremely malleable (in a good way.) So if a little/lot/hardcore evangelizing is what it takes, I am up for the challenge.</p>
+
+<h1>Link to the talk</h1>
+
+<p><a href="http://goo.gl/geuWOP">click</a></p>
+
+<h1>The Talk</h1>
+
+<p>The talk was never intended to be a hands on session (although it transfigured into one towards the end.) More &ldquo;daze and amaze.&rdquo; I think I succeeded on the first part at least.</p>
+
+<h2>The Amaze</h2>
+
+<p>I wanted to highlight the best bits of Golang from the start. No stringing along for 40 slides whilst pretending to know a lot more than I did.</p>
+
+<ul>
+<li>Static duck typing</li>
+<li>No explicit inheritance + focus on composing</li>
+<li>Pointers for efficient access</li>
+<li>Built in language support for channels</li>
+<li>Super fast compilation</li>
+<li>Garbage collection</li>
+<li>Gofmt (no more arguments about indentation)</li>
+</ul>
+
+
+<h2>The Daze</h2>
+
+<p>Go will probably make inroads faster into some areas vs others. Main areas of focus are:</p>
+
+<ul>
+<li>Creating a highly efficient backend service based on RPC / JSON RPC</li>
+<li>Best possible platform for implementing an API end point</li>
+<li>Load balancer / database type applications</li>
+<li>(world is Go&rsquo;s oyster)</li>
+</ul>
+
+
+<h2>Testing Story</h2>
+
+<p>The core members of Go are ensuring that people do not associate Go with not having to test their code. In fact, the best place to learn testing in Go is to browse through the implementation of Go packages (written by the creators of Go themselves.)</p>
+
+<ul>
+<li><a href="http://golang.org/pkg/testing/">&ldquo;testing&rdquo;</a> package makes testing really simple; some may say the approach taken is naive</li>
+<li><a href="https://github.com/orfjackal/gospec">GoSpec</a> aims to solve that. Provides a BDD type testing interface for Golang</li>
+<li>Speed of running tests makes the whole process a joy</li>
+</ul>
+
+
+<h2>Deployment</h2>
+
+<p>Deployment couldn&rsquo;t be easier. Go spits out a statically linked executable, making dependency management a thing of the past. Package up your executable into a RPM/DEB/what-not and throw it up. Couldn&rsquo;t be simpler.</p>
+
+<h2>Conclusion</h2>
+
+<p>There are still nascent areas of Go which will require attention from the community to gain traction and get smoothened out. However this shouldn&rsquo;t stop us from deploying Go as a API backend for a RoR powered AngularJS based single page application. Use the best bits of the various platforms to get going in the fastest manner possible. Throw the rot out as better Go based alternatives become available. :)</p>
+
+<h2>Resources</h2>
+
+<p>Listing the various resources and good to read links (in no particular order):</p>
+
+<ul>
+<li><a href="http://www.usingcsp.com/">CSP</a> (<a href="http://en.wikipedia.org/wiki/Communicating_sequential_processes">wiki</a>), a must read for understand CSP</li>
+<li><a href="http://golang.org/">Official homepage</a></li>
+<li><a href="http://play.golang.org/">A web based Go runner</a></li>
+<li><a href="http://blog.golang.org/">Official blog roll</a></li>
+<li><a href="http://blog.mongodb.org/post/60359054233/going-with-go">MongoDB Going with Go</a></li>
+<li><a href="http://www.youtube.com/channel/UCtXKDgv1AVoG88PLl8nGXmw">Google Tech Talks YouTube channel</a></li>
+<li><a href="https://github.com/diptanu/seli">Seli</a> (written by Diptanu)</li>
+<li><a href="https://github.com/orfjackal/gospec">GoSpec</a>, BDD in Go</li>
+<li><a href="https://github.com/golang/groupcache">GroupCache</a>, a distributed hybrid client/server memcache alternative</li>
+<li><a href="https://github.com/languages/go">Awesome language metrics by Github for Go</a></li>
+<li><a href="https://github.com/bradfitz">Brad Fitzpatrik&rsquo;s Github Profile</a></li>
+<li><a href="https://github.com/golang">Golang Github Profile</a></li>
+<li><a href="http://www.docker.io/">Docker</a> an awesome LXC management tool (<a href="https://github.com/dotcloud/docker">github</a>)</li>
+<li><a href="https://github.com/mozilla-services/heka">Heka</a></li>
+<li><a href="https://flynn.io/">Flynn</a>, a Docker based OSS Heroku clone</li>
+<li><a href="http://robfig.github.io/revel/">Revel</a>, emerging defacto Go web framework</li>
+<li><a href="http://www.techempower.com/benchmarks">Techempower Benchmarks</a>, comparing Go&rsquo;s performance to various other web frameworks</li>
+<li><a href="http://talks.golang.org/2013/oscon-dl.slide#1">dl.google.com in Go</a>, slides from Brad Fitzpatrik&rsquo;s talk at oscon about reimplementing dl.google.com in Go</li>
+<li><a href="http://dave.cheney.net/2013/08/06/go-1-1-on-the-cubieboard-2">Go running on a Cubieboard2</a></li>
+<li>Must watch videos on YouTube
+
+<ul>
+<li><a href="http://www.youtube.com/watch?v=f6kdp27TYZs">Go Concurrency Patterns</a></li>
+<li><a href="http://www.youtube.com/watch?v=MzYZhh6gpI0">Tour of Go</a></li>
+<li><a href="http://www.youtube.com/watch?v=kKQLhGZVN4A">Go in Production</a></li>
+</ul>
+</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[node.js in action: Learnings]]></title>
+    <link href="https://kidoman.io/engineering/node-dot-js-in-action-learnings.html"/>
+    <updated>2013-05-31T01:58:00+05:30</updated>
+    <id>https://kidoman.io/engineering/node-dot-js-in-action-learnings</id>
+    <content type="html"><![CDATA[<p><img src="/images/node.js.png" title="nodejs" ></p>
+
+<p>I recently gave a talk on node.js at work&hellip; the talk was surprisingly well attended. It was scheduled to start at 1 PM. At around 1:02 PM, I was alone in the room with not another soul in sight. The room filled to the brim in the next 10 minutes. Last count = 33</p>
+
+<h1>Link to the talk</h1>
+
+<p><a href="http://goo.gl/Pcz2wQ">click</a></p>
+
+<h1>The Talk</h1>
+
+<p>The theme of the talk was to get people excited about the node.js work we were doing for a large enterprise client. Almost 9 months into development, we had figured out a tonne of patterns and idioms and had actually started becoming productive with it. Talking about the hurdles faced during the non avoidable learning curve seemed like a sensible thing to do.</p>
+
+<h2>Tech Stack</h2>
+
+<p>Although I cannot reveal any actual URLs atm, the stack of the application we are developing is as follows:</p>
+
+<ul>
+<li>node.js (Platform)</li>
+<li>Express (Web Server)</li>
+<li>Sequelize (ORM)</li>
+<li>MySQL (Database)</li>
+<li>Q (Promises)</li>
+<li>Mocha/Sinon/Chai (and their -as-promised bretheren, for TDD)</li>
+<li>Grunt (Command runner)</li>
+<li>Coffee-Resque (For background jobs)</li>
+<li>Socket.io (For realtime tracking of connected clients)</li>
+<li>Redis (As a datastore for our generated socket.io handshake tokens)</li>
+<li>connect-assetmanager (For managing our assets; <strong>update</strong> we have now replaced this with our own hand rolled solution)</li>
+</ul>
+
+
+<h2>Promises to Keep: Q</h2>
+
+<p>I think it is essential for any new node.js project to base itself on a solid promises library. As indicated above, the library of choice for us was Q. I would go out on a limb and say this &ndash; &ldquo;Avoiding callback hell is probably the least interesting feature of Q.&rdquo;</p>
+
+<p>Q allows us to beautifully structure our code without excessive &ldquo;pyramiding.&rdquo; You still end up with a few nested promises from time to time, but that is also avoidable with judicious usage of Q.spread.</p>
+
+<h2>Testing</h2>
+
+<p>Equally important is the need to get the TDD/BDD pattern flowing right from get go. Mocha/Sinon/Chai allow BDD in JavaScript to look almost as elegant as RSpec (which I consider to be the holy grail of developer friendly BDD.) Being smart and using the -as-promised utility node modules will also save you a lot of grief and restore a sense of sanity to the test cases (you can then essentially start returning promises of future asserts from your test cases, instead of having to call a <strong>done()</strong> at the end to signal the end.)</p>
+
+<h2>Scaling and Deployment</h2>
+
+<p>Our dreams of serving a million requests from a single node.js process were quickly shattered when we discovered a pegged 100% CPU (on a single core.) Besides trying to fix the main issue (which turned out to be the MySQL driver being used by sequelize) we also spent some time getting the <a href="http://unicorn.bogomips.org/">unicornification</a> of node.js right. We ended up with a master-slave arrangement which allowed us to scale our application to N-1 cores (where N is the total number of cores available in the machine.) Common sense dictated the <strong>-1</strong> part (to leave a core aside for the kernel and various sub systems.)</p>
+
+<p>Figuring our deployments was also fun. Although there was some talk of building and deploying a .rpm (our target Linux distribution was CentOS 6.4), the general lack of time lead us to adapt a git based deployment mechanism. Any SHA is a good candidate for deployment to any of our environments. We obviously ended up tagging the good ones.</p>
+
+<h2>Conclusion</h2>
+
+<p>We really went out on a limb here by using node.js for the project when we did not actually have much in house expertise on the same. However, the effort has redeemed itself many fold. A lot of people have successfully managed to <strong>get</strong> &ldquo;concurrent programming&rdquo; as a result. Coming out from the comfort zone of RoR, .NET and Java also possibly has changed the course of their lives for ever! :)</p>
+]]></content>
+  </entry>
+  
+</feed>

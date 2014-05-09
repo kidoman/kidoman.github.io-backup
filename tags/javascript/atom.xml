@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: javascript, | Karan Misra]]></title>
+  <link href="https://kidoman.io/tags/javascript/atom.xml" rel="self"/>
+  <link href="https://kidoman.io/"/>
+  <updated>2014-05-10T04:28:59+05:30</updated>
+  <id>https://kidoman.io/</id>
+  <author>
+    <name><![CDATA[Karan Misra]]></name>
+    <email><![CDATA[karan.misra@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[God save the JS]]></title>
+    <link href="https://kidoman.io/programming/god-save-the-js.html"/>
+    <updated>2014-05-10T03:15:15+05:30</updated>
+    <id>https://kidoman.io/programming/god-save-the-js</id>
+    <content type="html"><![CDATA[<p>Golang has has this feature right from the start. Very innocuously named <code>gofmt</code> this tool (distributed as part of the Go compiler toolchain) ensures that all Go code have a common look and feel to it. It does that by enforcing a few things:</p>
+
+<ul>
+<li>Ensure that the imports are all sorted alphabetically</li>
+<li>Removes all unneeded semicolon from the code</li>
+<li>Aligns <code>const</code>, <code>var</code> and <code>struct</code> constructs so that the variable names all line up nicely</li>
+</ul>
+
+
+<p>Since <code>gofmt</code> is integrated into most text editors used to work on Golang, using the tool becomes ubiquitous. Essentially, it can take Go code which looks like this:</p>
+
+<p>```go
+package main</p>
+
+<p>import &ldquo;github.com/go-martini/martini&rdquo;</p>
+
+<p>import &ldquo;log&rdquo;</p>
+
+<p>func main() {
+  m := martini.Classic()
+  log.Print(&ldquo;Starting&hellip;&rdquo;);</p>
+
+<pre><code>m.Run()
+</code></pre>
+
+<p>}
+```
+and make it this:</p>
+
+<p>```go
+package main</p>
+
+<p>import (</p>
+
+<pre><code>"log"
+
+"github.com/go-martini/martini"
+</code></pre>
+
+<p>)</p>
+
+<p>func main() {</p>
+
+<pre><code>m := martini.Classic()
+log.Print("Starting...")
+m.Run()
+</code></pre>
+
+<p>}
+```</p>
+
+<p>Unless otherwise instructed, it also does all indentation using real tabs. Before you turn away in disgust, let me tell you this. Its actually quite amazing how TABS, when done right, can actually be a benefit. Since all Go code gets run through <code>gofmt</code> anyways, all Go code end up using real TABs. And that allows for people to have their own indentation widths without effecting the actual sourde code. Want more spacing, sure go ahead and ask your favorite editor to represent the TAB as 8 spaces, DONE! Coming from Ruby land, 2 spaces for a TAB it is then. Might sound too good to be true, but it just works.</p>
+
+<h2>Enter JavaScript</h2>
+
+<p>This Github repo showed up in HackerNews front page today.</p>
+
+<p><a href="https://github.com/rdio/jsfmt">https://github.com/rdio/jsfmt</a></p>
+
+<p>Looks like an attempt to bring the same <code>gofmt</code> magic over to the JavaScript land. And I am excited about the sanity that will ensue if this becomes popular among JavaScript programmers. One true/universal way for all JavaScript code formatting. Having suffered <code>IntelliJ</code>&rsquo;s shoddy JavaScript default formatting enough, this feels like the light at the end of a tunnel.</p>
+
+<p>So <code>go spreadTheWord()</code></p>
+]]></content>
+  </entry>
+  
+</feed>
