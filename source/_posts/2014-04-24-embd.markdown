@@ -16,7 +16,7 @@ tags:
 
 **[EMBD](https://github.com/kidoman/embd)** is a framework for **Go** which does **GPIO** (General Purpose I/O), talks the **I²C** protocol (+ many more) and provides the drivers necessary to interact with **many hardware sensors** (eg. gyroscope, magnetometer, barometer, etc.) It's non-intrusive API allows you to quickly prototype solutions (see below for example) without sacrifising production-worthiness. And the best part? The code will run on a multitude of supported hosts (like the Raspberry Pi, and the BeagleBone Black) without change!
 
-https://embd.kidoman.io
+https://embd.kidoman.io<br>
 https://github.com/kidoman/embd
 
 {% vimeo 92990437 %}
