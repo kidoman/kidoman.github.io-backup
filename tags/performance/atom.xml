@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: performance | Karan Misra]]></title>
   <link href="https://kidoman.io/tags/performance/atom.xml" rel="self"/>
   <link href="https://kidoman.io/"/>
-  <updated>2014-05-10T04:28:59+05:30</updated>
+  <updated>2014-05-10T05:10:15+05:30</updated>
   <id>https://kidoman.io/</id>
   <author>
     <name><![CDATA[Karan Misra]]></name>
@@ -187,7 +187,7 @@ return
 
 <p>I have restuctured the github project (<a href="https://github.com/kidoman/rays">https://github.com/kidoman/rays</a>) so that it is easy to add other language implementations to it. A Java, Clojure, Rust, Python, etc. version would definitely make things interesting and spice things up a bit. If you are interested in picking up a cause, please go right ahead&hellip; all pull requests are welcome.</p>
 
-<p>As usual, reachable at <a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#107;&#x69;&#100;&#x6f;&#109;&#97;&#x6e;&#x40;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#109;">&#107;&#x69;&#100;&#x6f;&#x6d;&#x61;&#110;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a> / <a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#x6b;&#97;&#114;&#x61;&#110;&#x6d;&#x40;&#116;&#x68;&#111;&#x75;&#103;&#x68;&#116;&#x77;&#x6f;&#x72;&#x6b;&#x73;&#x2e;&#99;&#x6f;&#x6d;">&#107;&#x61;&#114;&#97;&#110;&#109;&#x40;&#116;&#x68;&#x6f;&#x75;&#103;&#x68;&#116;&#x77;&#111;&#x72;&#x6b;&#x73;&#46;&#99;&#x6f;&#x6d;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
+<p>As usual, reachable at <a href="&#x6d;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6b;&#105;&#x64;&#x6f;&#x6d;&#x61;&#x6e;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#107;&#105;&#x64;&#x6f;&#x6d;&#x61;&#110;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;</a> / <a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x6b;&#97;&#114;&#97;&#x6e;&#109;&#x40;&#116;&#104;&#x6f;&#x75;&#x67;&#104;&#x74;&#x77;&#x6f;&#114;&#107;&#115;&#x2e;&#99;&#x6f;&#109;">&#x6b;&#97;&#114;&#97;&#x6e;&#x6d;&#64;&#116;&#104;&#x6f;&#x75;&#103;&#104;&#x74;&#119;&#111;&#x72;&#x6b;&#x73;&#46;&#x63;&#x6f;&#x6d;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
 
 <p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
 ]]></content>
@@ -229,7 +229,7 @@ return
 
 <p>I hope to takes these numbers to the Go community and try and close the gap as much as possible. Go suffers from relatively slower performance because it tries to be as safe as possible when used in a concurrent scenario (for example, the default &ldquo;global rand&rdquo; is synchronized and good to access from multiple goroutines.) That is something I would definitely desire when doing real world coding. There is definitely scope for improvement, but considering everything else (GC, compilation speed, goroutines, channels, etc.) that Go brings to the table, I guess it will always be a game of balance.</p>
 
-<p>As usual, reachable at <a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#58;&#x6b;&#105;&#x64;&#x6f;&#109;&#97;&#x6e;&#64;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;">&#x6b;&#x69;&#100;&#x6f;&#109;&#97;&#110;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;</a> / <a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#x6b;&#x61;&#114;&#97;&#x6e;&#109;&#x40;&#x74;&#104;&#111;&#117;&#103;&#104;&#x74;&#x77;&#x6f;&#x72;&#x6b;&#115;&#46;&#x63;&#111;&#109;">&#x6b;&#97;&#114;&#97;&#110;&#109;&#64;&#116;&#x68;&#111;&#117;&#103;&#x68;&#x74;&#x77;&#111;&#x72;&#x6b;&#x73;&#x2e;&#x63;&#111;&#109;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
+<p>As usual, reachable at <a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#107;&#x69;&#100;&#x6f;&#x6d;&#x61;&#110;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#x6b;&#105;&#x64;&#x6f;&#x6d;&#97;&#110;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#109;</a> / <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#58;&#x6b;&#97;&#x72;&#97;&#110;&#109;&#64;&#x74;&#104;&#x6f;&#117;&#x67;&#x68;&#x74;&#119;&#111;&#x72;&#107;&#115;&#46;&#99;&#x6f;&#x6d;">&#107;&#97;&#114;&#97;&#110;&#x6d;&#x40;&#116;&#x68;&#111;&#x75;&#x67;&#104;&#x74;&#x77;&#111;&#x72;&#107;&#115;&#46;&#x63;&#x6f;&#109;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
 
 <p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
 ]]></content>
@@ -448,7 +448,7 @@ Change: <strong>12.01 %</strong><br/></p>
 </ul>
 
 
-<p>That&rsquo;s all folks. Thanks for reading. If you have any comments, feel free to leave them here on the blog or you can always email me at <a href="&#109;&#x61;&#105;&#108;&#116;&#x6f;&#x3a;&#107;&#97;&#x72;&#97;&#x6e;&#x6d;&#64;&#x74;&#x68;&#x6f;&#x75;&#103;&#x68;&#x74;&#x77;&#x6f;&#x72;&#107;&#115;&#46;&#x63;&#111;&#109;">&#x6b;&#97;&#114;&#x61;&#x6e;&#109;&#x40;&#116;&#104;&#x6f;&#x75;&#103;&#104;&#x74;&#119;&#111;&#114;&#x6b;&#x73;&#46;&#x63;&#111;&#x6d;</a> / <a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#58;&#x6b;&#105;&#x64;&#x6f;&#x6d;&#97;&#x6e;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;&#x2e;">&#107;&#105;&#x64;&#x6f;&#109;&#x61;&#x6e;&#64;&#103;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;&#46;</a> Also reachable at <a href="https://twitter.com/kid0m4n">@kid0m4n</a> on Twitter Ciao!</p>
+<p>That&rsquo;s all folks. Thanks for reading. If you have any comments, feel free to leave them here on the blog or you can always email me at <a href="&#109;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#107;&#97;&#114;&#97;&#110;&#109;&#64;&#x74;&#104;&#x6f;&#x75;&#x67;&#104;&#116;&#119;&#111;&#114;&#x6b;&#115;&#46;&#x63;&#111;&#109;">&#x6b;&#97;&#114;&#97;&#110;&#x6d;&#64;&#116;&#x68;&#111;&#117;&#103;&#104;&#116;&#119;&#x6f;&#114;&#x6b;&#x73;&#x2e;&#x63;&#x6f;&#x6d;</a> / <a href="&#x6d;&#x61;&#105;&#108;&#x74;&#x6f;&#58;&#x6b;&#105;&#100;&#111;&#x6d;&#97;&#x6e;&#x40;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;&#46;">&#107;&#x69;&#x64;&#x6f;&#109;&#97;&#x6e;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;&#x2e;</a> Also reachable at <a href="https://twitter.com/kid0m4n">@kid0m4n</a> on Twitter Ciao!</p>
 
 <p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
 ]]></content>
