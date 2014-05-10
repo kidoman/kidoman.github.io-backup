@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: ios 7 | Karan Misra]]></title>
-  <link href="https://kidoman.io/tags/ios-7/atom.xml" rel="self"/>
-  <link href="https://kidoman.io/"/>
-  <updated>2014-05-10T05:10:15+05:30</updated>
-  <id>https://kidoman.io/</id>
+  <link href="http://kidoman.io/tags/ios-7/atom.xml" rel="self"/>
+  <link href="http://kidoman.io/"/>
+  <updated>2014-05-10T05:40:46+05:30</updated>
+  <id>http://kidoman.io/</id>
   <author>
     <name><![CDATA[Karan Misra]]></name>
     <email><![CDATA[karan.misra@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[I have got 7!]]></title>
-    <link href="https://kidoman.io/life/i-have-got-7.html"/>
+    <link href="http://kidoman.io/life/i-have-got-7.html"/>
     <updated>2013-06-11T07:06:00+05:30</updated>
-    <id>https://kidoman.io/life/i-have-got-7</id>
+    <id>http://kidoman.io/life/i-have-got-7</id>
     <content type="html"><![CDATA[<p><img class="center" src="/images/got-ios7.png" title="iOS 7" ></p>
 
 <p>Just updated both my devices (well technically Neeru&rsquo;s and mine) and couldn&rsquo;t be happier.</p>

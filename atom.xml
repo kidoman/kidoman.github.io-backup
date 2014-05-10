@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Karan Misra]]></title>
-  <link href="https://kidoman.io/atom.xml" rel="self"/>
-  <link href="https://kidoman.io/"/>
-  <updated>2014-05-10T05:10:15+05:30</updated>
-  <id>https://kidoman.io/</id>
+  <link href="http://kidoman.io/atom.xml" rel="self"/>
+  <link href="http://kidoman.io/"/>
+  <updated>2014-05-10T05:40:46+05:30</updated>
+  <id>http://kidoman.io/</id>
   <author>
     <name><![CDATA[Karan Misra]]></name>
     <email><![CDATA[karan.misra@gmail.com]]></email>
@@ -14,9 +14,9 @@
   
   <entry>
     <title type="html"><![CDATA[God save the JS]]></title>
-    <link href="https://kidoman.io/programming/god-save-the-js.html"/>
+    <link href="http://kidoman.io/programming/god-save-the-js.html"/>
     <updated>2014-05-10T03:15:15+05:30</updated>
-    <id>https://kidoman.io/programming/god-save-the-js</id>
+    <id>http://kidoman.io/programming/god-save-the-js</id>
     <content type="html"><![CDATA[<p>Golang has has this feature right from the start. Very innocuously named <code>gofmt</code> this tool (distributed as part of the Go compiler toolchain) ensures that all Go code have a common look and feel to it. It does that by enforcing a few things:</p>
 
 <ul>
@@ -100,9 +100,9 @@
   
   <entry>
     <title type="html"><![CDATA[EMBD: Behind the Scenes]]></title>
-    <link href="https://kidoman.io/life/embd-behind-scenes.html"/>
+    <link href="http://kidoman.io/life/embd-behind-scenes.html"/>
     <updated>2014-05-06T06:55:00+05:30</updated>
-    <id>https://kidoman.io/life/embd-behind-scenes</id>
+    <id>http://kidoman.io/life/embd-behind-scenes</id>
     <content type="html"><![CDATA[<p>For the impatient, TheBot was an experiment to kickstart a hardware engineering culture at <strong>ThoughtWorks</strong>. We choose the Raspberry Pi (RPi) as the prototyping platform and Golang as the language in which to create the firmware. We felt the need for a solid hardware abstraction layer (HAL) which would allow us to not only target the RPi, but soon expand to other platforms as well. We also wanted to make it dead easy to talk to a variety of sensors. Since there were no such existing frameworks for <a href="http://golang.org/">Golang</a>, we ended up writing our own, and we called it <a href="https://embd.kidoman.io/">EMBD</a> (<a href="https://github.com/kidoman/embd">Github</a>).</p>
 
 <blockquote><p><strong>EMBD</strong> enables you to get started on your project quickly by providing build in support for the various <a href="https://github.com/kidoman/embd#platforms-supported">platforms</a>, <a href="https://github.com/kidoman/embd#protocols-supported">protocols</a>, <a href="https://github.com/kidoman/embd#sensors-supported">sensors</a>, <a href="https://github.com/kidoman/embd#controllers">controllers</a>. It also allows your prototyping code to survive through to production because of the built in hardware abstraction layer and Golang&rsquo;s <a href="https://github.com/kidoman/embd/wiki/Why-Go">versatility</a>. Thus significantly shortening the <strong>time to market</strong>.</p></blockquote>
@@ -124,12 +124,12 @@
 
 <p>We deliberately choose to build something simple &ndash; to push the odds in our favor. However, the simplicity proved to be a boon as it allowed us a lot of scope for innovation in the software side of things. We also wanted to take this opportunity to study. To glean experiences from. From many angles, this is just scratching the surface of what is to come, but you have got to start somewhere. Think of it as bulb # 1.</p>
 
-<div class="embed-video-container"><iframe src="https://kidoman.io//www.youtube.com/embed/iMXjkZ4B3EM "></iframe></div>
+<div class="embed-video-container"><iframe src="http://kidoman.io//www.youtube.com/embed/iMXjkZ4B3EM "></iframe></div>
 
 
 <p>(We first showcased this to public on Jan 10, 2014 and dedicated the effort to Aaron, a good soul and a ThoughtWorker, who passed away on Jan 11, 2013.)</p>
 
-<p><img class="center" src="https://kidoman.io/images/thebot-small.jpg" title="TheBot" ></p>
+<p><img class="center" src="http://kidoman.io/images/thebot-small.jpg" title="TheBot" ></p>
 
 <p>It was a lot of work. A lot of things you took for granted suddenly needed to be taken care of in code and in hardware. The fact that the code now had to actually &ldquo;run&rdquo; on the hardware brought in additional challenges as well. Concurrency is the name of the game. Most of the events which you needed to handle and react to (ex: a obstacle suddenly apprearing infront of the car, while the car is turning on its own) would come concurrently, in no particular guarenteed order. The firmware had to be both efficient and easy to reason about.</p>
 
@@ -149,28 +149,28 @@
 
 <h2>Summary</h2>
 
-<p>These and various other reasons led us to create <a href="https://embd.kidoman.io/">EMBD</a> and release it to the world.</p>
+<p>These and various other reasons led us to create <a href="http://embd.kidoman.io/">EMBD</a> and release it to the world.</p>
 
-<p><strong>PS:</strong> Earlier, this article was part of the <a href="https://kidoman.io/framework/embd.html">Introducing EMBD</a> piece. However, based on feedback, I decided to split them so that they the original article focused solely on the new framework and did not pull focus to other tertiary things.</p>
+<p><strong>PS:</strong> Earlier, this article was part of the <a href="http://kidoman.io/framework/embd.html">Introducing EMBD</a> piece. However, based on feedback, I decided to split them so that they the original article focused solely on the new framework and did not pull focus to other tertiary things.</p>
 
 <h2>Links</h2>
 
-<p>Homepage: <a href="https://embd.kidoman.io/">https://embd.kidoman.io/</a><br/>
+<p>Homepage: <a href="http://embd.kidoman.io/">http://embd.kidoman.io/</a><br/>
 Github: <a href="https://github.com/kidoman/embd">https://github.com/kidoman/embd</a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Introducing EMBD]]></title>
-    <link href="https://kidoman.io/framework/embd.html"/>
+    <link href="http://kidoman.io/framework/embd.html"/>
     <updated>2014-04-24T06:00:00+05:30</updated>
-    <id>https://kidoman.io/framework/embd</id>
+    <id>http://kidoman.io/framework/embd</id>
     <content type="html"><![CDATA[<p><strong><a href="https://github.com/kidoman/embd">EMBD</a></strong> is a framework for <strong>Go</strong> which does <strong>GPIO</strong> (General Purpose I/O), talks the <strong>I²C</strong> protocol (+ many more) and provides the drivers necessary to interact with <strong>many hardware sensors</strong> (eg. gyroscope, magnetometer, barometer, etc.) It&rsquo;s non-intrusive API allows you to quickly prototype solutions (see below for example) without sacrifising production-worthiness. And the best part? The code will run on a multitude of supported hosts (like the Raspberry Pi, and the BeagleBone Black) without change!</p>
 
-<p><a href="https://embd.kidoman.io">https://embd.kidoman.io</a><br>
+<p><a href="http://embd.kidoman.io">http://embd.kidoman.io</a><br>
 <a href="https://github.com/kidoman/embd">https://github.com/kidoman/embd</a></p>
 
-<div class="embed-video-container"><iframe src="https://kidoman.io//player.vimeo.com/video/92990437 "></iframe></div>
+<div class="embed-video-container"><iframe src="http://kidoman.io//player.vimeo.com/video/92990437 "></iframe></div>
 
 
 <p>Although the framework started its life as <strong>go-rpi</strong>, we soon realized the potential of making it even more useful. The driver code we had written to talk to a <a href="https://github.com/kidoman/embd#sensors-supported">plethora of sensors</a> were not really dependent on the Raspberry Pi. They expected a I²C bus and not much else. So we immediately started thinking of ways in which we could allow people to leverage all that code in other platforms which Golang ran on (which turned out to be <a href="https://github.com/kidoman/embd#platforms-supported">quite a few</a>.)</p>
@@ -255,20 +255,20 @@ Github: <a href="https://github.com/kidoman/embd">https://github.com/kidoman/emb
 
 <p><strong>EMBD</strong> is a bold attempt at creating a cross platform embedded programming library. A lot of work is needed to flesh out the sensor library and to bring in support for new hosts. The <a href="https://github.com/kidoman/embd/blob/master/ROADMAP.md">ROADMAP</a> lists some of the short/long terms goals we have ahead of us, but we won&rsquo;t get too far down that list without the support of the community. So looking forward to those <a href="https://github.com/kidoman/embd/pulls">pull requests</a>! Also, while we have done our best, if you do come across a bug, please <a href="https://github.com/kidoman/embd/issues">let us know</a> so that we can tackle it in the best way possible. And if you need any help, we will be hanging around <a href="https://groups.google.com/forum/#!forum/go-embd">here</a>.</p>
 
-<p>To read the backstory, read <a href="https://kidoman.io/life/embd-behind-scenes.html">this</a> article as well.</p>
+<p>To read the backstory, read <a href="http://kidoman.io/life/embd-behind-scenes.html">this</a> article as well.</p>
 
 <h2>Links</h2>
 
-<p>Homepage: <a href="https://embd.kidoman.io/">https://embd.kidoman.io/</a><br/>
+<p>Homepage: <a href="http://embd.kidoman.io/">http://embd.kidoman.io/</a><br/>
 Github: <a href="https://github.com/kidoman/embd">https://github.com/kidoman/embd</a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Introducing Serve]]></title>
-    <link href="https://kidoman.io/software/serve.html"/>
+    <link href="http://kidoman.io/software/serve.html"/>
     <updated>2014-04-10T06:00:00+05:30</updated>
-    <id>https://kidoman.io/software/serve</id>
+    <id>http://kidoman.io/software/serve</id>
     <content type="html"><![CDATA[<p>Sometimes, it takes a great deal of effort to create something simple.</p>
 
 <ul>
@@ -341,22 +341,22 @@ Github: <a href="https://github.com/kidoman/embd">https://github.com/kidoman/emb
   
   <entry>
     <title type="html"><![CDATA[TheBot - Adventures in Hardware]]></title>
-    <link href="https://kidoman.io/engineering/thebot.html"/>
+    <link href="http://kidoman.io/engineering/thebot.html"/>
     <updated>2014-03-02T08:00:00+05:30</updated>
-    <id>https://kidoman.io/engineering/thebot</id>
+    <id>http://kidoman.io/engineering/thebot</id>
     <content type="html"><![CDATA[<p>(cross posted from the <a href="http://thoughtworks.github.io/p2/issue09/thebot">P2 Magazine</a>)</p>
 
 <p>“Robots that are controlled by node.js.” The idea imprinted on me immediately.</p>
 
 <p>“A crowd controlled robotic car!&#8221;</p>
 
-<p><img class="center" src="https://kidoman.io/images/thebot-1.png" title="TheBot Mascot" ></p>
+<p><img class="center" src="http://kidoman.io/images/thebot-1.png" title="TheBot Mascot" ></p>
 
 <p>A fun product with a tonne of learning potential. However, doing a &ldquo;follow the blog posts/tutorials&rdquo; stitch and patch job recommended on the NodeBots site did not excite me one bit. Sure, we’d done it in two days, but what would we have learned in the process?</p>
 
 <p>Despite having worked extensively on node.js, the language did not interest me much &ndash; ambiguous syntax, callbacks, promises, etc. I had been looking for an opportunity do something real in Golang, and building a concurrent open source firmware for TheBot was just the ticket.</p>
 
-<p><img class="center" src="https://kidoman.io/images/thebot-2.jpg" title="TheBot" ></p>
+<p><img class="center" src="http://kidoman.io/images/thebot-2.jpg" title="TheBot" ></p>
 
 <p>TheBot is first and foremost an experiment. An experiment aimed at research and learning. An experiment to kickstart a hardware engineering culture in ThoughtWorks. Birthed as a crowd controlled robotic car that transmits video feed back to the controller; the vision has transformed many times during the development. Can it be the ultimate open source sensing/proximity prototyping platform? Could we extract a product out of this?</p>
 
@@ -372,7 +372,7 @@ Github: <a href="https://github.com/kidoman/embd">https://github.com/kidoman/emb
 
 <p>We plan on doing a proper video walk through of the hardware soon, but until then:</p>
 
-<p><img class="center" src="https://kidoman.io/images/thebot-3.png" title="Block Diagram" ></p>
+<p><img class="center" src="http://kidoman.io/images/thebot-3.png" title="Block Diagram" ></p>
 
 <h3>Why Golang?</h3>
 
@@ -394,7 +394,7 @@ PandaBoard, etc.</p>
 
 <h3>What does it do ?</h3>
 
-<div class="embed-video-container"><iframe src="https://kidoman.io//www.youtube.com/embed/iMXjkZ4B3EM "></iframe></div>
+<div class="embed-video-container"><iframe src="http://kidoman.io//www.youtube.com/embed/iMXjkZ4B3EM "></iframe></div>
 
 
 <h3>What next?</h3>
@@ -421,18 +421,18 @@ PandaBoard, etc.</p>
 
 <p>Contributors in no particular order: Sapto, Rohit, Kunal, Nikesh, Shantanu, Hanu, Gagan, Shaunak, Kashyap, Mukund, Akhil, Vishwas, Mallik, Deepthi, Shaun, Nag, Bala &amp; Sam Newman</p>
 
-<p><img class="center" src="https://kidoman.io/images/thebot-4.jpg" title="The Team" ></p>
+<p><img class="center" src="http://kidoman.io/images/thebot-4.jpg" title="The Team" ></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Go Getter Part 3]]></title>
-    <link href="https://kidoman.io/programming/go-getter-part-3.html"/>
+    <link href="http://kidoman.io/programming/go-getter-part-3.html"/>
     <updated>2013-10-05T08:00:00+05:30</updated>
-    <id>https://kidoman.io/programming/go-getter-part-3</id>
+    <id>http://kidoman.io/programming/go-getter-part-3</id>
     <content type="html"><![CDATA[<h2>Hurray multi-threading</h2>
 
-<p>This is the second follow up article to the slightly polarizing <a href="https://kidoman.io/programming/go-getter.html">original</a> which had solely focused on extracting the max performance out of Go. The C++ community has really stepped up the game now. A few extreme pull requests (thanks <a href="https://github.com/kidoman/rays/pull/2">t-mat</a> and <a href="https://github.com/kidoman/rays/pull/4">m42a</a>) later the C++ version is essentially running on steroids. I thought it was a good time to rerun the benchmarks and see how things fared.</p>
+<p>This is the second follow up article to the slightly polarizing <a href="http://kidoman.io/programming/go-getter.html">original</a> which had solely focused on extracting the max performance out of Go. The C++ community has really stepped up the game now. A few extreme pull requests (thanks <a href="https://github.com/kidoman/rays/pull/2">t-mat</a> and <a href="https://github.com/kidoman/rays/pull/4">m42a</a>) later the C++ version is essentially running on steroids. I thought it was a good time to rerun the benchmarks and see how things fared.</p>
 
 <p>Plug: The original project (<a href="https://github.com/kidoman/rays">https://github.com/kidoman/rays</a>) is now restructured so that we can add in new language implementations and see how they fair in this micro-benchmark.</p>
 
@@ -628,17 +628,17 @@ PandaBoard, etc.</p>
 
 <h2>Alright, alright, give me the results</h2>
 
-<p><img class="center" src="https://kidoman.io/images/512x512-3.png"></p>
+<p><img class="center" src="http://kidoman.io/images/512x512-3.png"></p>
 
-<p><img class="center" src="https://kidoman.io/images/2048x2048-3.png"></p>
+<p><img class="center" src="http://kidoman.io/images/2048x2048-3.png"></p>
 
-<p><img class="center" src="https://kidoman.io/images/4096x4096-3.png"></p>
+<p><img class="center" src="http://kidoman.io/images/4096x4096-3.png"></p>
 
 <p><em>All of the above benchmarks were run on a Hetzner dedicated server machine with a i7 2600 + 16 GB RAM</em></p>
 
 <p>At this stage, C++ is now more than twice as fast as an equivalent Go program. If you look at the previous 2048 x 2048 test results, you will see how far ahead the C++ results have come:</p>
 
-<p><img class="center" src="https://kidoman.io/images/go-vs-cpp-after-both-optimized.png"></p>
+<p><img class="center" src="http://kidoman.io/images/go-vs-cpp-after-both-optimized.png"></p>
 
 <p>From taking 58.15 seconds (single threaded), it has now dropped to a extremely impressive 36.36 seconds (again single threaded), making it almost twice as fast as the optimized Go version.</p>
 
@@ -652,7 +652,7 @@ PandaBoard, etc.</p>
 
 <p>I have restuctured the github project (<a href="https://github.com/kidoman/rays">https://github.com/kidoman/rays</a>) so that it is easy to add other language implementations to it. A Java, Clojure, Rust, Python, etc. version would definitely make things interesting and spice things up a bit. If you are interested in picking up a cause, please go right ahead&hellip; all pull requests are welcome.</p>
 
-<p>As usual, reachable at <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#x6b;&#x69;&#100;&#111;&#x6d;&#x61;&#x6e;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#109;">&#x6b;&#x69;&#x64;&#x6f;&#x6d;&#x61;&#110;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a> / <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#x6b;&#97;&#x72;&#97;&#x6e;&#x6d;&#64;&#116;&#104;&#x6f;&#x75;&#x67;&#104;&#116;&#119;&#x6f;&#114;&#x6b;&#115;&#x2e;&#x63;&#111;&#109;">&#107;&#97;&#x72;&#x61;&#x6e;&#x6d;&#x40;&#116;&#104;&#111;&#117;&#103;&#x68;&#x74;&#119;&#x6f;&#x72;&#x6b;&#115;&#46;&#x63;&#111;&#109;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
+<p>As usual, reachable at <a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#107;&#x69;&#100;&#x6f;&#109;&#97;&#110;&#x40;&#103;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#107;&#x69;&#100;&#x6f;&#x6d;&#x61;&#110;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;</a> / <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#107;&#x61;&#x72;&#97;&#x6e;&#x6d;&#64;&#x74;&#104;&#111;&#117;&#x67;&#x68;&#116;&#119;&#111;&#114;&#107;&#x73;&#x2e;&#99;&#x6f;&#x6d;">&#x6b;&#x61;&#x72;&#x61;&#110;&#x6d;&#x40;&#x74;&#x68;&#111;&#117;&#x67;&#x68;&#x74;&#x77;&#111;&#x72;&#x6b;&#115;&#46;&#x63;&#x6f;&#109;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
 
 <p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
 ]]></content>
@@ -660,14 +660,14 @@ PandaBoard, etc.</p>
   
   <entry>
     <title type="html"><![CDATA[Go Getter Part 2]]></title>
-    <link href="https://kidoman.io/programming/go-getter-part-2.html"/>
+    <link href="http://kidoman.io/programming/go-getter-part-2.html"/>
     <updated>2013-10-03T04:30:00+05:30</updated>
-    <id>https://kidoman.io/programming/go-getter-part-2</id>
-    <content type="html"><![CDATA[<p><strong>*Update: </strong> I have now posted a <a href="https://kidoman.io/programming/go-getter-part-3.html">second follow up article</a> with the benchmarks rerun with a multi-threaded optimized C++ version</p>
+    <id>http://kidoman.io/programming/go-getter-part-2</id>
+    <content type="html"><![CDATA[<p><strong>*Update: </strong> I have now posted a <a href="http://kidoman.io/programming/go-getter-part-3.html">second follow up article</a> with the benchmarks rerun with a multi-threaded optimized C++ version</p>
 
 <h2>Apples? Oranges?</h2>
 
-<p>This is a follow up article to the initial <a href="https://kidoman.io/programming/go-getter.html">Go Getter</a> article which focused purely on optimizing the Go solution. The comparision was not apples-to-apples (and still isn&rsquo;t; as we are talking about two very different platforms here) and was never meant to be. Instead it was focused on:</p>
+<p>This is a follow up article to the initial <a href="http://kidoman.io/programming/go-getter.html">Go Getter</a> article which focused purely on optimizing the Go solution. The comparision was not apples-to-apples (and still isn&rsquo;t; as we are talking about two very different platforms here) and was never meant to be. Instead it was focused on:</p>
 
 <ul>
 <li>Learn idiomatic Go</li>
@@ -686,7 +686,7 @@ PandaBoard, etc.</p>
 
 <p>Needless to say, the C++ performance is <strong>exciting</strong> again. Mind you, although I tried using OpenMP to bring in some multi-threaded love, it didn&rsquo;t work out so well. So I will truly have to leave that upto more capable hands.</p>
 
-<p><img src="https://kidoman.io/images/go-vs-cpp-after-both-optimized.png" title="&#34;Go vs C++ after both are optimized&#34;" alt="&#34;Go vs C++ after both are optimized&#34;"></p>
+<p><img src="http://kidoman.io/images/go-vs-cpp-after-both-optimized.png" title="&#34;Go vs C++ after both are optimized&#34;" alt="&#34;Go vs C++ after both are optimized&#34;"></p>
 
 <p><em>It was compiled by &ldquo;c++ -O3&rdquo; using G++ 4.7.3 and benchmarked on a Core i7 2600 16 GB dedicated Hetzner server running an updated Ubuntu 13.04 installation</em></p>
 
@@ -694,7 +694,7 @@ PandaBoard, etc.</p>
 
 <p>I hope to takes these numbers to the Go community and try and close the gap as much as possible. Go suffers from relatively slower performance because it tries to be as safe as possible when used in a concurrent scenario (for example, the default &ldquo;global rand&rdquo; is synchronized and good to access from multiple goroutines.) That is something I would definitely desire when doing real world coding. There is definitely scope for improvement, but considering everything else (GC, compilation speed, goroutines, channels, etc.) that Go brings to the table, I guess it will always be a game of balance.</p>
 
-<p>As usual, reachable at <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x6b;&#105;&#100;&#111;&#109;&#x61;&#110;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#109;">&#x6b;&#105;&#100;&#x6f;&#x6d;&#x61;&#x6e;&#64;&#x67;&#x6d;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;</a> / <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#107;&#x61;&#114;&#97;&#x6e;&#109;&#64;&#x74;&#104;&#111;&#117;&#103;&#x68;&#x74;&#119;&#111;&#114;&#107;&#115;&#46;&#99;&#x6f;&#109;">&#x6b;&#97;&#114;&#97;&#x6e;&#x6d;&#x40;&#x74;&#x68;&#111;&#x75;&#x67;&#104;&#116;&#x77;&#x6f;&#114;&#x6b;&#x73;&#46;&#99;&#111;&#x6d;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
+<p>As usual, reachable at <a href="&#109;&#x61;&#105;&#x6c;&#116;&#x6f;&#58;&#x6b;&#105;&#100;&#111;&#x6d;&#x61;&#x6e;&#x40;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;">&#107;&#x69;&#x64;&#111;&#109;&#97;&#x6e;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;</a> / <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#107;&#x61;&#x72;&#97;&#110;&#x6d;&#64;&#116;&#104;&#x6f;&#117;&#103;&#x68;&#116;&#119;&#111;&#x72;&#x6b;&#x73;&#46;&#99;&#x6f;&#109;">&#x6b;&#97;&#114;&#x61;&#110;&#x6d;&#64;&#116;&#x68;&#x6f;&#x75;&#103;&#x68;&#116;&#119;&#111;&#114;&#x6b;&#115;&#x2e;&#99;&#111;&#x6d;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
 
 <p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
 ]]></content>
@@ -702,21 +702,21 @@ PandaBoard, etc.</p>
   
   <entry>
     <title type="html"><![CDATA[Go Getter]]></title>
-    <link href="https://kidoman.io/programming/go-getter.html"/>
+    <link href="http://kidoman.io/programming/go-getter.html"/>
     <updated>2013-10-02T12:06:00+05:30</updated>
-    <id>https://kidoman.io/programming/go-getter</id>
-    <content type="html"><![CDATA[<p><img src="https://kidoman.io/images/42.png" title="A ray traced Image" ><br />
+    <id>http://kidoman.io/programming/go-getter</id>
+    <content type="html"><![CDATA[<p><img src="http://kidoman.io/images/42.png" title="A ray traced Image" ><br />
 (the above graphical image is produced by a <strong>ray tracing**</strong> program)</p>
 
 <p><strong>Long story short: </strong> After optimizations, the Go ray tracer was <strong>8.4 %</strong> faster than a functionally equivalent C++ (but <em>unoptimized*</em>) version when rendering a <strong>4.2 MegaPixel</strong> image using a single thread. With multi-threading enabled, the performance gap widened to <strong>76.2 %</strong> on a 8 Core machine. Not only was it really simple to utilize the complete CPU in Go, it was easy to immediately feel productive in the language due to its simple and thoughtful design. &ldquo;<a href="http://commandcenter.blogspot.in/2012/06/less-is-exponentially-more.html">Less is indeed more !</a>&rdquo;</p>
 
-<p><strong>*Update: </strong> I have posted a <a href="https://kidoman.io/programming/go-getter-part-2.html">follow up article</a> with the benchmarks rerun using a optimized C++ solution</p>
+<p><strong>*Update: </strong> I have posted a <a href="http://kidoman.io/programming/go-getter-part-2.html">follow up article</a> with the benchmarks rerun using a optimized C++ solution</p>
 
-<p><strong>*Update 2: </strong> I have posted a <a href="https://kidoman.io/programming/go-getter-part-3.html">second follow up article</a> with the benchmarks rerun with a multi-threaded optimized C++ version</p>
+<p><strong>*Update 2: </strong> I have posted a <a href="http://kidoman.io/programming/go-getter-part-3.html">second follow up article</a> with the benchmarks rerun with a multi-threaded optimized C++ version</p>
 
 <h2>Ray tracing? **</h2>
 
-<p><img src="https://kidoman.io/images/ray-tracing.png" title="Ray Tracing" ></p>
+<p><img src="http://kidoman.io/images/ray-tracing.png" title="Ray Tracing" ></p>
 
 <p><a href="http://en.wikipedia.org/wiki/Ray_tracing_(graphics">Ray tracing</a> is a technique for generating an image by tracing the path of light through pixels in an image and simulating the effects of its encounters with virtual objects.</p>
 
@@ -772,8 +772,8 @@ PandaBoard, etc.</p>
 
 <p>The amount of constructive advice I got in the first couple of hours was amazing. Let me summarize some of the biggest performance leaps for you:</p>
 
-<p><img src="https://kidoman.io/images/go-improvements.png" title="Graph of Go performance improvements" alt="Go Go Go"><br />
-(raw data available <a href="https://kidoman.io/images/go-raw-data.png">here</a>, also C++ solution was kept constant while optimizing the Go version)</p>
+<p><img src="http://kidoman.io/images/go-improvements.png" title="Graph of Go performance improvements" alt="Go Go Go"><br />
+(raw data available <a href="http://kidoman.io/images/go-raw-data.png">here</a>, also C++ solution was kept constant while optimizing the Go version)</p>
 
 <h2>Move to go1.2rc1</h2>
 
@@ -881,7 +881,7 @@ Change: <strong>12.01 %</strong><br/></p>
 
 <p>I also did some additional testing on a dedicated machine powered by Ubuntu 13.04 (kernel 3.8.0.26) i7 2600 with 16 GB RAM. The results were very heartwarming to say the least:</p>
 
-<p><img src="https://kidoman.io/images/go-vs-cpp-after-optimizations.png" title="Go vs C++ after optimizations" ></p>
+<p><img src="http://kidoman.io/images/go-vs-cpp-after-optimizations.png" title="Go vs C++ after optimizations" ></p>
 
 <ul>
 <li>1C = 1 Core</li>
@@ -913,7 +913,7 @@ Change: <strong>12.01 %</strong><br/></p>
 </ul>
 
 
-<p>That&rsquo;s all folks. Thanks for reading. If you have any comments, feel free to leave them here on the blog or you can always email me at <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#111;&#x3a;&#x6b;&#x61;&#114;&#97;&#110;&#x6d;&#x40;&#x74;&#104;&#x6f;&#117;&#103;&#x68;&#116;&#x77;&#111;&#x72;&#107;&#x73;&#x2e;&#x63;&#111;&#109;">&#107;&#x61;&#x72;&#97;&#x6e;&#109;&#64;&#x74;&#104;&#x6f;&#x75;&#103;&#x68;&#116;&#x77;&#111;&#114;&#107;&#115;&#x2e;&#x63;&#x6f;&#109;</a> / <a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#x6b;&#105;&#100;&#x6f;&#109;&#x61;&#x6e;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#109;&#x2e;">&#107;&#105;&#100;&#111;&#x6d;&#97;&#x6e;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;&#46;</a> Also reachable at <a href="https://twitter.com/kid0m4n">@kid0m4n</a> on Twitter Ciao!</p>
+<p>That&rsquo;s all folks. Thanks for reading. If you have any comments, feel free to leave them here on the blog or you can always email me at <a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#x3a;&#107;&#97;&#114;&#x61;&#x6e;&#x6d;&#64;&#116;&#104;&#111;&#x75;&#103;&#104;&#116;&#119;&#x6f;&#x72;&#x6b;&#x73;&#46;&#99;&#111;&#x6d;">&#x6b;&#97;&#x72;&#97;&#110;&#109;&#64;&#x74;&#x68;&#111;&#117;&#103;&#104;&#x74;&#x77;&#111;&#x72;&#x6b;&#115;&#x2e;&#x63;&#111;&#x6d;</a> / <a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#58;&#107;&#105;&#x64;&#x6f;&#109;&#x61;&#110;&#64;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;&#x2e;">&#x6b;&#x69;&#100;&#111;&#109;&#x61;&#x6e;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;&#x2e;</a> Also reachable at <a href="https://twitter.com/kid0m4n">@kid0m4n</a> on Twitter Ciao!</p>
 
 <p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
 ]]></content>
@@ -921,18 +921,18 @@ Change: <strong>12.01 %</strong><br/></p>
   
   <entry>
     <title type="html"><![CDATA[Go + Hadoop!]]></title>
-    <link href="https://kidoman.io/engineering/go-hadoop.html"/>
+    <link href="http://kidoman.io/engineering/go-hadoop.html"/>
     <updated>2013-09-29T14:37:00+05:30</updated>
-    <id>https://kidoman.io/engineering/go-hadoop</id>
+    <id>http://kidoman.io/engineering/go-hadoop</id>
     <content type="html"><![CDATA[<p>This is very interesting development indeed: <a href="http://hortonworks.com/blog/go-hadoop-err-hadoop-and-go/">http://hortonworks.com/blog/go-hadoop-err-hadoop-and-go/</a> :)</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Joy of Programming]]></title>
-    <link href="https://kidoman.io/life/joy-of-programming.html"/>
+    <link href="http://kidoman.io/life/joy-of-programming.html"/>
     <updated>2013-09-18T17:54:00+05:30</updated>
-    <id>https://kidoman.io/life/joy-of-programming</id>
+    <id>http://kidoman.io/life/joy-of-programming</id>
     <content type="html"><![CDATA[<p>Unicorns. and Rainbows. Besides being <a href="http://rubygems.org/gems/unicorn">Ruby</a> <a href="http://rubygems.org/gems/rainbows">gems</a>, they also happen to exactly articulate the feeling I have in my head the moment I start thinking about programming.</p>
 
 <p>Ever since I first opened up &ldquo;Doom.exe&rdquo; in notepad and stared at disbelief at the gibberish machine code, something has always driven me to figure out the the underlying DNA of every piece of software I have chanced upon. Obviously as the years have gone by, the amount of software out there has increased a trillion fold, but every now and then, I still chance upon a masterpiece which immediately attracts a &ldquo;holy cow!&rdquo; from me. It happens less often now-a-days but <a href="http://www.cs.utah.edu/~aek/code/card.cpp">still</a>&hellip;</p>
@@ -952,19 +952,19 @@ Change: <strong>12.01 %</strong><br/></p>
   
   <entry>
     <title type="html"><![CDATA[Announcing RoadRunners!]]></title>
-    <link href="https://kidoman.io/engineering/announcing-roadrunners.html"/>
+    <link href="http://kidoman.io/engineering/announcing-roadrunners.html"/>
     <updated>2013-08-31T10:28:00+05:30</updated>
-    <id>https://kidoman.io/engineering/announcing-roadrunners</id>
+    <id>http://kidoman.io/engineering/announcing-roadrunners</id>
     <content type="html"><![CDATA[<p>I will just leave it up here: <a href="http://roadrunners.in/">RoadRunners</a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Golang: testing the waters]]></title>
-    <link href="https://kidoman.io/engineering/golang-testing-the-waters.html"/>
+    <link href="http://kidoman.io/engineering/golang-testing-the-waters.html"/>
     <updated>2013-07-26T02:44:00+05:30</updated>
-    <id>https://kidoman.io/engineering/golang-testing-the-waters</id>
-    <content type="html"><![CDATA[<p><img src="https://kidoman.io//1-ps.googleusercontent.com/x/s.golang-org.appspot.com/golang.org/doc/gopher/xfrontpage.png.pagespeed.ic._-JkwHsaKq.webp" alt="Gopher" /></p>
+    <id>http://kidoman.io/engineering/golang-testing-the-waters</id>
+    <content type="html"><![CDATA[<p><img src="http://kidoman.io//1-ps.googleusercontent.com/x/s.golang-org.appspot.com/golang.org/doc/gopher/xfrontpage.png.pagespeed.ic._-JkwHsaKq.webp" alt="Gopher" /></p>
 
 <p><a href="http://golang.org/">Go</a> has caught my fancy. There, I said it.</p>
 
@@ -1067,10 +1067,10 @@ Change: <strong>12.01 %</strong><br/></p>
   
   <entry>
     <title type="html"><![CDATA[I have got 7!]]></title>
-    <link href="https://kidoman.io/life/i-have-got-7.html"/>
+    <link href="http://kidoman.io/life/i-have-got-7.html"/>
     <updated>2013-06-11T07:06:00+05:30</updated>
-    <id>https://kidoman.io/life/i-have-got-7</id>
-    <content type="html"><![CDATA[<p><img class="center" src="https://kidoman.io/images/got-ios7.png" title="iOS 7" ></p>
+    <id>http://kidoman.io/life/i-have-got-7</id>
+    <content type="html"><![CDATA[<p><img class="center" src="http://kidoman.io/images/got-ios7.png" title="iOS 7" ></p>
 
 <p>Just updated both my devices (well technically Neeru&rsquo;s and mine) and couldn&rsquo;t be happier.</p>
 
@@ -1082,10 +1082,10 @@ Change: <strong>12.01 %</strong><br/></p>
   
   <entry>
     <title type="html"><![CDATA[node.js in action: Learnings]]></title>
-    <link href="https://kidoman.io/engineering/node-dot-js-in-action-learnings.html"/>
+    <link href="http://kidoman.io/engineering/node-dot-js-in-action-learnings.html"/>
     <updated>2013-05-31T01:58:00+05:30</updated>
-    <id>https://kidoman.io/engineering/node-dot-js-in-action-learnings</id>
-    <content type="html"><![CDATA[<p><img src="https://kidoman.io/images/node.js.png" title="nodejs" ></p>
+    <id>http://kidoman.io/engineering/node-dot-js-in-action-learnings</id>
+    <content type="html"><![CDATA[<p><img src="http://kidoman.io/images/node.js.png" title="nodejs" ></p>
 
 <p>I recently gave a talk on node.js at work&hellip; the talk was surprisingly well attended. It was scheduled to start at 1 PM. At around 1:02 PM, I was alone in the room with not another soul in sight. The room filled to the brim in the next 10 minutes. Last count = 33</p>
 
@@ -1140,10 +1140,10 @@ Change: <strong>12.01 %</strong><br/></p>
   
   <entry>
     <title type="html"><![CDATA[Why Sublime Text?]]></title>
-    <link href="https://kidoman.io/programming/why-sublime-text.html"/>
+    <link href="http://kidoman.io/programming/why-sublime-text.html"/>
     <updated>2013-05-23T02:17:00+05:30</updated>
-    <id>https://kidoman.io/programming/why-sublime-text</id>
-    <content type="html"><![CDATA[<p><img class="center" src="https://kidoman.io/images/sublime.png"></p>
+    <id>http://kidoman.io/programming/why-sublime-text</id>
+    <content type="html"><![CDATA[<p><img class="center" src="http://kidoman.io/images/sublime.png"></p>
 
 <p>I wanted to pen down the results of my 5 month long &ldquo;select the best text editor available&rdquo; thought experiment. So here we go&hellip;</p>
 
@@ -1208,10 +1208,10 @@ Change: <strong>12.01 %</strong><br/></p>
   
   <entry>
     <title type="html"><![CDATA[BIMER at ThoughtWorks]]></title>
-    <link href="https://kidoman.io/life/bimer-at-thoughtworks.html"/>
+    <link href="http://kidoman.io/life/bimer-at-thoughtworks.html"/>
     <updated>2013-05-22T23:24:00+05:30</updated>
-    <id>https://kidoman.io/life/bimer-at-thoughtworks</id>
-    <content type="html"><![CDATA[<p>It&rsquo;s been almost a week since we started <a href="https://kidoman.io/life/2013/05/what-is-bimer/">BIMER</a> at ThoughtWorks.</p>
+    <id>http://kidoman.io/life/bimer-at-thoughtworks</id>
+    <content type="html"><![CDATA[<p>It&rsquo;s been almost a week since we started <a href="http://kidoman.io/life/2013/05/what-is-bimer/">BIMER</a> at ThoughtWorks.</p>
 
 <p>As expected, BIMER has evolved&hellip; we no longer just do one exercise. So far we have done:</p>
 
@@ -1228,22 +1228,22 @@ Change: <strong>12.01 %</strong><br/></p>
 
 <h2>Any ways, a few snaps</h2>
 
-<p><img src="https://kidoman.io/images/venki-superman.jpg"></p>
+<p><img src="http://kidoman.io/images/venki-superman.jpg"></p>
 
-<p><img src="https://kidoman.io/images/bhaimi-budha.jpg"></p>
+<p><img src="http://kidoman.io/images/bhaimi-budha.jpg"></p>
 
-<p><img src="https://kidoman.io/images/priya-walk-on-wall.jpg"></p>
+<p><img src="http://kidoman.io/images/priya-walk-on-wall.jpg"></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[What is BIMER?]]></title>
-    <link href="https://kidoman.io/life/what-is-bimer.html"/>
+    <link href="http://kidoman.io/life/what-is-bimer.html"/>
     <updated>2013-05-13T12:28:00+05:30</updated>
-    <id>https://kidoman.io/life/what-is-bimer</id>
-    <content type="html"><![CDATA[<p><img class="center" src="https://kidoman.io/images/team-bimering.jpg"></p>
+    <id>http://kidoman.io/life/what-is-bimer</id>
+    <content type="html"><![CDATA[<p><img class="center" src="http://kidoman.io/images/team-bimering.jpg"></p>
 
-<p>So <a href="https://kidoman.io/life/2013/05/sitting-at-work/">yesterday</a>, I posted about how I am going to be trying a new thing at work. Instead of hampering my cognitive ability by trying to stand and work, I wanted to do some simple core exercises every hour to keep the <a href="http://en.wikipedia.org/wiki/Basal_metabolic_rate">BMR</a> up. With <a href="http://www.linkedin.com/in/venkateshponniah">Venki</a>&rsquo;s help, this has actually evolved to something we have now called BIMER.</p>
+<p>So <a href="http://kidoman.io/life/2013/05/sitting-at-work/">yesterday</a>, I posted about how I am going to be trying a new thing at work. Instead of hampering my cognitive ability by trying to stand and work, I wanted to do some simple core exercises every hour to keep the <a href="http://en.wikipedia.org/wiki/Basal_metabolic_rate">BMR</a> up. With <a href="http://www.linkedin.com/in/venkateshponniah">Venki</a>&rsquo;s help, this has actually evolved to something we have now called BIMER.</p>
 
 <p>The idea is simple:</p>
 
@@ -1262,10 +1262,10 @@ Change: <strong>12.01 %</strong><br/></p>
   
   <entry>
     <title type="html"><![CDATA[Sitting at Work]]></title>
-    <link href="https://kidoman.io/life/sitting-at-work.html"/>
+    <link href="http://kidoman.io/life/sitting-at-work.html"/>
     <updated>2013-05-13T09:28:00+05:30</updated>
-    <id>https://kidoman.io/life/sitting-at-work</id>
-    <content type="html"><![CDATA[<p><img src="https://kidoman.io/images/mens-push-up.jpg"></p>
+    <id>http://kidoman.io/life/sitting-at-work</id>
+    <content type="html"><![CDATA[<p><img src="http://kidoman.io/images/mens-push-up.jpg"></p>
 
 <p>(you might be wondering why I am posting this under Life, but hey, I have never too successful at keeping my work out of my life, so meh.)</p>
 
@@ -1296,10 +1296,10 @@ Headcount is up to 10! And we have grown beyond just doing push ups! This is gon
   
   <entry>
     <title type="html"><![CDATA[Chrome DevTools Profiling Demystified]]></title>
-    <link href="https://kidoman.io/engineering/chrome-profiling-demystified.html"/>
+    <link href="http://kidoman.io/engineering/chrome-profiling-demystified.html"/>
     <updated>2013-05-12T09:30:00+05:30</updated>
-    <id>https://kidoman.io/engineering/chrome-profiling-demystified</id>
-    <content type="html"><![CDATA[<p><img src="https://kidoman.io/images/chrome-profiler.jpg"></p>
+    <id>http://kidoman.io/engineering/chrome-profiling-demystified</id>
+    <content type="html"><![CDATA[<p><img src="http://kidoman.io/images/chrome-profiler.jpg"></p>
 
 <p>Came across this wonderful article by Addy. A must read for anyone trying to do anything with the Chrome DevTools</p>
 
@@ -1309,10 +1309,10 @@ Headcount is up to 10! And we have grown beyond just doing push ups! This is gon
   
   <entry>
     <title type="html"><![CDATA[Welcome...]]></title>
-    <link href="https://kidoman.io/life/welcome.html"/>
+    <link href="http://kidoman.io/life/welcome.html"/>
     <updated>2013-05-01T02:27:00+05:30</updated>
-    <id>https://kidoman.io/life/welcome</id>
-    <content type="html"><![CDATA[<p><img src="https://kidoman.io/images/i-am-looking-at-you.jpeg" title="I see dead people" ></p>
+    <id>http://kidoman.io/life/welcome</id>
+    <content type="html"><![CDATA[<p><img src="http://kidoman.io/images/i-am-looking-at-you.jpeg" title="I see dead people" ></p>
 
 <p>This blog has been a long time coming. I don&rsquo;t remember correctly (and am too lazy to look it up) but I think I purchased this domain more than 5 years ago! But its up now. And that&rsquo;s all she said&hellip;</p>
 

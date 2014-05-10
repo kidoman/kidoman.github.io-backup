@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: hal | Karan Misra]]></title>
-  <link href="https://kidoman.io/tags/hal/atom.xml" rel="self"/>
-  <link href="https://kidoman.io/"/>
-  <updated>2014-05-10T05:10:15+05:30</updated>
-  <id>https://kidoman.io/</id>
+  <link href="http://kidoman.io/tags/hal/atom.xml" rel="self"/>
+  <link href="http://kidoman.io/"/>
+  <updated>2014-05-10T05:40:46+05:30</updated>
+  <id>http://kidoman.io/</id>
   <author>
     <name><![CDATA[Karan Misra]]></name>
     <email><![CDATA[karan.misra@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[EMBD: Behind the Scenes]]></title>
-    <link href="https://kidoman.io/life/embd-behind-scenes.html"/>
+    <link href="http://kidoman.io/life/embd-behind-scenes.html"/>
     <updated>2014-05-06T06:55:00+05:30</updated>
-    <id>https://kidoman.io/life/embd-behind-scenes</id>
+    <id>http://kidoman.io/life/embd-behind-scenes</id>
     <content type="html"><![CDATA[<p>For the impatient, TheBot was an experiment to kickstart a hardware engineering culture at <strong>ThoughtWorks</strong>. We choose the Raspberry Pi (RPi) as the prototyping platform and Golang as the language in which to create the firmware. We felt the need for a solid hardware abstraction layer (HAL) which would allow us to not only target the RPi, but soon expand to other platforms as well. We also wanted to make it dead easy to talk to a variety of sensors. Since there were no such existing frameworks for <a href="http://golang.org/">Golang</a>, we ended up writing our own, and we called it <a href="https://embd.kidoman.io/">EMBD</a> (<a href="https://github.com/kidoman/embd">Github</a>).</p>
 
 <blockquote><p><strong>EMBD</strong> enables you to get started on your project quickly by providing build in support for the various <a href="https://github.com/kidoman/embd#platforms-supported">platforms</a>, <a href="https://github.com/kidoman/embd#protocols-supported">protocols</a>, <a href="https://github.com/kidoman/embd#sensors-supported">sensors</a>, <a href="https://github.com/kidoman/embd#controllers">controllers</a>. It also allows your prototyping code to survive through to production because of the built in hardware abstraction layer and Golang&rsquo;s <a href="https://github.com/kidoman/embd/wiki/Why-Go">versatility</a>. Thus significantly shortening the <strong>time to market</strong>.</p></blockquote>
@@ -63,25 +63,25 @@
 
 <h2>Summary</h2>
 
-<p>These and various other reasons led us to create <a href="https://embd.kidoman.io/">EMBD</a> and release it to the world.</p>
+<p>These and various other reasons led us to create <a href="http://embd.kidoman.io/">EMBD</a> and release it to the world.</p>
 
 <p><strong>PS:</strong> Earlier, this article was part of the <a href="/framework/embd.html">Introducing EMBD</a> piece. However, based on feedback, I decided to split them so that they the original article focused solely on the new framework and did not pull focus to other tertiary things.</p>
 
 <h2>Links</h2>
 
-<p>Homepage: <a href="https://embd.kidoman.io/">https://embd.kidoman.io/</a><br/>
+<p>Homepage: <a href="http://embd.kidoman.io/">http://embd.kidoman.io/</a><br/>
 Github: <a href="https://github.com/kidoman/embd">https://github.com/kidoman/embd</a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Introducing EMBD]]></title>
-    <link href="https://kidoman.io/framework/embd.html"/>
+    <link href="http://kidoman.io/framework/embd.html"/>
     <updated>2014-04-24T06:00:00+05:30</updated>
-    <id>https://kidoman.io/framework/embd</id>
+    <id>http://kidoman.io/framework/embd</id>
     <content type="html"><![CDATA[<p><strong><a href="https://github.com/kidoman/embd">EMBD</a></strong> is a framework for <strong>Go</strong> which does <strong>GPIO</strong> (General Purpose I/O), talks the <strong>I²C</strong> protocol (+ many more) and provides the drivers necessary to interact with <strong>many hardware sensors</strong> (eg. gyroscope, magnetometer, barometer, etc.) It&rsquo;s non-intrusive API allows you to quickly prototype solutions (see below for example) without sacrifising production-worthiness. And the best part? The code will run on a multitude of supported hosts (like the Raspberry Pi, and the BeagleBone Black) without change!</p>
 
-<p><a href="https://embd.kidoman.io">https://embd.kidoman.io</a><br>
+<p><a href="http://embd.kidoman.io">http://embd.kidoman.io</a><br>
 <a href="https://github.com/kidoman/embd">https://github.com/kidoman/embd</a></p>
 
 <p><div class="embed-video-container"><iframe src="//player.vimeo.com/video/92990437 "></iframe></div></p>
@@ -152,7 +152,7 @@ case &lt;-quit:
 
 <h2>Links</h2>
 
-<p>Homepage: <a href="https://embd.kidoman.io/">https://embd.kidoman.io/</a><br/>
+<p>Homepage: <a href="http://embd.kidoman.io/">http://embd.kidoman.io/</a><br/>
 Github: <a href="https://github.com/kidoman/embd">https://github.com/kidoman/embd</a></p>
 ]]></content>
   </entry>

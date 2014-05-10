@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: cli | Karan Misra]]></title>
-  <link href="https://kidoman.io/tags/cli/atom.xml" rel="self"/>
-  <link href="https://kidoman.io/"/>
-  <updated>2014-05-10T05:10:15+05:30</updated>
-  <id>https://kidoman.io/</id>
+  <link href="http://kidoman.io/tags/cli/atom.xml" rel="self"/>
+  <link href="http://kidoman.io/"/>
+  <updated>2014-05-10T05:40:46+05:30</updated>
+  <id>http://kidoman.io/</id>
   <author>
     <name><![CDATA[Karan Misra]]></name>
     <email><![CDATA[karan.misra@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Introducing Serve]]></title>
-    <link href="https://kidoman.io/software/serve.html"/>
+    <link href="http://kidoman.io/software/serve.html"/>
     <updated>2014-04-10T06:00:00+05:30</updated>
-    <id>https://kidoman.io/software/serve</id>
+    <id>http://kidoman.io/software/serve</id>
     <content type="html"><![CDATA[<p>Sometimes, it takes a great deal of effort to create something simple.</p>
 
 <ul>

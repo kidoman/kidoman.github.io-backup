@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: chef | Karan Misra]]></title>
-  <link href="https://kidoman.io/tags/chef/atom.xml" rel="self"/>
-  <link href="https://kidoman.io/"/>
-  <updated>2014-05-10T05:10:15+05:30</updated>
-  <id>https://kidoman.io/</id>
+  <link href="http://kidoman.io/tags/chef/atom.xml" rel="self"/>
+  <link href="http://kidoman.io/"/>
+  <updated>2014-05-10T05:40:46+05:30</updated>
+  <id>http://kidoman.io/</id>
   <author>
     <name><![CDATA[Karan Misra]]></name>
     <email><![CDATA[karan.misra@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Why Sublime Text?]]></title>
-    <link href="https://kidoman.io/programming/why-sublime-text.html"/>
+    <link href="http://kidoman.io/programming/why-sublime-text.html"/>
     <updated>2013-05-23T02:17:00+05:30</updated>
-    <id>https://kidoman.io/programming/why-sublime-text</id>
+    <id>http://kidoman.io/programming/why-sublime-text</id>
     <content type="html"><![CDATA[<p><img class="center" src="/images/sublime.png"></p>
 
 <p>I wanted to pen down the results of my 5 month long &ldquo;select the best text editor available&rdquo; thought experiment. So here we go&hellip;</p>

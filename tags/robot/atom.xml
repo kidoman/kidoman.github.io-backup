@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: robot | Karan Misra]]></title>
-  <link href="https://kidoman.io/tags/robot/atom.xml" rel="self"/>
-  <link href="https://kidoman.io/"/>
-  <updated>2014-05-10T05:10:15+05:30</updated>
-  <id>https://kidoman.io/</id>
+  <link href="http://kidoman.io/tags/robot/atom.xml" rel="self"/>
+  <link href="http://kidoman.io/"/>
+  <updated>2014-05-10T05:40:46+05:30</updated>
+  <id>http://kidoman.io/</id>
   <author>
     <name><![CDATA[Karan Misra]]></name>
     <email><![CDATA[karan.misra@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[TheBot - Adventures in Hardware]]></title>
-    <link href="https://kidoman.io/engineering/thebot.html"/>
+    <link href="http://kidoman.io/engineering/thebot.html"/>
     <updated>2014-03-02T08:00:00+05:30</updated>
-    <id>https://kidoman.io/engineering/thebot</id>
+    <id>http://kidoman.io/engineering/thebot</id>
     <content type="html"><![CDATA[<p>(cross posted from the <a href="http://thoughtworks.github.io/p2/issue09/thebot">P2 Magazine</a>)</p>
 
 <p>“Robots that are controlled by node.js.” The idea imprinted on me immediately.</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: javascript, | Karan Misra]]></title>
-  <link href="https://kidoman.io/tags/javascript/atom.xml" rel="self"/>
-  <link href="https://kidoman.io/"/>
-  <updated>2014-05-10T05:10:15+05:30</updated>
-  <id>https://kidoman.io/</id>
+  <link href="http://kidoman.io/tags/javascript/atom.xml" rel="self"/>
+  <link href="http://kidoman.io/"/>
+  <updated>2014-05-10T05:40:46+05:30</updated>
+  <id>http://kidoman.io/</id>
   <author>
     <name><![CDATA[Karan Misra]]></name>
     <email><![CDATA[karan.misra@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[God save the JS]]></title>
-    <link href="https://kidoman.io/programming/god-save-the-js.html"/>
+    <link href="http://kidoman.io/programming/god-save-the-js.html"/>
     <updated>2014-05-10T03:15:15+05:30</updated>
-    <id>https://kidoman.io/programming/god-save-the-js</id>
+    <id>http://kidoman.io/programming/god-save-the-js</id>
     <content type="html"><![CDATA[<p>Golang has has this feature right from the start. Very innocuously named <code>gofmt</code> this tool (distributed as part of the Go compiler toolchain) ensures that all Go code have a common look and feel to it. It does that by enforcing a few things:</p>
 
 <ul>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: joy | Karan Misra]]></title>
-  <link href="https://kidoman.io/tags/joy/atom.xml" rel="self"/>
-  <link href="https://kidoman.io/"/>
-  <updated>2014-05-10T05:10:15+05:30</updated>
-  <id>https://kidoman.io/</id>
+  <link href="http://kidoman.io/tags/joy/atom.xml" rel="self"/>
+  <link href="http://kidoman.io/"/>
+  <updated>2014-05-10T05:40:46+05:30</updated>
+  <id>http://kidoman.io/</id>
   <author>
     <name><![CDATA[Karan Misra]]></name>
     <email><![CDATA[karan.misra@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Joy of Programming]]></title>
-    <link href="https://kidoman.io/life/joy-of-programming.html"/>
+    <link href="http://kidoman.io/life/joy-of-programming.html"/>
     <updated>2013-09-18T17:54:00+05:30</updated>
-    <id>https://kidoman.io/life/joy-of-programming</id>
+    <id>http://kidoman.io/life/joy-of-programming</id>
     <content type="html"><![CDATA[<p>Unicorns. and Rainbows. Besides being <a href="http://rubygems.org/gems/unicorn">Ruby</a> <a href="http://rubygems.org/gems/rainbows">gems</a>, they also happen to exactly articulate the feeling I have in my head the moment I start thinking about programming.</p>
 
 <p>Ever since I first opened up &ldquo;Doom.exe&rdquo; in notepad and stared at disbelief at the gibberish machine code, something has always driven me to figure out the the underlying DNA of every piece of software I have chanced upon. Obviously as the years have gone by, the amount of software out there has increased a trillion fold, but every now and then, I still chance upon a masterpiece which immediately attracts a &ldquo;holy cow!&rdquo; from me. It happens less often now-a-days but <a href="http://www.cs.utah.edu/~aek/code/card.cpp">still</a>&hellip;</p>

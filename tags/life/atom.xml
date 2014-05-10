@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: life | Karan Misra]]></title>
-  <link href="https://kidoman.io/tags/life/atom.xml" rel="self"/>
-  <link href="https://kidoman.io/"/>
-  <updated>2014-05-10T05:10:15+05:30</updated>
-  <id>https://kidoman.io/</id>
+  <link href="http://kidoman.io/tags/life/atom.xml" rel="self"/>
+  <link href="http://kidoman.io/"/>
+  <updated>2014-05-10T05:40:46+05:30</updated>
+  <id>http://kidoman.io/</id>
   <author>
     <name><![CDATA[Karan Misra]]></name>
     <email><![CDATA[karan.misra@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Welcome...]]></title>
-    <link href="https://kidoman.io/life/welcome.html"/>
+    <link href="http://kidoman.io/life/welcome.html"/>
     <updated>2013-05-01T02:27:00+05:30</updated>
-    <id>https://kidoman.io/life/welcome</id>
+    <id>http://kidoman.io/life/welcome</id>
     <content type="html"><![CDATA[<p><img src="/images/i-am-looking-at-you.jpeg" title="I see dead people" ></p>
 
 <p>This blog has been a long time coming. I don&rsquo;t remember correctly (and am too lazy to look it up) but I think I purchased this domain more than 5 years ago! But its up now. And that&rsquo;s all she said&hellip;</p>

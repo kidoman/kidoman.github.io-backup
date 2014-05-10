@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: engineering | Karan Misra]]></title>
-  <link href="https://kidoman.io/categories/engineering/atom.xml" rel="self"/>
-  <link href="https://kidoman.io/"/>
-  <updated>2014-05-10T05:10:15+05:30</updated>
-  <id>https://kidoman.io/</id>
+  <link href="http://kidoman.io/categories/engineering/atom.xml" rel="self"/>
+  <link href="http://kidoman.io/"/>
+  <updated>2014-05-10T05:40:46+05:30</updated>
+  <id>http://kidoman.io/</id>
   <author>
     <name><![CDATA[Karan Misra]]></name>
     <email><![CDATA[karan.misra@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[TheBot - Adventures in Hardware]]></title>
-    <link href="https://kidoman.io/engineering/thebot.html"/>
+    <link href="http://kidoman.io/engineering/thebot.html"/>
     <updated>2014-03-02T08:00:00+05:30</updated>
-    <id>https://kidoman.io/engineering/thebot</id>
+    <id>http://kidoman.io/engineering/thebot</id>
     <content type="html"><![CDATA[<p>(cross posted from the <a href="http://thoughtworks.github.io/p2/issue09/thebot">P2 Magazine</a>)</p>
 
 <p>“Robots that are controlled by node.js.” The idea imprinted on me immediately.</p>
@@ -100,27 +100,27 @@ PandaBoard, etc.</p>
   
   <entry>
     <title type="html"><![CDATA[Go + Hadoop!]]></title>
-    <link href="https://kidoman.io/engineering/go-hadoop.html"/>
+    <link href="http://kidoman.io/engineering/go-hadoop.html"/>
     <updated>2013-09-29T14:37:00+05:30</updated>
-    <id>https://kidoman.io/engineering/go-hadoop</id>
+    <id>http://kidoman.io/engineering/go-hadoop</id>
     <content type="html"><![CDATA[<p>This is very interesting development indeed: <a href="http://hortonworks.com/blog/go-hadoop-err-hadoop-and-go/">http://hortonworks.com/blog/go-hadoop-err-hadoop-and-go/</a> :)</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Announcing RoadRunners!]]></title>
-    <link href="https://kidoman.io/engineering/announcing-roadrunners.html"/>
+    <link href="http://kidoman.io/engineering/announcing-roadrunners.html"/>
     <updated>2013-08-31T10:28:00+05:30</updated>
-    <id>https://kidoman.io/engineering/announcing-roadrunners</id>
+    <id>http://kidoman.io/engineering/announcing-roadrunners</id>
     <content type="html"><![CDATA[<p>I will just leave it up here: <a href="http://roadrunners.in/">RoadRunners</a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Golang: testing the waters]]></title>
-    <link href="https://kidoman.io/engineering/golang-testing-the-waters.html"/>
+    <link href="http://kidoman.io/engineering/golang-testing-the-waters.html"/>
     <updated>2013-07-26T02:44:00+05:30</updated>
-    <id>https://kidoman.io/engineering/golang-testing-the-waters</id>
+    <id>http://kidoman.io/engineering/golang-testing-the-waters</id>
     <content type="html"><![CDATA[<p><img src="//1-ps.googleusercontent.com/x/s.golang-org.appspot.com/golang.org/doc/gopher/xfrontpage.png.pagespeed.ic._-JkwHsaKq.webp" alt="Gopher" /></p>
 
 <p><a href="http://golang.org/">Go</a> has caught my fancy. There, I said it.</p>
@@ -224,9 +224,9 @@ PandaBoard, etc.</p>
   
   <entry>
     <title type="html"><![CDATA[node.js in action: Learnings]]></title>
-    <link href="https://kidoman.io/engineering/node-dot-js-in-action-learnings.html"/>
+    <link href="http://kidoman.io/engineering/node-dot-js-in-action-learnings.html"/>
     <updated>2013-05-31T01:58:00+05:30</updated>
-    <id>https://kidoman.io/engineering/node-dot-js-in-action-learnings</id>
+    <id>http://kidoman.io/engineering/node-dot-js-in-action-learnings</id>
     <content type="html"><![CDATA[<p><img src="/images/node.js.png" title="nodejs" ></p>
 
 <p>I recently gave a talk on node.js at work&hellip; the talk was surprisingly well attended. It was scheduled to start at 1 PM. At around 1:02 PM, I was alone in the room with not another soul in sight. The room filled to the brim in the next 10 minutes. Last count = 33</p>

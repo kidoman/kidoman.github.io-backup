@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: https://kidoman.io/sitemap.xml 
+Sitemap: http://kidoman.io/sitemap.xml 

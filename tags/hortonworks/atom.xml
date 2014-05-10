@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: hortonworks | Karan Misra]]></title>
-  <link href="https://kidoman.io/tags/hortonworks/atom.xml" rel="self"/>
-  <link href="https://kidoman.io/"/>
-  <updated>2014-05-10T05:10:15+05:30</updated>
-  <id>https://kidoman.io/</id>
+  <link href="http://kidoman.io/tags/hortonworks/atom.xml" rel="self"/>
+  <link href="http://kidoman.io/"/>
+  <updated>2014-05-10T05:40:46+05:30</updated>
+  <id>http://kidoman.io/</id>
   <author>
     <name><![CDATA[Karan Misra]]></name>
     <email><![CDATA[karan.misra@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Go + Hadoop!]]></title>
-    <link href="https://kidoman.io/engineering/go-hadoop.html"/>
+    <link href="http://kidoman.io/engineering/go-hadoop.html"/>
     <updated>2013-09-29T14:37:00+05:30</updated>
-    <id>https://kidoman.io/engineering/go-hadoop</id>
+    <id>http://kidoman.io/engineering/go-hadoop</id>
     <content type="html"><![CDATA[<p>This is very interesting development indeed: <a href="http://hortonworks.com/blog/go-hadoop-err-hadoop-and-go/">http://hortonworks.com/blog/go-hadoop-err-hadoop-and-go/</a> :)</p>
 ]]></content>
   </entry>
