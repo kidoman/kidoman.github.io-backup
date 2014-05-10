@@ -56,11 +56,11 @@ Golang is a statically typed, garbage collected and compiled programming languag
 
 ## Summary
 
-These and various other reasons led us to create [EMBD](https://embd.kidoman.io/) and release it to the world.
+These and various other reasons led us to create [EMBD](http://embd.kidoman.io/) and release it to the world.
 
 **PS:** Earlier, this article was part of the [Introducing EMBD](/framework/embd.html) piece. However, based on feedback, I decided to split them so that they the original article focused solely on the new framework and did not pull focus to other tertiary things.
 
 ## Links
 
-Homepage: https://embd.kidoman.io/<br/>
+Homepage: http://embd.kidoman.io/<br/>
 Github: https://github.com/kidoman/embd
