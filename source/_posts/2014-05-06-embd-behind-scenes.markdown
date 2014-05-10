@@ -20,7 +20,7 @@ For the impatient, TheBot was an experiment to kickstart a hardware engineering 
 
 ## A little history
 
-A 20 year old company, ThoughtWorks has been primarily into software. We have made our mark in the ability to create high quality custom enterprise grade software over the years. Data analytics is a key focus areas, but there are others with deeper pockets already investing. Mobile development is also a conquered field. So when our chairman, [Roy](http://en.wikipedia.org/wiki/Neville_Roy_Singham), asked ThoughtWorkers to preempt the next big thing, we naturally started looking at the Internet of Things (**IoT**) as one of the avenues for innovation. Approaching it from a purely hardware perspective would have meant a lot of playing catch up, as we would need to seed a lot of talent in spaces before we could catch up:
+A 20 year old company, **ThoughtWorks** has been primarily into software. We have made our mark in the ability to create high quality custom enterprise grade software over the years. Data analytics is a key focus areas, but there are others with deeper pockets already investing. Mobile development is also a conquered field. So when our chairman, [Roy](http://en.wikipedia.org/wiki/Neville_Roy_Singham), asked ThoughtWorkers to preempt the next big thing, we naturally started looking at the Internet of Things (**IoT**) as one of the avenues for innovation. Approaching it from a purely hardware perspective would have meant a lot of playing catch up, as we would need to seed a lot of talent in spaces before we could catch up:
 
 * material science
 * industrial design
