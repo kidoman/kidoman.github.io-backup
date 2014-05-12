@@ -13,7 +13,7 @@ I am a challenge driven person who gets a kick out of delivering solutions to co
 
 My recent passion has been centered around developing high performance systems which scale, [embedded systems](/framework/embd.html), and in [Golang](http://golang.org/). As a avid open source believer, I try and do my part by contributing back to the community to the best of my capacity (my [GitHub](https://github.com/kidoman) profile.) Some of my recent projects are [embd](https://github.com/kidoman/embd) and [rays](https://github.com/kidoman/rays).
 
-I also love speaking at technical conferences, and had the opportunity to address the good folks at [Mongo Delhi](http://www.meetup.com/mongo-dilli/events/129611472/), [Golang India](http://www.meetup.com/Golang-India/events/155483972/) and over 3 **XConfs** (technical conferences internal to ThoughtWorks) over the last 2 years.
+I also love speaking at technical conferences, and had the opportunity to address the good folks at [Mongo Dilli](http://www.meetup.com/mongo-dilli/events/129611472/), [Golang India](http://www.meetup.com/Golang-India/events/155483972/) and over 3 **XConfs** (technical conferences internal to ThoughtWorks) over the last 2 years.
 
 My quick learning and grasping abilities have definitely helped me stay on top of everything I have put my finger on, and I have thankful for that.
 
