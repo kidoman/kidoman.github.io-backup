@@ -4,7 +4,9 @@ title: "God save the JS"
 date: 2014-05-10 03:15:15 +0530
 comments: true
 category: programming
-tags: javascript, golang
+tags:
+  - javascript
+  - golang
 ---
 
 Golang has has this feature right from the start. Very innocuously named ```gofmt``` this tool (distributed as part of the Go compiler toolchain) ensures that all Go code have a common look and feel to it. It does that by enforcing a few things:
