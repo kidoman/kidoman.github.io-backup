@@ -2,107 +2,111 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://kidoman.io/life/welcome.html</loc>
-        <lastmod>2014-05-06T05:06:20+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/engineering/chrome-profiling-demystified.html</loc>
-        <lastmod>2014-05-06T05:06:20+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/life/sitting-at-work.html</loc>
-        <lastmod>2014-05-06T05:06:20+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/life/what-is-bimer.html</loc>
-        <lastmod>2014-05-06T05:06:20+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/life/bimer-at-thoughtworks.html</loc>
-        <lastmod>2014-05-06T05:06:20+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/programming/why-sublime-text.html</loc>
-        <lastmod>2014-05-06T05:06:20+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/engineering/node-dot-js-in-action-learnings.html</loc>
-        <lastmod>2014-05-06T05:06:20+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/life/i-have-got-7.html</loc>
-        <lastmod>2014-05-06T05:06:20+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/engineering/golang-testing-the-waters.html</loc>
-        <lastmod>2014-05-06T05:06:20+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/engineering/announcing-roadrunners.html</loc>
-        <lastmod>2014-05-06T05:06:20+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/life/joy-of-programming.html</loc>
-        <lastmod>2014-05-06T05:06:20+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/engineering/go-hadoop.html</loc>
-        <lastmod>2014-05-06T05:06:20+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/programming/go-getter.html</loc>
-        <lastmod>2014-05-06T05:06:20+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/programming/go-getter-part-2.html</loc>
-        <lastmod>2014-05-06T05:06:20+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/programming/go-getter-part-3.html</loc>
-        <lastmod>2014-05-06T05:06:20+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/engineering/thebot.html</loc>
-        <lastmod>2014-05-06T05:27:23+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/software/serve.html</loc>
-        <lastmod>2014-05-06T05:27:35+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/framework/embd.html</loc>
-        <lastmod>2014-05-10T05:37:12+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/life/embd-behind-scenes.html</loc>
-        <lastmod>2014-05-10T05:37:23+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/programming/god-save-the-js.html</loc>
-        <lastmod>2014-05-10T03:36:25+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/about/</loc>
-        <lastmod>2014-05-06T06:23:32+05:30</lastmod>
+        <lastmod>2014-05-12T20:06:52+05:30</lastmod>
+    </url>
+    <url>
+        <loc>http://kidoman.io/about/resume/</loc>
+        <lastmod>2014-05-12T20:05:26+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/blog/archives/</loc>
-        <lastmod>2014-05-10T05:37:23+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/blog/</loc>
-        <lastmod>2014-05-10T05:37:23+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/drafts/2014-04-29-io-in-golang.html</loc>
-        <lastmod>2014-05-06T05:27:35+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
+    </url>
+    <url>
+        <loc>http://kidoman.io/drafts/2014-05-10-dot-net-goes-native.html</loc>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/</loc>
-        <lastmod>2014-05-10T05:37:23+05:30</lastmod>
-    </url>
-    <url>
-        <loc>http://kidoman.io/resume/</loc>
-        <lastmod>2014-05-06T05:06:20+05:30</lastmod>
+        <lastmod>2014-05-12T18:54:13+05:30</lastmod>
     </url>
     <url>
         <loc>http://kidoman.io/robots.txt</loc>
