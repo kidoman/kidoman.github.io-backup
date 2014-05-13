@@ -7,7 +7,7 @@
 
 	<meta name="author" content="Karan Misra">
 
-<meta name="description" content="Hurray multi-threading This is the second follow up article to the slightly polarizing original which had solely focused on extracting the max &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="(cross posted from the P2 Magazine) “Robots that are controlled by node.js.” The idea imprinted on me immediately. “A crowd controlled robotic car &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -46,6 +46,115 @@
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<header>
+		<h2 class="title">
+			
+			<a href="/engineering/thebot.html">
+			
+				TheBot - Adventures in Hardware</a>
+		</h2>
+		<div class="meta date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-02T08:00:00+05:30" pubdate data-updated="true">Mar 2<span>nd</span>, 2014</time></div>
+	</header>
+	<div class="entry-content">
+		<p>(cross posted from the <a href="http://thoughtworks.github.io/p2/issue09/thebot">P2 Magazine</a>)</p>
+
+<p>“Robots that are controlled by node.js.” The idea imprinted on me immediately.</p>
+
+<p>“A crowd controlled robotic car!&#8221;</p>
+
+<p><img class="center" src="/images/thebot-1.png" title="TheBot Mascot" ></p>
+
+<p>A fun product with a tonne of learning potential. However, doing a &ldquo;follow the blog posts/tutorials&rdquo; stitch and patch job recommended on the NodeBots site did not excite me one bit. Sure, we’d done it in two days, but what would we have learned in the process?</p>
+
+<p>Despite having worked extensively on node.js, the language did not interest me much &ndash; ambiguous syntax, callbacks, promises, etc. I had been looking for an opportunity do something real in Golang, and building a concurrent open source firmware for TheBot was just the ticket.</p>
+
+<p><img class="center" src="/images/thebot-2.jpg" title="TheBot" ></p>
+
+<p>TheBot is first and foremost an experiment. An experiment aimed at research and learning. An experiment to kickstart a hardware engineering culture in ThoughtWorks. Birthed as a crowd controlled robotic car that transmits video feed back to the controller; the vision has transformed many times during the development. Can it be the ultimate open source sensing/proximity prototyping platform? Could we extract a product out of this?</p>
+
+<blockquote><p>“TheBot’s value is the immense learning and research potential.”</p></blockquote>
+
+<p>On first appearance, TheBot looks like the result of odd inter-breeding between a remote-controlled car and the contents of your local Radio Shack. TheBot itself though, is not really just a car, it is actually a fully-fledged Golang based framework for working with hardware sensors and motor control. In it’s current incarnation, the RaspberryPi-based robot allows you to control it remotely using any device capable of running a modern browser. The on-board smarts do things like use rangefinders to implement collision avoidance, and you can even send it logo-ish commands like ‘turn 90 degrees right’.</p>
+
+<p>Right now, we are laying down the rails for what is to come next. The modules are already taking shape and we are using our learnings from TheBot to drive the development of the framework(s) and the underlying hardware abstraction layer.</p>
+
+<p>Unique Selling Proposal: TheBot’s value is the immense learning and research potential in its current form. The fact that it looks like a car and has 4 wheels is just a bonus.</p>
+
+<h3>The Guts</h3>
+
+<p>We plan on doing a proper video walk through of the hardware soon, but until then:</p>
+
+<p><img class="center" src="/images/thebot-3.png" title="Block Diagram" ></p>
+
+<h3>Why Golang?</h3>
+
+<p>Golang has excellent and remarkable support for concurrency in the core language. The RaspberryPi is single threaded and we needed the car to handle multiple real world interactions at the same time. Using threads would have forced us to use mutexes, etc, for synchronization. The ‘goroutines+channels&#8217; architecture in Golang helped us focus on the &ldquo;actual&rdquo; interactions. (Goroutines are light weight threads which are executed via the Go runtime on real threads via a M:N mapping. Channels are a typed mechanism for passing messages between goroutines). The resulting code is much easier to read, reason with and understand.</p>
+
+<blockquote><p>“Simply running the binary was always enough. This helped tremendously in shortening our development/build/deploy cycles and made the process even more gratifying.”</p></blockquote>
+
+<p>Golang is a statically typed, garbage collected and compiled programming language. However, in use, it feels like a FAST (slightly) verbose scripting language which has support for systems programming  and duck typing. Since the cross compiled binary was entirely self contained, no runtime was needed. Simply running the binary was enough, which helped tremendously in shortening our development, build and deploy cycles and made the process even more gratifying.</p>
+
+<h3>Why RaspberryPi?</h3>
+
+<p>The RaspberryPi represents the most available lowest common denominator; an ARM chip running Linux. Besides marrying well with cross compiled Golang, it also doesn’t skimp in the I/O department. It supports I2C, GPIO, and PWM. The forgiving nature of the hardware, integrated HDMI/Ethernet/USB go a long way in making it a good first choice.</p>
+
+<p>That being said, we could deploy the firmware, in its current form, on any Linux based platform that has the ability to talk GPIO/I2C, including:
+BeagleBone Black
+PandaBoard, etc.</p>
+
+<p>Our long term goal is to be able to target raw microcontrollers.</p>
+
+<h3>What does it do ?</h3>
+
+<div class="embed-video-container"><iframe src="//www.youtube.com/embed/iMXjkZ4B3EM "></iframe></div>
+
+
+<h3>What next?</h3>
+
+<p>The current form factor was an evolutionary step; a convenience which allowed us to get started quickly.</p>
+
+<p>We definitely want to cater to the hobbyist / education space &ndash; possibly in the form of a stripped down, dressed up Super 8 sensor kit, to help people get started quickly &ndash; as it has the potential for maximum impact at the grassroots level. At the same time, we want to balance things out by looking at solidly marketable areas like B2B logistics / delivery &ndash; which could apply to the rural health care space &ndash; and home automation. The home automation space is particularly exciting as the potential for integration between smart software and hardware innovation is really high &ndash; aptly demonstrated by the NEST devices.</p>
+
+<p>To make the above happen, we will need to stretch TheBot’s legs and expand its capabilities. We are in the process of extracting a hardware abstraction framework (EMBD) which will allow us to target a variety of hosts &ndash; RPi, BBB, etc. &ndash; from a single code base. This is particularly helpful because it will allow us to quickly prototype solutions using readily available hobby boards, while still retaining the ability to target the final hardware. Besides that, we are also interested in route mapping and visualization, as capability in this area will open many more opportunities.</p>
+
+<p style="text-align:center;"> ⁂</p>
+
+<p>The development process was nothing short of enthralling. We did not have well established libraries to lean back on. We went into this &ldquo;batteries not included.&rdquo; The decisions were deliberate; to use Golang and not pre-existing libraries because the potential for learning would have been limited. We optimized for maximized learning. And boy did it pay off. Not only did we end up writing our very own Golang libraries for interfacing with all these sensors, we also had the opportunity to try and model the interactions of software with the real world. Imagine for one second how many different ways there are to make the car turn right. Things we take for granted in software can open a can of worms when the &ldquo;real world&rdquo; gets involved!</p>
+
+<p>The technical attractiveness of such an undertaking is obvious, but there is more to it. I believe that a lot of good can be done for the &ldquo;voiceless&rdquo; by getting cheap commodity devices into their hands. A simple 2G connected solar powered open hardware device could allow a village like Panchayat, India, to bypass all the middle men and leverage social networking to report grievances to their congress representative. This could bring about a revolution. What minister worth his salt would want to look bad on Facebook? Our hope is that the resulting learnings and framework created from TheBot effort can and will make this possible.</p>
+
+<p>The possibilities are truly endless.</p>
+
+<h3>Links to Watch</h3>
+
+<p><a href="https://github.com/kidoman/embd" target="_blank">github.com/kidoman/embd</a></p>
+
+<h3>Credits</h3>
+
+<p>Contributors in no particular order: Sapto, Rohit, Kunal, Nikesh, Shantanu, Hanu, Gagan, Shaunak, Kashyap, Mukund, Akhil, Vishwas, Mallik, Deepthi, Shaun, Nag, Bala &amp; Sam Newman</p>
+
+<p><img class="center" src="/images/thebot-4.jpg" title="The Team" ></p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -293,7 +402,7 @@
 
 <p>I have restuctured the github project (<a href="https://github.com/kidoman/rays">https://github.com/kidoman/rays</a>) so that it is easy to add other language implementations to it. A Java, Clojure, Rust, Python, etc. version would definitely make things interesting and spice things up a bit. If you are interested in picking up a cause, please go right ahead&hellip; all pull requests are welcome.</p>
 
-<p>As usual, reachable at <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#58;&#x6b;&#105;&#x64;&#111;&#109;&#97;&#x6e;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;">&#107;&#x69;&#x64;&#x6f;&#x6d;&#x61;&#x6e;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;</a> / <a href="&#x6d;&#97;&#x69;&#108;&#116;&#x6f;&#x3a;&#x6b;&#x61;&#x72;&#97;&#x6e;&#109;&#x40;&#x74;&#x68;&#x6f;&#117;&#103;&#104;&#x74;&#x77;&#111;&#114;&#x6b;&#115;&#46;&#x63;&#x6f;&#109;">&#107;&#x61;&#x72;&#97;&#x6e;&#x6d;&#x40;&#116;&#104;&#111;&#117;&#x67;&#x68;&#116;&#119;&#111;&#x72;&#x6b;&#115;&#46;&#x63;&#111;&#x6d;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
+<p>As usual, reachable at <a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#58;&#x6b;&#105;&#x64;&#x6f;&#x6d;&#97;&#110;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x6b;&#x69;&#x64;&#x6f;&#x6d;&#97;&#x6e;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;</a> / <a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#x6b;&#97;&#x72;&#97;&#110;&#109;&#x40;&#116;&#x68;&#111;&#x75;&#x67;&#x68;&#x74;&#x77;&#x6f;&#114;&#x6b;&#x73;&#x2e;&#x63;&#x6f;&#x6d;">&#107;&#97;&#114;&#x61;&#x6e;&#109;&#64;&#116;&#x68;&#111;&#117;&#103;&#104;&#116;&#x77;&#111;&#114;&#x6b;&#115;&#x2e;&#99;&#x6f;&#109;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
 
 <p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
 
@@ -358,7 +467,7 @@
 
 <p>I hope to takes these numbers to the Go community and try and close the gap as much as possible. Go suffers from relatively slower performance because it tries to be as safe as possible when used in a concurrent scenario (for example, the default &ldquo;global rand&rdquo; is synchronized and good to access from multiple goroutines.) That is something I would definitely desire when doing real world coding. There is definitely scope for improvement, but considering everything else (GC, compilation speed, goroutines, channels, etc.) that Go brings to the table, I guess it will always be a game of balance.</p>
 
-<p>As usual, reachable at <a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#107;&#x69;&#100;&#111;&#109;&#97;&#110;&#x40;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#x6b;&#105;&#x64;&#111;&#x6d;&#x61;&#110;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#109;</a> / <a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#x6b;&#97;&#x72;&#97;&#x6e;&#x6d;&#64;&#116;&#x68;&#x6f;&#117;&#x67;&#104;&#x74;&#x77;&#111;&#114;&#107;&#115;&#46;&#99;&#111;&#x6d;">&#x6b;&#x61;&#x72;&#x61;&#110;&#109;&#x40;&#116;&#x68;&#111;&#x75;&#103;&#x68;&#116;&#119;&#111;&#114;&#x6b;&#115;&#x2e;&#x63;&#x6f;&#109;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
+<p>As usual, reachable at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#x6b;&#x69;&#x64;&#111;&#109;&#x61;&#x6e;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#x6d;">&#107;&#x69;&#100;&#x6f;&#x6d;&#x61;&#110;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;</a> / <a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#107;&#97;&#114;&#97;&#110;&#109;&#x40;&#116;&#104;&#x6f;&#117;&#x67;&#104;&#116;&#119;&#111;&#114;&#x6b;&#x73;&#x2e;&#x63;&#111;&#109;">&#107;&#x61;&#114;&#97;&#x6e;&#x6d;&#64;&#116;&#x68;&#111;&#117;&#x67;&#104;&#x74;&#119;&#x6f;&#x72;&#107;&#x73;&#46;&#99;&#x6f;&#109;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
 
 <p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
 
@@ -600,7 +709,7 @@ Change: <strong>12.01 %</strong><br/></p>
 </ul>
 
 
-<p>That&rsquo;s all folks. Thanks for reading. If you have any comments, feel free to leave them here on the blog or you can always email me at <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#107;&#97;&#x72;&#97;&#x6e;&#109;&#64;&#116;&#x68;&#x6f;&#x75;&#103;&#x68;&#x74;&#x77;&#111;&#114;&#107;&#x73;&#46;&#99;&#x6f;&#x6d;">&#x6b;&#97;&#x72;&#97;&#110;&#109;&#64;&#x74;&#x68;&#111;&#x75;&#x67;&#104;&#x74;&#119;&#111;&#114;&#x6b;&#x73;&#46;&#x63;&#111;&#x6d;</a> / <a href="&#x6d;&#97;&#x69;&#108;&#116;&#x6f;&#x3a;&#x6b;&#x69;&#100;&#x6f;&#x6d;&#97;&#x6e;&#64;&#x67;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;&#x2e;">&#x6b;&#105;&#x64;&#111;&#x6d;&#x61;&#x6e;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;&#46;</a> Also reachable at <a href="https://twitter.com/kid0m4n">@kid0m4n</a> on Twitter Ciao!</p>
+<p>That&rsquo;s all folks. Thanks for reading. If you have any comments, feel free to leave them here on the blog or you can always email me at <a href="&#109;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#x6b;&#97;&#x72;&#x61;&#110;&#x6d;&#x40;&#x74;&#104;&#x6f;&#117;&#x67;&#104;&#116;&#119;&#x6f;&#114;&#107;&#x73;&#x2e;&#x63;&#111;&#109;">&#107;&#x61;&#x72;&#x61;&#110;&#x6d;&#x40;&#116;&#104;&#x6f;&#x75;&#x67;&#x68;&#116;&#119;&#111;&#114;&#x6b;&#115;&#x2e;&#99;&#x6f;&#109;</a> / <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x6b;&#105;&#100;&#111;&#x6d;&#97;&#x6e;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;&#46;">&#x6b;&#105;&#x64;&#x6f;&#x6d;&#x61;&#110;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;&#46;</a> Also reachable at <a href="https://twitter.com/kid0m4n">@kid0m4n</a> on Twitter Ciao!</p>
 
 <p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
 
@@ -635,51 +744,6 @@ Change: <strong>12.01 %</strong><br/></p>
 	</header>
 	<div class="entry-content">
 		<p>This is very interesting development indeed: <a href="http://hortonworks.com/blog/go-hadoop-err-hadoop-and-go/">http://hortonworks.com/blog/go-hadoop-err-hadoop-and-go/</a> :)</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<header>
-		<h2 class="title">
-			
-			<a href="/life/joy-of-programming.html">
-			
-				Joy of Programming</a>
-		</h2>
-		<div class="meta date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-18T17:54:00+05:30" pubdate data-updated="true">Sep 18<span>th</span>, 2013</time></div>
-	</header>
-	<div class="entry-content">
-		<p>Unicorns. and Rainbows. Besides being <a href="http://rubygems.org/gems/unicorn">Ruby</a> <a href="http://rubygems.org/gems/rainbows">gems</a>, they also happen to exactly articulate the feeling I have in my head the moment I start thinking about programming.</p>
-
-<p>Ever since I first opened up &ldquo;Doom.exe&rdquo; in notepad and stared at disbelief at the gibberish machine code, something has always driven me to figure out the the underlying DNA of every piece of software I have chanced upon. Obviously as the years have gone by, the amount of software out there has increased a trillion fold, but every now and then, I still chance upon a masterpiece which immediately attracts a &ldquo;holy cow!&rdquo; from me. It happens less often now-a-days but <a href="http://www.cs.utah.edu/~aek/code/card.cpp">still</a>&hellip;</p>
-
-<p>Doom caught my fancy as it was the first FPS I ever played (it was way back in 1994.) After poring through the machine code and trying to make sense of it, I started down my first programming project. Making my own game. The rough tasklist:</p>
-
-<ul>
-<li>Think of a game idea</li>
-<li>???</li>
-<li>$$$</li>
-</ul>
-
-
-<p>The figuring out the ??? has definitely been the executive summary of my life story. And I guess that is something I share with every programmer out there. Sometimes, I <del datetime="2013-09-24T03:10:03+00:00">don&rsquo;t even care</del> pretend to care about the idea (step #1) and the business model around it (step #3). If the challenge is strong enough and calls to me, that&rsquo;s good enough. The years have made me shift priorities of course, but figuring out the unknown still has a weird hold on me. It calls to me in a very animalistic fashion; and hopefully will for years to come&hellip; It helps drown out the bureaucracy of the work place and get into the zone; a zone that I fondly call &ldquo;Joy of Programming&rdquo;</p>
 
 		
 		

@@ -1,0 +1,380 @@
+
+<!DOCTYPE HTML>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<title>Async IO - Part 1  | Karan Misra</title>
+
+	<meta name="author" content="Karan Misra">
+
+<meta name="description" content="I was recently reading a series on &ldquo;Write Sequential Non-Blocking IO Code With Fibers in NodeJS&rdquo; by Venkatesh. Venki was essentially &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Karan Misra" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Karan Misra</a></h1>
+<span class="tagline">Coder, Biker, Hacker</span>
+<nav id="main-nav"><ul>
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">Subscribe</a></li>
+  <li><a href="mailto:kidoman@gmail.com">Contact</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">Subscribe</a></li>
+  <li><a href="mailto:kidoman@gmail.com">Contact</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<header>
+		<h2 class="title">Async IO - Part 1</h2>
+		<div class="meta date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-13T16:24:00+05:30" pubdate data-updated="true">May 13<span>th</span>, 2014</time></div>
+	</header>
+	<div class="entry-content"><p>I was recently reading a <a href="http://venkateshcm.com/2014/04/Reactor-Pattern-Part-4-Write-Sequential-Non-Blocking-IO-Code-With-Fibers-In-NodeJS/">series</a> on &ldquo;Write Sequential Non-Blocking IO Code With Fibers in NodeJS&rdquo; by <a href="http://venkateshcm.com/">Venkatesh</a>.</p>
+
+<p>Venki was essentially trying to emphasize that writing non-blocking code in NodeJS (either via callbacks, or using promises) can get hairy really fast. For example, this code demonstrates that aptly:</p>
+
+<figure class='code'><figcaption><span>Callback driven NodeJS</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/users/:fbId&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="s1">&#39;user:&#39;</span> <span class="o">+</span> <span class="nx">id</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">client</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">reply</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">reply</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="mi">404</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="nx">reply</span><span class="p">});</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The exact code is available on <a href="https://github.com/kidoman/fibrous/blob/master/nodejs/callback.js#L59-L72">GitHub</a> (so is the <a href="https://github.com/kidoman/fibrous/blob/master/nodejs/promise.js#L55-L65">promises driven version</a>, but I won&rsquo;t bother inlining it.)</p>
+
+<p>What we actually wanted to write (if it were possible, was):</p>
+
+<figure class='code'><figcaption><span>Not plain old JavaScript</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/users/:fbId&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="s1">&#39;user:&#39;</span> <span class="o">+</span> <span class="nx">id</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">try</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">reply</span> <span class="o">=</span> <span class="nx">client</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">reply</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="mi">404</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="nx">reply</span><span class="p">});</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The magic would happen in line number 9 (above.) Instead of having to provide a cascade of callbacks (what if we wanted to do another lookup after we got the value back from the first), we could just write them serially, one after the other.</p>
+
+<p>Well. Apparently we can!</p>
+
+<h2>Fibers</h2>
+
+<blockquote><p>A fiber is a particularly lightweight thread of execution. Like threads, fibers share address space. However, fibers use co-operative multitasking while threads use pre-emptive multitasking. Threads often depend on the kernel&rsquo;s thread scheduler to preempt a busy thread and resume another thread; fibers yield themselves to run another fiber while executing.</p></blockquote>
+
+<p>Fibers allow exactly this kind of black magic in NodeJS. It is still callbacks internally, but we are exposed to none of it in our application code. Sure you will end up writing a bunch of wrappers (or have some tool generate them for us), but we would have the sweet sweet pleasure of writing async IO code without having to jump through all the hoops. This is how the wrapper code for redis client looks like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">Fiber</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fibers&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./redis-client&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">exports</span><span class="p">.</span><span class="nx">get</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">err</span><span class="p">,</span> <span class="nx">reply</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">fiber</span> <span class="o">=</span> <span class="nx">Fiber</span><span class="p">.</span><span class="nx">current</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">client</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">_err</span><span class="p">,</span> <span class="nx">_reply</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">err</span> <span class="o">=</span> <span class="nx">_err</span><span class="p">;</span>
+</span><span class='line'>    <span class="nx">reply</span> <span class="o">=</span> <span class="nx">_reply</span><span class="p">;</span>
+</span><span class='line'>    <span class="nx">fiber</span><span class="p">.</span><span class="nx">run</span><span class="p">();</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>  <span class="nx">Fiber</span><span class="p">.</span><span class="nx">yield</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">reply</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(the <a href="https://github.com/kidoman/fibrous/blob/master/nodejs/fiber.js#L52-L60">real code</a> is here in case you are curious)</p>
+
+<p>I liked how the code looked. Having survided a &lsquo;promising&rsquo; node.js project, I was definitely curious about this new style. Maybe this can be the saving grace (before generators and <strong>yield</strong> take over the JS world) for real world server side JavaScript.</p>
+
+<h2>Fibers you say</h2>
+
+<p>But the code (and the underlying technique which makes it tick) sounded very familiar, and reminded me of a similar technique which is used in Go to allow writing beautiful async IO code. For example, the same function from above in Go:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="nx">m</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;/users/:id&quot;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">db</span> <span class="o">*</span><span class="nx">DB</span><span class="p">,</span> <span class="nx">params</span> <span class="nx">martini</span><span class="p">.</span><span class="nx">Params</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">str</span> <span class="o">:=</span> <span class="nx">params</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">]</span>
+</span><span class='line'>  <span class="nx">id</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nx">Atoi</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusBadRequest</span><span class="p">,</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">{}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">u</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">LoadUser</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusNotFound</span><span class="p">,</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">{}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusOK</span><span class="p">,</span> <span class="nx">encoder</span><span class="p">.</span><span class="nx">Must</span><span class="p">(</span><span class="nx">enc</span><span class="p">.</span><span class="nx">Encode</span><span class="p">(</span><span class="nx">u</span><span class="p">))</span>
+</span><span class='line'><span class="p">})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sure, there is a little more happening in here (Go is statically typed), buts its the exact same thing as the fibers example, without all the manual wrapping. Any call which does IO (like line 8) blocks the currently executing goroutine (just like a fiber, a lightweight thread.) The natural question to ask is, if the goroutine gets blocked, how do other requests get processed? Its quite simple actually. The Go runtime automatically schedules any other goroutine which is ready to run (their IO call is done) on the thread on which the current goroutine was running.</p>
+
+<p>Since goroutines are light weight (stack size is just 4 KB in Go 1.3beta1 compared to the much larger ~2 MB thread stacks), it is not unusual to have hundreds of thousands of goroutines actively running in a single process, all humming along together. The best part, since the threads have to do less context switching (the same physical thread can continue running on the processor core, just the instruction pointer keeps changing as the goroutines shuffle in and out, just as in method calls), we are able to extract a lot more efficiency from the same unit of hardware than otherwise. Otherwise IO calls, which would otherwise cause the thread to block and wait, could cripple the system and bring it down to its knees. Read <a href="http://venkateshcm.com/2014/05/How-To-Determine-Web-Applications-Thread-Poll-Size/">this</a> article for more context on this.</p>
+
+<h2>Performance</h2>
+
+<p>A fellow ThoughtWorker asked me, &ldquo;Does performance matter when choosing a framework?&rdquo;</p>
+
+<p>I know where he was coming from, and how we shouldn&rsquo;t make decisions purely based on performance (we would all be doing assembly if that was the case.) While it is true that as a startup (or even in the case of a well established player), building the MVP and getting it to the users is paramount, you really dont want to face the situation where you suddenly have a huge influx of users (say it goes viral) and you are caught between a ROCK (scale horizontally by throwing compute units at the problem) and a HARD PLACE (have to rewrite the solution in a technology more amenable to scaling.) Both of these options are expensive, and can potentially be a deal breaker.</p>
+
+<p>Therefore, provided everything else is more or less equal, choosing the more performant one is never a bad thing.</p>
+
+<p>With this context, I decided to compare the two solutions for their performance, given that they more or less looked the same. I decided to allow the system under test to use as many cores as they wanted, and then hit them with 100 concurrent users, each of which is going full tilk for around 20 seconds (used the awesome <a href="https://github.com/wg/wrk">wrk</a> tool for benchmarking.)</p>
+
+<p>The results:</p>
+
+<table>
+<thead>
+<tr>
+<th>Golang  </th>
+<th> &nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stdlib  </td>
+<td> <a href="https://github.com/kidoman/fibrous/blob/master/go/stdlib.go">134566</a> (3.81ms)</td>
+</tr>
+<tr>
+<td>Martini </td>
+<td> <a href="https://github.com/kidoman/fibrous/blob/master/go/martini.go">51330</a> (9.51ms)</td>
+</tr>
+</tbody>
+</table>
+
+
+<table>
+<thead>
+<tr>
+<th>node.js   </th>
+<th> &nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stdlib    </td>
+<td><a href="https://github.com/kidoman/fibrous/blob/master/nodejs/stdlib.js">54510</a> (7.78ms)</td>
+</tr>
+<tr>
+<td>Callbacks*</td>
+<td><a href="https://github.com/kidoman/fibrous/blob/master/nodejs/callback.js">36107</a> (10.84ms)</td>
+</tr>
+<tr>
+<td>Fibers*   </td>
+<td><a href="https://github.com/kidoman/fibrous/blob/master/nodejs/fiber.js">27372</a> (18.76ms)</td>
+</tr>
+<tr>
+<td>Promises* </td>
+<td><a href="https://github.com/kidoman/fibrous/blob/master/nodejs/promise.js">22665</a> (17.15ms)</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>* The Callbacks, Fibers and Promises versions are created using Express. The Stdlib versions use the <strong>http</strong> support in the corresponding standard libraries.</p>
+
+<p>All the numbers are in <strong>req/s</strong> as given by wrk (higher is better.) The latency details are in brackets (lower is better.) Clicking the numbers will take you to the corresponding code in the <a href="https://github.com/kidoman/fibrous">GitHub repo</a> (the <a href="https://github.com/kidoman/fibrous/blob/master/README.md">README</a> has the detailed numbers.)</p>
+
+<p>The tests were done on an updated Ubuntu 14.04 box with a Intel i7 4770 processor, 16 GB of RAM and a SSD.</p>
+
+<p>As you can see, the <strong>fibers</strong> method of doing async IO in <strong>node.js</strong> comes with a perceivable loss in throughput compared to the pure <strong>callbacks</strong> based approach, but looks relatively better than the <strong>promises</strong> version for this micro-benchmark.</p>
+
+<p>At the same time, the default way of doing IO in Golang does very well for itself. More than <strong>134,000 req/s</strong> with a <strong>3.81 ms</strong> 99th percentile latency. All this without having to go through crazy callbacks/promises hoops. How cool is that?</p>
+
+<h2>Summary</h2>
+
+<p>This is part 1 in a multipart series looking at how async IO (and programming in general) is done in various languages/platforms. We will be going indepth into one language/platform with the every new article in the series. Future parts will look at Scala, Clojure, Java, C#, Python and Ruby based frameworks and try and present a holistic view of the async world.</p>
+
+<p>But one thing is very clear, async IO is here to stay. Not embrassing it would be foolhardy given the need to stay lean. Hope these articles help you understand gravity of the decision.</p>
+</div>
+	
+
+</article>
+
+	
+	<div class="share">
+		<ul>
+			<li>
+  <a href="https://twitter.com/intent/tweet?text=Async IO - Part 1 by @kid0m4n&url=http://kidoman.io/programming/async-io-part-1.html" title="Share Async IO - Part 1 on Twitter">
+    <img src="/images/social/twitter.png" />
+  </a>
+</li>
+
+			<li>
+  <a href="https://www.facebook.com/sharer.php?u=http://kidoman.io/programming/async-io-part-1.html" title="Share Async IO - Part 1 on Facebook">
+    <img src="/images/social/facebook.png" />
+  </a>
+</li>
+
+			<li>
+  <a href="https://plus.google.com/share?url=http://kidoman.io/programming/async-io-part-1.html" title="Share Async IO - Part 1 on Google Plus">
+    <img src="/images/social/google.png" />
+  </a>
+</li>
+
+		</ul>
+	</div>
+
+
+
+</div>
+	<footer id="footer" class="inner">&copy; 2014
+
+    Karan Misra
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/hyphenator.js"></script>
+
+
+
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-44459958-1', 'kidoman.io');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+  </script>
+
+
+
+
+</body>
+</html>
