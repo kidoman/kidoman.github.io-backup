@@ -2,7 +2,7 @@
 layout: post
 title: "Async IO - Part 1"
 date: 2014-05-13 16:24
-comments: false
+comments: true
 category: programming
 tags:
   - golang
