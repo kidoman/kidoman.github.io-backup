@@ -323,11 +323,45 @@
 
 <p>At the same time, the default way of doing IO in Golang does very well for itself. More than <strong>134,000 req/s</strong> with a <strong>3.81 ms</strong> 99th percentile latency. All this without having to go through crazy callbacks/promises hoops. How cool is that?</p>
 
+<h2>How the tests were run?</h2>
+
+<h3>Software versions</h3>
+
+<ul>
+<li>Go 1.3beta1</li>
+<li>node.js 0.10.28</li>
+<li>wrk 3.1.0</li>
+</ul>
+
+
+<h3>Command used to run</h3>
+
+<p>A more detailed description is available in the <a href="https://github.com/kidoman/fibrous">README</a> but I will explain a simple version here:</p>
+
+<ul>
+<li>Start the program (by say running ./start_martini.sh)</li>
+<li>Run the benchmark (by running ./bench.sh)</li>
+<li>Record the result</li>
+<li>Rince and repeat 3 times and take the best run</li>
+</ul>
+
+
+<h3>Notes</h3>
+
+<ul>
+<li>All cores on the Intel i7 4770 were set to the performance governor</li>
+<li>Redis was not tweaked</li>
+<li>ulimit was not raised</li>
+</ul>
+
+
 <h2>Summary</h2>
 
 <p>This is part 1 in a multipart series looking at how async IO (and programming in general) is done in various languages/platforms. We will be going indepth into one language/platform with the every new article in the series. Future parts will look at Scala, Clojure, Java, C#, Python and Ruby based frameworks and try and present a holistic view of the async world.</p>
 
 <p>But one thing is very clear, async IO is here to stay. Not embrassing it would be foolhardy given the need to stay lean. Hope these articles help you understand gravity of the decision.</p>
+
+<p>While some might argue that what we did in Golang was not really async, as the call was blocking in nature. But the net result achieved, and the reason why Go is still able to provide an awesome throughput despite blocking IO calls, is because the Go runtime essentially does the heavy lifting for you. When one goroutine is busy waiting for the results of a IO call to come back, other goroutines can take their place and not waste CPU cycles. The fact that this mechanism allows us to get away with fewer threads that would be required otherwise, is the icing on top.</p>
 
 		
 		
