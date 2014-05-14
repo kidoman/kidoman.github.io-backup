@@ -158,6 +158,29 @@ As you can see, the **fibers** method of doing async IO in **node.js** comes wit
 
 At the same time, the default way of doing IO in Golang does very well for itself. More than **134,000 req/s** with a **3.81 ms** 99th percentile latency. All this without having to go through crazy callbacks/promises hoops. How cool is that?
 
+## How the tests were run?
+
+### Software versions
+
+* Go 1.3beta1
+* node.js 0.10.28
+* wrk 3.1.0
+
+### Command used to run
+
+A more detailed description is available in the [README](https://github.com/kidoman/fibrous) but I will explain a simple version here:
+
+* Start the program (by say running ./start_martini.sh)
+* Run the benchmark (by running ./bench.sh)
+* Record the result
+* Rince and repeat 3 times and take the best run
+
+### Notes
+
+* All cores on the Intel i7 4770 were set to the performance governor
+* Redis was not tweaked
+* ulimit was not raised
+
 ## Summary
 
 This is part 1 in a multipart series looking at how async IO (and programming in general) is done in various languages/platforms. We will be going indepth into one language/platform with the every new article in the series. Future parts will look at Scala, Clojure, Java, C#, Python and Ruby based frameworks and try and present a holistic view of the async world.
