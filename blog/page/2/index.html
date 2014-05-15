@@ -7,7 +7,8 @@
 
 	<meta name="author" content="Karan Misra">
 
-<meta name="description" content="(cross posted from the P2 Magazine) “Robots that are controlled by node.js.” The idea imprinted on me immediately. “A crowd controlled robotic car &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="Sometimes, it takes a great deal of effort to create something simple. What is the smallest feature set you can support and still be useful?
+How &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -46,6 +47,104 @@
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<header>
+		<h2 class="title">
+			
+			<a href="/software/serve.html">
+			
+				Introducing Serve</a>
+		</h2>
+		<div class="meta date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-10T06:00:00+05:30" pubdate data-updated="true">Apr 10<span>th</span>, 2014</time></div>
+	</header>
+	<div class="entry-content">
+		<p>Sometimes, it takes a great deal of effort to create something simple.</p>
+
+<ul>
+<li>What is the smallest feature set you can support and still be useful?</li>
+<li>How elegant should the implementation be?</li>
+</ul>
+
+
+<p>These are the typical questions which would come to your mind when aiming for simplicity.</p>
+
+<p>Well, here is my dedication to the shrine of <a href="http://www.infoq.com/presentations/Simple-Made-Easy">simplicity</a>.</p>
+
+<h2>What is this?</h2>
+
+<p><strong>Serve</strong> makes serving static content out of directories <strong>simple</strong>.</p>
+
+<p>Why would you want to do this?</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>python -m SimpleHTTPServer 8080</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When you can just do this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>serve .</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Serve</strong> is a single binary. Easy installed via <a href="http://brew.sh/">Homebrew</a> with a single command:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew install kidoman/tools/serve</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(there are a few other ways of installing Serve, including but not limited to precompiled binaries. But they are much better documented at the <a href="https://github.com/kidoman/serve">Github repo</a>)</p>
+
+<h2>How to use</h2>
+
+<p>Provided you have <code>serve</code> under your $PATH somewhere:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>serve .</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will serve the current directory at <code>http://localhost:5000/</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>serve -p 9999 ~/my-awesome-blog</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Will serve the contents of the folder <code>~/my-awesome-blog</code> at <code>http://localhost:9999/</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>serve -x /my ~/precious</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You guessed it, <code>http://localhost:5000/my</code> is now wired up to <code>~/precious</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>serve -o ~/sesame</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Wires up <code>http://localhost:5000</code> to <code>~/sesame</code> and opens the URL in your favorite browser while it is at it.</p>
+
+<h2>Next Steps</h2>
+
+<p>The next logical thing would be to allow the <code>serve</code> functionality to be used by simply importing the package. But it totally depends on the simplicity of the change! Happy serving.</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -402,7 +501,7 @@ PandaBoard, etc.</p>
 
 <p>I have restuctured the github project (<a href="https://github.com/kidoman/rays">https://github.com/kidoman/rays</a>) so that it is easy to add other language implementations to it. A Java, Clojure, Rust, Python, etc. version would definitely make things interesting and spice things up a bit. If you are interested in picking up a cause, please go right ahead&hellip; all pull requests are welcome.</p>
 
-<p>As usual, reachable at <a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#107;&#x69;&#x64;&#x6f;&#x6d;&#97;&#x6e;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#107;&#105;&#100;&#x6f;&#x6d;&#97;&#110;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;</a> / <a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#x3a;&#107;&#97;&#x72;&#x61;&#110;&#109;&#64;&#116;&#x68;&#111;&#x75;&#103;&#104;&#x74;&#119;&#x6f;&#114;&#x6b;&#115;&#x2e;&#99;&#x6f;&#109;">&#107;&#97;&#x72;&#97;&#x6e;&#x6d;&#64;&#116;&#x68;&#111;&#x75;&#103;&#104;&#116;&#119;&#111;&#x72;&#107;&#115;&#x2e;&#x63;&#x6f;&#x6d;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
+<p>As usual, reachable at <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x6b;&#x69;&#x64;&#x6f;&#109;&#x61;&#x6e;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#109;">&#x6b;&#x69;&#x64;&#x6f;&#109;&#97;&#x6e;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;</a> / <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#107;&#97;&#114;&#x61;&#x6e;&#x6d;&#x40;&#x74;&#104;&#111;&#117;&#103;&#104;&#x74;&#x77;&#x6f;&#x72;&#x6b;&#x73;&#x2e;&#99;&#111;&#x6d;">&#107;&#97;&#114;&#x61;&#110;&#x6d;&#x40;&#116;&#104;&#111;&#117;&#x67;&#x68;&#x74;&#x77;&#111;&#x72;&#x6b;&#x73;&#x2e;&#99;&#111;&#109;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
 
 <p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
 
@@ -467,7 +566,7 @@ PandaBoard, etc.</p>
 
 <p>I hope to takes these numbers to the Go community and try and close the gap as much as possible. Go suffers from relatively slower performance because it tries to be as safe as possible when used in a concurrent scenario (for example, the default &ldquo;global rand&rdquo; is synchronized and good to access from multiple goroutines.) That is something I would definitely desire when doing real world coding. There is definitely scope for improvement, but considering everything else (GC, compilation speed, goroutines, channels, etc.) that Go brings to the table, I guess it will always be a game of balance.</p>
 
-<p>As usual, reachable at <a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#107;&#105;&#x64;&#x6f;&#x6d;&#x61;&#110;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;">&#107;&#105;&#100;&#111;&#x6d;&#97;&#110;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#109;</a> / <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#x6b;&#x61;&#x72;&#x61;&#110;&#x6d;&#64;&#116;&#104;&#x6f;&#x75;&#x67;&#x68;&#x74;&#x77;&#x6f;&#x72;&#107;&#x73;&#46;&#99;&#x6f;&#109;">&#107;&#97;&#x72;&#97;&#x6e;&#109;&#64;&#x74;&#x68;&#x6f;&#117;&#103;&#x68;&#116;&#119;&#111;&#114;&#x6b;&#x73;&#x2e;&#99;&#111;&#109;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
+<p>As usual, reachable at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#x3a;&#x6b;&#105;&#100;&#111;&#109;&#x61;&#x6e;&#64;&#103;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#x6d;">&#x6b;&#x69;&#x64;&#111;&#109;&#97;&#110;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;</a> / <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#107;&#97;&#114;&#97;&#110;&#109;&#x40;&#x74;&#x68;&#x6f;&#117;&#x67;&#x68;&#116;&#x77;&#111;&#114;&#x6b;&#x73;&#46;&#99;&#x6f;&#109;">&#x6b;&#97;&#114;&#x61;&#110;&#109;&#x40;&#116;&#x68;&#x6f;&#117;&#x67;&#x68;&#x74;&#x77;&#x6f;&#114;&#107;&#x73;&#46;&#x63;&#x6f;&#x6d;</a> / <a href="https://twitter.com/kid0m4n">@kid0m4n</a></p>
 
 <p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
 
@@ -709,41 +808,9 @@ Change: <strong>12.01 %</strong><br/></p>
 </ul>
 
 
-<p>That&rsquo;s all folks. Thanks for reading. If you have any comments, feel free to leave them here on the blog or you can always email me at <a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#58;&#x6b;&#97;&#114;&#97;&#110;&#x6d;&#x40;&#x74;&#104;&#x6f;&#117;&#x67;&#104;&#116;&#119;&#x6f;&#114;&#x6b;&#115;&#x2e;&#99;&#111;&#109;">&#x6b;&#97;&#x72;&#x61;&#110;&#109;&#x40;&#116;&#x68;&#111;&#117;&#103;&#104;&#116;&#x77;&#x6f;&#114;&#107;&#x73;&#x2e;&#99;&#x6f;&#109;</a> / <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#x6b;&#105;&#100;&#111;&#109;&#x61;&#110;&#x40;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;&#46;">&#x6b;&#105;&#x64;&#x6f;&#109;&#x61;&#110;&#64;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;&#46;</a> Also reachable at <a href="https://twitter.com/kid0m4n">@kid0m4n</a> on Twitter Ciao!</p>
+<p>That&rsquo;s all folks. Thanks for reading. If you have any comments, feel free to leave them here on the blog or you can always email me at <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#x6b;&#x61;&#114;&#x61;&#110;&#x6d;&#x40;&#116;&#104;&#x6f;&#117;&#103;&#104;&#116;&#x77;&#111;&#x72;&#x6b;&#115;&#46;&#x63;&#x6f;&#109;">&#107;&#x61;&#x72;&#x61;&#110;&#x6d;&#64;&#x74;&#104;&#x6f;&#x75;&#x67;&#104;&#116;&#119;&#111;&#114;&#x6b;&#115;&#46;&#99;&#x6f;&#x6d;</a> / <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6b;&#x69;&#100;&#111;&#109;&#x61;&#x6e;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;&#x2e;">&#x6b;&#105;&#x64;&#x6f;&#x6d;&#97;&#x6e;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;&#x2e;</a> Also reachable at <a href="https://twitter.com/kid0m4n">@kid0m4n</a> on Twitter Ciao!</p>
 
 <p><a href="http://www.reddit.com/r/golang/comments/1nlgbq/business_card_ray_tracer_go_faster_than_c/">Reddit discussion thread</a></p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<header>
-		<h2 class="title">
-			
-			<a href="/engineering/go-hadoop.html">
-			
-				Go + Hadoop!</a>
-		</h2>
-		<div class="meta date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-29T14:37:00+05:30" pubdate data-updated="true">Sep 29<span>th</span>, 2013</time></div>
-	</header>
-	<div class="entry-content">
-		<p>This is very interesting development indeed: <a href="http://hortonworks.com/blog/go-hadoop-err-hadoop-and-go/">http://hortonworks.com/blog/go-hadoop-err-hadoop-and-go/</a> :)</p>
 
 		
 		

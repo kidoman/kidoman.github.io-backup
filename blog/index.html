@@ -7,7 +7,7 @@
 
 	<meta name="author" content="Karan Misra">
 
-<meta name="description" content="I was recently reading a series on &ldquo;Write Sequential Non-Blocking IO Code With Fibers in NodeJS&rdquo; by Venkatesh. Venki was essentially &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="Saw this tweet today: @kid0m4n Day 3 will include dusting off 1 of 2 BeagleBone Black&#39;s and trying out EMBD. Thanks for that! =D&mdash; Marco &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -46,6 +46,50 @@
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<header>
+		<h2 class="title">
+			
+			<a href="/life/made-my-day.html">
+			
+				Made My Day</a>
+		</h2>
+		<div class="meta date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-15T14:59:44+05:30" pubdate data-updated="true">May 15<span>th</span>, 2014</time></div>
+	</header>
+	<div class="entry-content">
+		<p>Saw this tweet today:</p>
+
+<blockquote class="twitter-tweet" data-partner="tweetdeck"><p><a href="https://twitter.com/kid0m4n">@kid0m4n</a> Day 3 will include dusting off 1 of 2 BeagleBone Black&#39;s and trying out EMBD. Thanks for that! =D</p>&mdash; Marco Monteiro (@mynameismarco) <a href="https://twitter.com/mynameismarco/statuses/466824607773626368">May 15, 2014</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>Made my day!</p>
+
+<p>We have spent many sleepless nights tweaking <a href="https://github.com/kidoman/embd">EMBD</a>&rsquo;s API till it felt just right! Hope you guys have as much fun using it as we had creating it!</p>
+
+<p>And while you are at it, follow my hero, <a href="https://twitter.com/mynameismarco">@mynameismarco</a> !</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -683,104 +727,6 @@ Github: <a href="https://github.com/kidoman/embd">https://github.com/kidoman/emb
 
 <p>Homepage: <a href="http://embd.kidoman.io/">http://embd.kidoman.io/</a><br/>
 Github: <a href="https://github.com/kidoman/embd">https://github.com/kidoman/embd</a></p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<header>
-		<h2 class="title">
-			
-			<a href="/software/serve.html">
-			
-				Introducing Serve</a>
-		</h2>
-		<div class="meta date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-04-10T06:00:00+05:30" pubdate data-updated="true">Apr 10<span>th</span>, 2014</time></div>
-	</header>
-	<div class="entry-content">
-		<p>Sometimes, it takes a great deal of effort to create something simple.</p>
-
-<ul>
-<li>What is the smallest feature set you can support and still be useful?</li>
-<li>How elegant should the implementation be?</li>
-</ul>
-
-
-<p>These are the typical questions which would come to your mind when aiming for simplicity.</p>
-
-<p>Well, here is my dedication to the shrine of <a href="http://www.infoq.com/presentations/Simple-Made-Easy">simplicity</a>.</p>
-
-<h2>What is this?</h2>
-
-<p><strong>Serve</strong> makes serving static content out of directories <strong>simple</strong>.</p>
-
-<p>Why would you want to do this?</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>python -m SimpleHTTPServer 8080</span></code></pre></td></tr></table></div></figure>
-
-
-<p>When you can just do this:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>serve .</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>Serve</strong> is a single binary. Easy installed via <a href="http://brew.sh/">Homebrew</a> with a single command:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>brew install kidoman/tools/serve</span></code></pre></td></tr></table></div></figure>
-
-
-<p>(there are a few other ways of installing Serve, including but not limited to precompiled binaries. But they are much better documented at the <a href="https://github.com/kidoman/serve">Github repo</a>)</p>
-
-<h2>How to use</h2>
-
-<p>Provided you have <code>serve</code> under your $PATH somewhere:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>serve .</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This will serve the current directory at <code>http://localhost:5000/</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>serve -p 9999 ~/my-awesome-blog</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Will serve the contents of the folder <code>~/my-awesome-blog</code> at <code>http://localhost:9999/</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>serve -x /my ~/precious</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You guessed it, <code>http://localhost:5000/my</code> is now wired up to <code>~/precious</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>serve -o ~/sesame</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Wires up <code>http://localhost:5000</code> to <code>~/sesame</code> and opens the URL in your favorite browser while it is at it.</p>
-
-<h2>Next Steps</h2>
-
-<p>The next logical thing would be to allow the <code>serve</code> functionality to be used by simply importing the package. But it totally depends on the simplicity of the change! Happy serving.</p>
 
 		
 		

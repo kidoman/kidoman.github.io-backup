@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: embd | Karan Misra]]></title>
   <link href="http://kidoman.io/tags/embd/atom.xml" rel="self"/>
   <link href="http://kidoman.io/"/>
-  <updated>2014-05-15T01:56:28+05:30</updated>
+  <updated>2014-05-15T15:18:34+05:30</updated>
   <id>http://kidoman.io/</id>
   <author>
     <name><![CDATA[Karan Misra]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Made my day]]></title>
+    <link href="http://kidoman.io/life/made-my-day.html"/>
+    <updated>2014-05-15T14:59:44+05:30</updated>
+    <id>http://kidoman.io/life/made-my-day</id>
+    <content type="html"><![CDATA[<p>Saw this tweet today:</p>
+
+<blockquote class="twitter-tweet" data-partner="tweetdeck"><p><a href="https://twitter.com/kid0m4n">@kid0m4n</a> Day 3 will include dusting off 1 of 2 BeagleBone Black&#39;s and trying out EMBD. Thanks for that! =D</p>&mdash; Marco Monteiro (@mynameismarco) <a href="https://twitter.com/mynameismarco/statuses/466824607773626368">May 15, 2014</a></blockquote>
+
+
+<script async src="http://kidoman.io//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>Made my day!</p>
+
+<p>We have spent many sleepless nights tweaking <a href="https://github.com/kidoman/embd">EMBD</a>&rsquo;s API till it felt just right! Hope you guys have as much fun using it as we had creating it!</p>
+
+<p>And while you are at it, follow my hero, <a href="https://twitter.com/mynameismarco">@mynameismarco</a> !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[TheBot - Adventures in Hardware]]></title>

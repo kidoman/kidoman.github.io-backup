@@ -4,7 +4,7 @@
   <title><![CDATA[Category: life | Karan Misra]]></title>
   <link href="http://kidoman.io/categories/life/atom.xml" rel="self"/>
   <link href="http://kidoman.io/"/>
-  <updated>2014-05-15T01:56:28+05:30</updated>
+  <updated>2014-05-15T15:18:34+05:30</updated>
   <id>http://kidoman.io/</id>
   <author>
     <name><![CDATA[Karan Misra]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Made my day]]></title>
+    <link href="http://kidoman.io/life/made-my-day.html"/>
+    <updated>2014-05-15T14:59:44+05:30</updated>
+    <id>http://kidoman.io/life/made-my-day</id>
+    <content type="html"><![CDATA[<p>Saw this tweet today:</p>
+
+<blockquote class="twitter-tweet" data-partner="tweetdeck"><p><a href="https://twitter.com/kid0m4n">@kid0m4n</a> Day 3 will include dusting off 1 of 2 BeagleBone Black&#39;s and trying out EMBD. Thanks for that! =D</p>&mdash; Marco Monteiro (@mynameismarco) <a href="https://twitter.com/mynameismarco/statuses/466824607773626368">May 15, 2014</a></blockquote>
+
+
+<script async src="http://kidoman.io//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>Made my day!</p>
+
+<p>We have spent many sleepless nights tweaking <a href="https://github.com/kidoman/embd">EMBD</a>&rsquo;s API till it felt just right! Hope you guys have as much fun using it as we had creating it!</p>
+
+<p>And while you are at it, follow my hero, <a href="https://twitter.com/mynameismarco">@mynameismarco</a> !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[EMBD: Behind the Scenes]]></title>
@@ -138,30 +159,6 @@ Github: <a href="https://github.com/kidoman/embd">https://github.com/kidoman/emb
 <p><img src="/images/bhaimi-budha.jpg"></p>
 
 <p><img src="/images/priya-walk-on-wall.jpg"></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[What is BIMER?]]></title>
-    <link href="http://kidoman.io/life/what-is-bimer.html"/>
-    <updated>2013-05-13T12:28:00+05:30</updated>
-    <id>http://kidoman.io/life/what-is-bimer</id>
-    <content type="html"><![CDATA[<p><img class="center" src="/images/team-bimering.jpg"></p>
-
-<p>So <a href="/life/2013/05/sitting-at-work/">yesterday</a>, I posted about how I am going to be trying a new thing at work. Instead of hampering my cognitive ability by trying to stand and work, I wanted to do some simple core exercises every hour to keep the <a href="http://en.wikipedia.org/wiki/Basal_metabolic_rate">BMR</a> up. With <a href="http://www.linkedin.com/in/venkateshponniah">Venki</a>&rsquo;s help, this has actually evolved to something we have now called BIMER.</p>
-
-<p>The idea is simple:</p>
-
-<ul>
-<li>Every hour (0 * * * *)</li>
-<li>10 repetitions (to a max of 15)</li>
-<li>Simple exercises (eg. push up, sit up, squat, lumbar stretch, lunges, etc.)</li>
-<li>Finish the activity in less than 30 seconds</li>
-<li>Dont kick up a sweat</li>
-</ul>
-
-
-<p>This will ensure that we can do it every hour and keep our <a href="http://en.wikipedia.org/wiki/Basal_metabolic_rate">BMR</a> up which goes a long way in making our lives healthier. Also, keeping it simple and easy ensures you can go back to your work after BIMER and not be left panting.</p>
 ]]></content>
   </entry>
   
