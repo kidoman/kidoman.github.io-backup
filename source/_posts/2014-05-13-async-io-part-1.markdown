@@ -139,6 +139,7 @@ The results:
 Golang  | &nbsp;
 --------|---------
 Stdlib  | [134566](https://github.com/kidoman/fibrous/blob/master/go/stdlib.go) (3.81ms)
+Gorilla | [125092](https://github.com/kidoman/fibrous/blob/master/go/gorilla.go) (4.28ms)
 Martini | [51330](https://github.com/kidoman/fibrous/blob/master/go/martini.go) (9.51ms)
 
 node.js   | &nbsp;
