@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: io | Karan Misra]]></title>
   <link href="http://kidoman.io/tags/io/atom.xml" rel="self"/>
   <link href="http://kidoman.io/"/>
-  <updated>2014-05-15T15:18:34+05:30</updated>
+  <updated>2014-05-18T02:25:18+05:30</updated>
   <id>http://kidoman.io/</id>
   <author>
     <name><![CDATA[Karan Misra]]></name>
@@ -177,6 +177,10 @@ m.Get(&ldquo;/users/:id&rdquo;, func(db *DB, params martini.Params) (int, []byte
 <td> <a href="https://github.com/kidoman/fibrous/blob/master/go/stdlib.go">134566</a> (3.81ms)</td>
 </tr>
 <tr>
+<td>Gorilla </td>
+<td> <a href="https://github.com/kidoman/fibrous/blob/master/go/gorilla.go">125092</a> (4.28ms)</td>
+</tr>
+<tr>
 <td>Martini </td>
 <td> <a href="https://github.com/kidoman/fibrous/blob/master/go/martini.go">51330</a> (9.51ms)</td>
 </tr>
@@ -261,6 +265,8 @@ m.Get(&ldquo;/users/:id&rdquo;, func(db *DB, params martini.Params) (int, []byte
 <p>But one thing is very clear, async IO is here to stay. Not embrassing it would be foolhardy given the need to stay lean. Hope these articles help you understand gravity of the decision.</p>
 
 <p>While some might argue that what we did in Golang was not really async, as the call was blocking in nature. But the net result achieved, and the reason why Go is still able to provide an awesome throughput despite blocking IO calls, is because the Go runtime essentially does the heavy lifting for you. When one goroutine is busy waiting for the results of a IO call to come back, other goroutines can take their place and not waste CPU cycles. The fact that this mechanism allows us to get away with fewer threads that would be required otherwise, is the icing on top.</p>
+
+<p><a href="http://www.reddit.com/r/golang/comments/25iic3/async_io_part_1_go_vs_nodejs/">Reddit Thread</a></p>
 ]]></content>
   </entry>
   
